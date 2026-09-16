@@ -2,12 +2,31 @@
 
 Built 2026-09-16 from Plan A "The Keyhole". Client: Jenna Feezel, @jens.art / @thecicadacloset, 755 S Jenkins Ave, Norman OK. NOT yet sent to her.
 
-## PUBLIC (live 2026-09-16, noindex)
-- Tier 1: https://stationonemain-source.github.io/cicada-closet/
-- Tier 2 film: https://stationonemain-source.github.io/cicada-closet/film/
+## PUBLIC (GitHub Pages, all noindex)
+- Plan A tier 1 (Keyhole one-pager): https://stationonemain-source.github.io/cicada-closet/
+- Plan A tier 2 (scroll-film, 480p draft): https://stationonemain-source.github.io/cicada-closet/film/
+- Plan B tier 1 (Field Guide): https://stationonemain-source.github.io/cicada-closet/field-guide/
+- Plan C tier 1 (Healed + healing dial): https://stationonemain-source.github.io/cicada-closet/healed/
 - Repo stationonemain-source/cicada-closet (public). main = workspace, pages = site/ split.
-- Redeploy: rebuild tier1/tier2, recopy into site/ (film paths use ../assets/), commit, then
-  `git branch -D pages; git subtree split --prefix site -b pages && git push -f origin pages`
+- Redeploy: python planB/build.py; python planC/build.py; python tier2/build.py 301 997656;
+  python shared/assemble_site.py; commit; git branch -D pages; git subtree split --prefix site -b pages; git push -f origin pages
+
+## Shared nav (every page)
+shared/nav.css|nav.html|nav.js, rendered by shared/build_nav.py. Pages mark [data-nav-over] (transparent over hero/film)
+and [data-nav-dark] (ink bar). Tier1 embeds it directly: after editing shared/*, run python shared/reembed.py.
+Verify: node shared/navshots.js <url> <prefix>.
+
+## FACTS — verified sources only (09-16 correction)
+The first build invented claims (deposit, "sends design before appointment", "trained as painter first",
+"one chair", art-show crowd). All removed. Plate names now come from Jenna's own captions:
+stag beetle seraphim (was "moth of eyes"), bluebird (was "sparrow"), pink skies (was "sunset mirror"),
+murals for Mira's room (was "cicada studies"). Captions + originals via Instagram embed pages — see ref/posts/hires.txt.
+Sources: GBP (5.0, 9 reviews, opens 10am, no phone), flyers (grand opening Sat July 11 2026; gallery wall 100%/no fees),
+@jens.art bio (BFA, licensed, owner), highlights names (Booking, Healed, Aftercare, WANNADO, BFA Exhibit).
+
+## Plan C before/after slider — NOT BUILT (no data)
+Needs fresh+healed pairs of the same piece. They are in Jenna's Healed story highlight, which needs a login.
+Never generate "healed" versions. Ask Jenna for 4–6 pairs.
 
 ## Deliverables
 - tier1/index.html — quiet premium one-pager (GSAP+Lenis). Artifact: https://claude.ai/artifact/BAHaTRshePYqFcbbB9QnqS
