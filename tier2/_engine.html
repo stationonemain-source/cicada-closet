@@ -7,6 +7,7 @@
 <meta name="description" content="The Cicada Closet is a female-owned tattoo studio at 755 S Jenkins Ave, Norman, Oklahoma. Fine-line and illustrative tattoos by Jenna Feezel, BFA. Booking by message.">
 <meta property="og:title" content="The Cicada Closet · Norman, OK">
 <meta property="og:image" content="assets/hero-logo.jpg">
+<link rel="icon" type="image/png" href="assets/cicada-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rye&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <script type="application/ld+json">
@@ -49,8 +50,6 @@ body::before{display:none}
 .chapter{position:absolute;left:var(--gutter);top:calc(50% - 20px);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream);opacity:.9;display:grid;gap:8px;mix-blend-mode:difference}
 .chapter .bar{width:120px;height:1px;background:rgba(255,255,255,.35);position:relative}
 .chapter .bar i{position:absolute;left:0;top:-1px;height:3px;background:currentColor;width:0}
-header{color:var(--cream);mix-blend-mode:normal;transition:color .3s}
-header.on-light{color:var(--ink)}
 .loader{position:fixed;inset:0;z-index:50;background:var(--kraft);display:grid;place-items:center;transition:opacity .6s}
 .loader.done{opacity:0;pointer-events:none}
 .loader div{font-family:var(--display);font-size:22px;color:var(--ink);display:grid;gap:14px;justify-items:center}
@@ -66,13 +65,34 @@ header.on-light{color:var(--ink)}
 </head>
 <body>
 <div class="loader" id="loader"><div>The Cicada Closet<b><i id="bar"></i></b></div></div>
-<header id="hdr">
-  <a class="mark" href="#top">The Cicada Closet</a>
-  <nav aria-label="Sections"><a href="#work">Work</a><a href="#studio">Studio</a><a href="#artist">Artist</a><a href="#book">Booking</a><a href="#care">Aftercare</a></nav>
+<header class="nav" id="nav" data-mode="over" style="--mark:url(assets/cicada-mark.png)">
+  <a class="nav-mark" href="#top" aria-label="The Cicada Closet, home"><i aria-hidden="true"></i><span>The Cicada Closet</span></a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="#work">Work</a>
+    <a href="#studio">Studio</a>
+    <a href="#artist">Artist</a>
+    <a href="#book">Booking</a>
+    <a href="#care">Aftercare</a>
+  </nav>
+  <a class="nav-book" href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">Book</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-sheet"><span>Menu</span><i aria-hidden="true"></i></button>
 </header>
+<div class="nav-sheet" id="nav-sheet" hidden>
+  <nav aria-label="Sections">
+    <a href="#work">Work<small>Selected pieces</small></a>
+    <a href="#studio">Studio<small>Gallery wall</small></a>
+    <a href="#artist">Artist<small>Jenna Feezel</small></a>
+    <a href="#book">Booking<small>By message</small></a>
+    <a href="#care">Aftercare<small>The basics</small></a>
+  </nav>
+  <div class="sheet-foot">
+    <a class="btn solid" href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">Book through @jens.art</a>
+    <span>755 S Jenkins Ave, Norman, OK 73069<br><a href="https://www.google.com/maps/dir/?api=1&amp;destination=755+S+Jenkins+Ave,+Norman,+OK+73069" target="_blank" rel="noopener">Directions</a> · <a href="https://www.instagram.com/thecicadacloset/" target="_blank" rel="noopener">@thecicadacloset</a></span>
+  </div>
+</div>
 
 <main id="top">
-  <div class="film" id="film">
+  <div class="film" id="film" data-nav-over>
     <div class="stage">
       <canvas id="cv"></canvas>
       <div class="oveil" id="oveil"></div><div class="grain" id="grain"></div><div class="vig" id="vig"></div>
@@ -82,11 +102,11 @@ header.on-light{color:var(--ink)}
         <h2>Female-owned<br>tattoo studio.</h2>
         <p>Fine-line, illustrative and botanical work by Jenna Feezel.</p>
       </div>
-      <div class="beat" data-in="0.24" data-peak="0.31" data-out="0.38"><h2>Every piece starts as a drawing.</h2><p>Moths, birds, botanicals. Composition first, then line.</p></div>
-      <div class="beat" data-in="0.44" data-peak="0.51" data-out="0.58"><h2>Colour used sparingly, on purpose.</h2><p>Teal, ochre, marigold. Never more than the drawing needs.</p></div>
-      <div class="beat" data-in="0.62" data-peak="0.69" data-out="0.76"><h2>Made to look like the drawing in ten years.</h2><p>Clean line on healed skin is the whole point.</p></div>
+      <div class="beat" data-in="0.24" data-peak="0.31" data-out="0.38"><h2>Moths, birds and botanicals.</h2><p>Black and grey and colour work by Jenna Feezel, BFA.</p></div>
+      <div class="beat" data-in="0.44" data-peak="0.51" data-out="0.58"><h2>From the field and the garden.</h2><p>Luna moths, bluebirds, stag beetles, salamanders.</p></div>
+      <div class="beat" data-in="0.62" data-peak="0.69" data-out="0.76"><h2>Drawn for skin.</h2><p>755 South Jenkins Avenue, Norman.</p></div>
       <div class="beat finale" data-in="0.86" data-peak="0.93" data-out="2">
-        <p class="eyebrow">One chair · green walls · a gallery that pays its artists in full</p>
+        <p class="eyebrow">Green walls · a gallery that pays its artists in full</p>
         <h2>Come see the room.</h2>
         <div class="cta"><a class="btn solid" href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">Book by message</a><a class="btn" href="#work">See the work</a></div>
       </div>
@@ -112,7 +132,7 @@ header.on-light{color:var(--ink)}
   if (JUMP !== null) history.scrollRestoration = 'manual';
 
   const cv = document.getElementById('cv'), ctx = cv.getContext('2d', { alpha: false });
-  const film = document.getElementById('film'), hdr = document.getElementById('hdr');
+  const film = document.getElementById('film');
   const fade = document.getElementById('fade'), oveil = document.getElementById('oveil'), grain = document.getElementById('grain'), vig = document.getElementById('vig'), hint = document.getElementById('hint');
   const chapName = document.getElementById('chapName'), chapBar = document.getElementById('chapBar');
   const beats = [...document.querySelectorAll('.beat')].map(el => ({ el, in: +el.dataset.in, peak: +el.dataset.peak, out: +el.dataset.out }));
@@ -164,15 +184,6 @@ header.on-light{color:var(--ink)}
     const r = nearest(i); if (!r) return; const sb = sheetBmp.get(Math.floor(i / PER)); if (!sb) return; ctx.drawImage(sb, r.sx, r.sy, FW, FH, x, y, dw, dh); displayed = i;
   }
 
-  // ---- adaptive header
-  const sc = document.createElement('canvas'); sc.width = 16; sc.height = 4; const sctx = sc.getContext('2d', { willReadFrequently: true }); let lastSample = 0;
-  const artistEl = document.querySelector('.artist');
-  function sampleHeader(now){
-    if (now - lastSample < 180) return; lastSample = now;
-    if (progress >= 0.995){ const r = artistEl.getBoundingClientRect(); hdr.classList.toggle('on-light', !(r.top < 40 && r.bottom > 40)); return; }
-    try { sctx.drawImage(cv, 0, 0, cv.width, Math.max(1, cv.height * 0.12), 0, 0, 16, 4); const d = sctx.getImageData(0, 0, 16, 4).data; let l = 0; for (let i = 0; i < d.length; i += 4) l += d[i] * .299 + d[i + 1] * .587 + d[i + 2] * .114; l /= d.length / 4; hdr.classList.toggle('on-light', l > 138); } catch (e) {}
-  }
-
   // ---- beats
   function beatAlpha(b, p){ if (p < b.in || p > b.out) return 0; if (p < b.peak) return (p - b.in) / Math.max(1e-4, b.peak - b.in); if (b.out > 1.5) return 1; return 1 - (p - b.peak) / Math.max(1e-4, b.out - b.peak); }
   function layout(p){
@@ -187,14 +198,13 @@ header.on-light{color:var(--ink)}
 
   // ---- lenis + tick
   let lenis = null;
-  if (!reduced && JUMP === null && typeof Lenis !== 'undefined'){ lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
-    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const t = document.querySelector(a.getAttribute('href')); if (!t) return; e.preventDefault(); lenis.scrollTo(t, { offset: -20 }); })); }
+  if (!reduced && JUMP === null && typeof Lenis !== 'undefined'){ lenis = new Lenis({ lerp: 0.09, smoothWheel: true }); window.__lenis = lenis; }
   const deltas = []; let lastT = performance.now(), lastLog = lastT;
   function tick(now){
     if (lenis) lenis.raf(now);
     progress = computeProgress(); target = progress * (FRAME_COUNT - 1);
     current += (target - current) * (reduced ? 1 : 0.14); if (Math.abs(target - current) < 0.01) current = target;
-    const idx = Math.round(current); ensureBitmaps(idx); drawFrame(idx); layout(progress); sampleHeader(now);
+    const idx = Math.round(current); ensureBitmaps(idx); drawFrame(idx); layout(progress);
     deltas.push(now - lastT); lastT = now; if (now - lastLog > 2000){ const mx = Math.max(...deltas); if (mx > 50) console.log('jank max', mx.toFixed(1) + 'ms'); deltas.length = 0; lastLog = now; }
     requestAnimationFrame(tick);
   }
@@ -215,6 +225,68 @@ header.on-light{color:var(--ink)}
     requestAnimationFrame(tick);
     setTimeout(() => { window.__ready = true; }, 500);
   });
+})();
+</script>
+<script>
+(function(){
+  var nav = document.getElementById('nav'), sheet = document.getElementById('nav-sheet');
+  if (!nav || !sheet) return;
+  var btn = nav.querySelector('.nav-toggle'), label = btn.querySelector('span');
+  var over = document.querySelector('[data-nav-over]');
+  var darks = Array.prototype.slice.call(document.querySelectorAll('[data-nav-dark]'));
+  var allLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"], .nav-sheet nav a[href^="#"]'));
+  var ids = []; allLinks.forEach(function(a){ var h = a.getAttribute('href'); if (ids.indexOf(h) < 0) ids.push(h); });
+  var targets = ids.map(function(h){ return document.querySelector(h); });
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches, ticking = false;
+
+  function update(){
+    ticking = false;
+    var h = nav.offsetHeight, mode = 'solid';
+    if (over && over.getBoundingClientRect().bottom > h) mode = 'over';
+    else if (darks.some(function(d){ var r = d.getBoundingClientRect(); return r.top <= h - 2 && r.bottom > h + 2; })) mode = 'dark';
+    if (nav.dataset.mode !== mode) nav.dataset.mode = mode;
+    var line = innerHeight * 0.35, cur = null;
+    targets.forEach(function(t, i){ if (t && t.getBoundingClientRect().top <= line) cur = ids[i]; });
+    if (over && over.getBoundingClientRect().bottom > line) cur = null;
+    if (ids.length && innerHeight + scrollY >= document.documentElement.scrollHeight - 4) cur = ids[ids.length - 1];
+    allLinks.forEach(function(a){
+      if (a.getAttribute('href') === cur) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+    });
+  }
+  function req(){ if (!ticking){ ticking = true; requestAnimationFrame(update); } }
+  addEventListener('scroll', req, { passive: true });
+  addEventListener('resize', req);
+
+  function go(hash){
+    var t = document.querySelector(hash); if (!t) return;
+    var off = -nav.offsetHeight;
+    if (window.__lenis) window.__lenis.scrollTo(t, { offset: off, duration: 1.2 });
+    else scrollTo({ top: t.getBoundingClientRect().top + scrollY + off, behavior: reduced ? 'auto' : 'smooth' });
+  }
+  function open(){
+    sheet.hidden = false; nav.classList.add('is-open');
+    btn.setAttribute('aria-expanded', 'true'); label.textContent = 'Close';
+    document.documentElement.style.overflow = 'hidden'; if (window.__lenis) window.__lenis.stop();
+    var first = sheet.querySelector('a'); if (first) first.focus();
+  }
+  function close(){
+    if (sheet.hidden) return;
+    sheet.hidden = true; nav.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false'); label.textContent = 'Menu';
+    document.documentElement.style.overflow = ''; if (window.__lenis) window.__lenis.start();
+  }
+  btn.addEventListener('click', function(){ if (sheet.hidden) open(); else close(); });
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
+    var h = a.getAttribute('href'); if (h.length < 2 || !document.querySelector(h)) return;
+    e.preventDefault(); close(); go(h);
+    if (history.replaceState) history.replaceState(null, '', h);
+  });
+  addEventListener('keydown', function(e){ if (e.key === 'Escape' && !sheet.hidden){ close(); btn.focus(); } });
+  matchMedia('(min-width: 901px)').addEventListener('change', function(m){ if (m.matches) close(); });
+
+  window.__nav = { update: update };
+  update();
 })();
 </script>
 </body>
