@@ -1,0 +1,8 @@
+film/upscaled/
+film/frames/
+film/clips/*.mp4
+film/clips/*.png
+film/keys/*.png
+film/shots/
+tier2/sheets/
+tier2/index.html
