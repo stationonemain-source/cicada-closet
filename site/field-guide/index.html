@@ -440,12 +440,12 @@ main [id]{scroll-margin-top:68px}
   function update(){
     ticking = false;
     var h = nav.offsetHeight, mode = 'solid';
-    if (over && over.getBoundingClientRect().bottom > h) mode = 'over';
+    if (over && over.hasAttribute('data-nav-over') && over.getBoundingClientRect().bottom > h) mode = 'over';
     else if (darks.some(function(d){ var r = d.getBoundingClientRect(); return r.top <= h - 2 && r.bottom > h + 2; })) mode = 'dark';
     if (nav.dataset.mode !== mode) nav.dataset.mode = mode;
     var line = innerHeight * 0.35, cur = null;
     targets.forEach(function(t, i){ if (t && t.getBoundingClientRect().top <= line) cur = ids[i]; });
-    if (over && over.getBoundingClientRect().bottom > line) cur = null;
+    if (over && over.hasAttribute('data-nav-over') && over.getBoundingClientRect().bottom > line) cur = null;
     if (ids.length && innerHeight + scrollY >= document.documentElement.scrollHeight - 4) cur = ids[ids.length - 1];
     allLinks.forEach(function(a){
       if (a.getAttribute('href') === cur) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');

@@ -24,7 +24,7 @@ shutil.copytree(root / 'tier1' / 'assets', site / 'assets', ignore=shutil.ignore
 shutil.copy(root / 'tier1' / 'assets' / 'cicada-mark.png', site / 'assets' / 'cicada-mark.png')
 page(root / 'tier2' / 'index.html', site / 'film' / 'index.html', True)
 shutil.copytree(root / 'tier2' / 'sheets', site / 'film' / 'sheets')
-for name, folder in (('field-guide', 'planB'), ('healed', 'planC')):
+for name, folder in (('field-guide', 'planB'), ('living-plates', 'planB2'), ('healed', 'planC')):
     page(root / folder / 'index.html', site / name / 'index.html', False)
     shutil.copytree(root / folder / 'assets', site / name / 'assets', ignore=shutil.ignore_patterns('logo.jpg', 'hero-logo.jpg', 'shop-chair.jpg'))
 (site / '.nojekyll').touch()
