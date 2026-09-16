@@ -6,9 +6,10 @@ Built 2026-09-16 from Plan A "The Keyhole". Client: Jenna Feezel, @jens.art / @t
 - Plan A tier 1 (Keyhole one-pager): https://stationonemain-source.github.io/cicada-closet/
 - Plan A tier 2 (scroll-film, 480p draft): https://stationonemain-source.github.io/cicada-closet/film/
 - Plan B tier 1 (Field Guide): https://stationonemain-source.github.io/cicada-closet/field-guide/
+- Plan B tier 2 (Living Plates): https://stationonemain-source.github.io/cicada-closet/living-plates/
 - Plan C tier 1 (Healed + healing dial): https://stationonemain-source.github.io/cicada-closet/healed/
 - Repo stationonemain-source/cicada-closet (public). main = workspace, pages = site/ split.
-- Redeploy: python planB/build.py; python planC/build.py; python tier2/build.py 301 997656;
+- Redeploy: python planB/build.py; python planB2/build.py; python planC/build.py; python tier2/build.py 301 997656;
   python shared/assemble_site.py; commit; git branch -D pages; git subtree split --prefix site -b pages; git push -f origin pages
 
 ## Shared nav (every page)
@@ -57,3 +58,14 @@ Jank (tier2, 1440x900): avg 7.5ms, p95 ~15ms, max ~155ms once per run (1 frame o
 - Ask Jenna for full-res originals + logo file + yes on animating her drawings.
 - Master the film at 1080p after Circle approves the seams.
 - Hosting: GitHub Pages (above). Remove the noindex tag once Jenna approves.
+
+## Plan B tier 2 — The Living Plates (planB2/)
+GSAP 3.12.5 + ScrollTrigger + Lenis. Scene 1: cloth book on a walnut desk, cover rotates open (endpaper = her mark
+repeated), title page zooms to fill, fades to paper. Scene 2: pinned horizontal run of 7 plates; each draws its frame,
+inks in a LINE LAYER, then the real photo opens from the centre. Phones and reduced motion get a vertical run.
+Line layers: planB2/extract.py — local-contrast ink extraction from her own photos x Higgsfield
+image_background_remover limb mask (4 credits, 401 -> 397). Tuning per piece in TUNE; CLEAR boxes remove strays.
+Nothing is redrawn; the page says so. Studio plate = shop photo cropped to the sharp room.
+Jank (headless, software GPU): p95 ~9ms, max 78-177ms; traced to GPU raster of newly visible plates. Blend mode and
+nav backdrop blur removed on this page because they inflated it. Not yet measured on real hardware.
+Gotchas: PIL MinFilter(1) crashes the interpreter (exit 127, no traceback) — guard erode >= 3.
