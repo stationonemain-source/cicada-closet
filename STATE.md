@@ -2,6 +2,13 @@
 
 Built 2026-09-16 from Plan A "The Keyhole". Client: Jenna Feezel, @jens.art / @thecicadacloset, 755 S Jenkins Ave, Norman OK. NOT yet sent to her.
 
+## PUBLIC (live 2026-09-16, noindex)
+- Tier 1: https://stationonemain-source.github.io/cicada-closet/
+- Tier 2 film: https://stationonemain-source.github.io/cicada-closet/film/
+- Repo stationonemain-source/cicada-closet (public). main = workspace, pages = site/ split.
+- Redeploy: rebuild tier1/tier2, recopy into site/ (film paths use ../assets/), commit, then
+  `git branch -D pages; git subtree split --prefix site -b pages && git push -f origin pages`
+
 ## Deliverables
 - tier1/index.html — quiet premium one-pager (GSAP+Lenis). Artifact: https://claude.ai/artifact/BAHaTRshePYqFcbbB9QnqS
 - tier2/index.html — scroll-film (5 Seedance chapters, DRAFT 480p). Artifact: https://claude.ai/artifact/RcYVv3y7AzsSGGeissV1nL
@@ -30,4 +37,4 @@ Jank (tier2, 1440x900): avg 7.5ms, p95 ~15ms, max ~155ms once per run (1 frame o
 ## Open
 - Ask Jenna for full-res originals + logo file + yes on animating her drawings.
 - Master the film at 1080p after Circle approves the seams.
-- Hosting: no surge/vercel on the PC; artifacts for now.
+- Hosting: GitHub Pages (above). Remove the noindex tag once Jenna approves.
