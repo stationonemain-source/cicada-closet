@@ -4,7 +4,7 @@ Built 2026-09-16 from Plan A "The Keyhole". Client: Jenna Feezel, @jens.art / @t
 
 ## PUBLIC (GitHub Pages, all noindex)
 - Plan A tier 1 (Keyhole one-pager): https://stationonemain-source.github.io/cicada-closet/
-- Plan A tier 2 (scroll-film, 480p draft): https://stationonemain-source.github.io/cicada-closet/film/
+- Plan A tier 2 (scroll-film, 1080p MASTER 09-17): https://stationonemain-source.github.io/cicada-closet/film/
 - Plan B tier 1 (Field Guide): https://stationonemain-source.github.io/cicada-closet/field-guide/
 - Plan B tier 2 (Living Plates): https://stationonemain-source.github.io/cicada-closet/living-plates/
 - Plan C tier 1 (Healed + healing dial): https://stationonemain-source.github.io/cicada-closet/healed/
@@ -32,13 +32,13 @@ Never generate "healed" versions. Ask Jenna for 4–6 pairs.
 ## Deliverables
 - tier1/index.html — quiet premium one-pager (GSAP+Lenis). Artifact: https://claude.ai/artifact/BAHaTRshePYqFcbbB9QnqS
 - tier2/index.html — scroll-film (5 Seedance chapters, DRAFT 480p). Artifact: https://claude.ai/artifact/RcYVv3y7AzsSGGeissV1nL
-  Built from tier2/_engine.html + tier1 pieces by `python tier2/build.py 301 997656`. Frames ship as tier2/sheets (31 sprite sheets, 10 frames each, fetched as blobs).
+  Built from tier2/_engine.html + tier1 pieces by `python tier2/build.py 301 9c7755`. Frames ship per-file in tier2/frames/hd + sd, fetched coarse-to-fine as blobs, decoded near the playhead (sheets retired; old engine at tier2/_engine.sheets.bak).
 - Plans artifact: https://claude.ai/artifact/74yuWLcSaouPQVo4Q3KRms
 
 ## Film (film/)
 keys/key01.png = Nano Banana Pro keyframe from her logo. clips/ch1..ch5.mp4 chained last-frame→start-image, all junctions SSIM ≥ 0.91.
 Prompts ch1..ch5.txt. chain.sh / assemble.sh are bash ports (skill scripts are zsh). Master 601 frames → 301 extracted at 864px.
-MASTER at 1080p NOT run yet (≈275 credits). Re-run: bash chain.sh chN <start> chN.txt <prev-last> 1080p --image <refs>.
+MASTERED at 1080p 09-17: clips/h1..h5.mp4 (chain.sh ... 1080p), assemble_hd.sh → tier2/frames/{hd,sd} (1600px q3 / 960px q4), engine picks the set by screen size. h5 seam SSIM 0.69 = a 4-level exposure step, matched with GRADE_h5 eq in assemble_hd.sh. Cost 5×55 = 275 (342 → ~168 after h5 bills). Re-run: bash chain.sh chN <start> chN.txt <prev-last> 1080p --image <refs>.
 
 ## Higgsfield gotchas (cost a session)
 - `--mode fast` returns "Error: Not found" — omit --mode entirely.
