@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Cicada Closet · Tattoo Studio · Norman, OK</title>
+<meta name="description" content="The Cicada Closet is a female-owned tattoo studio at 755 S Jenkins Ave, Norman, Oklahoma. Fine-line and illustrative tattoos by Jenna Feezel, BFA. Booking by message.">
+<meta property="og:title" content="The Cicada Closet · Norman, OK">
+<meta property="og:image" content="assets/hero-logo.jpg">
+<link rel="icon" type="image/png" href="assets/cicada-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rye&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TattooParlor","name":"The Cicada Closet",
+ "address":{"@type":"PostalAddress","streetAddress":"755 S Jenkins Ave","addressLocality":"Norman","addressRegion":"OK","postalCode":"73069","addressCountry":"US"},
+ "geo":{"@type":"GeoCoordinates","latitude":35.212148,"longitude":-97.440973},
+ "founder":{"@type":"Person","name":"Jenna Feezel"},
+ "sameAs":["https://www.instagram.com/thecicadacloset/","https://www.instagram.com/jens.art/"],"image":"assets/hero-logo.jpg"}
+</script>
+<style>
+/*SHARED_STYLE*/
+
+/* ---- film engine ---- */
+:root{--seam:__SEAM__}
+body::before{display:none}
+.film{position:relative;height:850vh}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#1b1713}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.14;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(27,23,19,.45) 100%)}
+.fade{position:absolute;inset:0;pointer-events:none;background:var(--seam);opacity:0}
+.oveil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(27,23,19,.74) 0,rgba(27,23,19,.3) 42%,rgba(27,23,19,0) 65%),linear-gradient(180deg,rgba(27,23,19,0) 45%,rgba(27,23,19,.55) 100%)}
+.beat::before{content:"";position:absolute;inset:-18vh -30vw -14vh -20vw;z-index:-1;background:radial-gradient(ellipse at 30% 75%,rgba(27,23,19,.62),rgba(27,23,19,0) 65%);pointer-events:none}
+.beat.hero::before{display:none}
+.beat{position:absolute;left:var(--gutter);right:var(--gutter);bottom:12vh;max-width:640px;opacity:0;color:var(--cream);will-change:opacity,transform;pointer-events:none}
+.beat.finale{pointer-events:auto}
+.beat h2{color:inherit;font-size:clamp(30px,5vw,64px);line-height:1;text-shadow:0 2px 24px rgba(27,23,19,.55)}
+.beat p{font-style:italic;font-size:clamp(16px,1.6vw,20px);margin:14px 0 0;text-shadow:0 1px 12px rgba(27,23,19,.6)}
+.beat .eyebrow{color:var(--berry);margin-bottom:12px}
+.beat .cta{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+.beat .btn{border-color:var(--cream);color:var(--cream)}
+.beat .btn.solid{background:var(--cream);color:var(--ink)}
+.beat.hero h2{font-size:clamp(36px,6vw,72px)}
+.beat.dark{color:var(--ink)}
+.beat.dark h2,.beat.dark p{text-shadow:none}
+.hint{position:absolute;right:var(--gutter);bottom:5vh;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);opacity:.8;display:flex;align-items:center;gap:10px}
+.hint i{display:block;width:1px;height:40px;background:currentColor;animation:drop 1.8s ease-in-out infinite;transform-origin:top}
+@keyframes drop{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
+.chapter{position:absolute;left:var(--gutter);top:calc(50% - 20px);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream);opacity:.9;display:grid;gap:8px;mix-blend-mode:difference}
+.chapter .bar{width:120px;height:1px;background:rgba(255,255,255,.35);position:relative}
+.chapter .bar i{position:absolute;left:0;top:-1px;height:3px;background:currentColor;width:0}
+.loader{position:fixed;inset:0;z-index:50;background:var(--kraft);display:grid;place-items:center;transition:opacity .6s}
+.loader.done{opacity:0;pointer-events:none}
+.loader div{font-family:var(--display);font-size:22px;color:var(--ink);display:grid;gap:14px;justify-items:center}
+.loader b{display:block;width:180px;height:2px;background:rgba(27,23,19,.2);position:relative}
+.loader b i{position:absolute;left:0;top:0;bottom:0;background:var(--ink);width:0}
+.landing{background:linear-gradient(180deg,var(--seam) 0,var(--kraft) 60vh);position:relative;z-index:1}
+.landing::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .43 0 0 0 0 .28 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.landing > *{position:relative}
+@media (max-width:640px){.chapter{display:none}.beat{bottom:16vh}}
+@media (prefers-reduced-motion:reduce){.hint i{animation:none}}
+</style>
+</head>
+<body>
+<div class="loader" id="loader"><div>The Cicada Closet<b><i id="bar"></i></b></div></div>
+<header class="nav" id="nav" data-mode="over" style="--mark:url(assets/cicada-mark.png)">
+  <a class="nav-mark" href="#top" aria-label="The Cicada Closet, home"><i aria-hidden="true"></i><span>The Cicada Closet</span></a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="#work">Work</a>
+    <a href="#studio">Studio</a>
+    <a href="#artist">Artist</a>
+    <a href="#book">Booking</a>
+    <a href="#care">Aftercare</a>
+  </nav>
+  <a class="nav-book" href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">Book</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-sheet"><span>Menu</span><i aria-hidden="true"></i></button>
+</header>
+<div class="nav-sheet" id="nav-sheet" hidden>
+  <nav aria-label="Sections">
+    <a href="#work">Work<small>Selected pieces</small></a>
+    <a href="#studio">Studio<small>Gallery wall</small></a>
+    <a href="#artist">Artist<small>Jenna Feezel</small></a>
+    <a href="#book">Booking<small>By message</small></a>
+    <a href="#care">Aftercare<small>The basics</small></a>
+  </nav>
+  <div class="sheet-foot">
+    <a class="btn solid" href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">Book through @jens.art</a>
+    <span>755 S Jenkins Ave, Norman, OK 73069<br><a href="https://www.google.com/maps/dir/?api=1&amp;destination=755+S+Jenkins+Ave,+Norman,+OK+73069" target="_blank" rel="noopener">Directions</a> · <a href="https://www.instagram.com/thecicadacloset/" target="_blank" rel="noopener">@thecicadacloset</a></span>
+  </div>
+</div>
+
+<main id="top">
+  <div class="film" id="film" data-nav-over>
+    <div class="stage">
+      <canvas id="cv"></canvas>
+      <div class="oveil" id="oveil"></div><div class="grain" id="grain"></div><div class="vig" id="vig"></div>
+      <div class="chapter" id="chap"><span id="chapName">Paper</span><div class="bar"><i id="chapBar"></i></div></div>
+      <div class="beat hero" data-in="-0.1" data-peak="0" data-out="0.11">
+        <p class="eyebrow">Norman, Oklahoma · 755 S Jenkins Ave</p>
+        <h2>Female-owned<br>tattoo studio.</h2>
+        <p>Fine-line, illustrative and botanical work by Jenna Feezel.</p>
+      </div>
+      <div class="beat" data-in="0.24" data-peak="0.31" data-out="0.38"><h2>Moths, birds and botanicals.</h2><p>Black and grey and colour work by Jenna Feezel, BFA.</p></div>
+      <div class="beat" data-in="0.44" data-peak="0.51" data-out="0.58"><h2>From the field and the garden.</h2><p>Luna moths, bluebirds, stag beetles, salamanders.</p></div>
+      <div class="beat" data-in="0.62" data-peak="0.69" data-out="0.76"><h2>Drawn for skin.</h2><p>755 South Jenkins Avenue, Norman.</p></div>
+      <div class="beat finale" data-in="0.86" data-peak="0.93" data-out="2">
+        <p class="eyebrow">Green walls · a gallery that pays its artists in full</p>
+        <h2>Come see the room.</h2>
+        <div class="cta"><a class="btn solid" href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">Book by message</a><a class="btn" href="#work">See the work</a></div>
+      </div>
+      <div class="hint" id="hint">Scroll <i></i></div>
+      <div class="fade" id="fade"></div>
+    </div>
+  </div>
+
+  <div class="landing">
+  <!--AFTER-->
+  </div>
+</main>
+<!--FOOTER-->
+<!--DIALOG-->
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script>
+(function(){
+  const FRAME_COUNT = __FRAME_COUNT__;
+  const CHAPTERS = ['Paper','Wing','Bloom','Skin','The room'];
+  const JUMP = new URLSearchParams(location.search).get('jump');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (JUMP !== null) history.scrollRestoration = 'manual';
+
+  const cv = document.getElementById('cv'), ctx = cv.getContext('2d', { alpha: false });
+  const film = document.getElementById('film');
+  const fade = document.getElementById('fade'), oveil = document.getElementById('oveil'), grain = document.getElementById('grain'), vig = document.getElementById('vig'), hint = document.getElementById('hint');
+  const chapName = document.getElementById('chapName'), chapBar = document.getElementById('chapBar');
+  const beats = [...document.querySelectorAll('.beat')].map(el => ({ el, in: +el.dataset.in, peak: +el.dataset.peak, out: +el.dataset.out }));
+  const DPR = Math.min(devicePixelRatio || 1, 1.5);
+  let W = 0, H = 0;
+  function resize(){ W = innerWidth; H = innerHeight; cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); ctx.setTransform(DPR, 0, 0, DPR, 0, 0); drawFrame(displayed, true); }
+
+  // ---- frames: one JPEG per frame in two sizes, fetched coarse-to-fine, decoded off-thread near the playhead
+  const SET = (Math.min(innerWidth, 2400) * DPR > 1100) ? 'hd' : 'sd';
+  const blobs = new Array(FRAME_COUNT);
+  const src = i => `frames/${SET}/f_${String(i + 1).padStart(4, '0')}.jpg`;
+  let allLoaded;
+  const everything = new Promise(r => { allLoaded = r; });
+  everything.then(() => { window.__framesLoaded = true; });
+  function pump(){
+    const bar = document.getElementById('bar');
+    const q = [], seen = new Uint8Array(FRAME_COUNT);
+    const add = i => { if (i >= 0 && i < FRAME_COUNT && !seen[i]){ seen[i] = 1; q.push(i); } };
+    for (let i = 0; i < 12; i++) add(i);
+    let gate = 0;
+    for (let step = 8; step >= 1; step >>= 1){ for (let i = 0; i < FRAME_COUNT; i += step) add(i); if (step === 8) gate = q.length; }
+    return new Promise(res => {
+      let next = 0, inflight = 0, done = 0, opened = false; const CAP = 6;
+      const kick = () => {
+        while (inflight < CAP && next < q.length){
+          const i = q[next++]; inflight++;
+          fetch(src(i)).then(r => r.ok ? r.blob() : null).catch(() => null).then(b => {
+            inflight--; done++; if (b) blobs[i] = b; bmpCenter = -999;
+            if (!opened){ bar.style.width = Math.min(100, done / gate * 100) + '%'; if (done >= gate){ opened = true; res(); } }
+            if (done === q.length) allLoaded();
+            kick();
+          });
+        }
+      };
+      kick();
+    });
+  }
+
+  // ---- ImageBitmap window: nearest frames first, evict outside the keep range
+  const bitmaps = new Map(), decoding = new Set();
+  const B_AHEAD = SET === 'hd' ? 14 : 20, B_KEEP = SET === 'hd' ? 20 : 28; let bmpCenter = -999;
+  function ensureBitmaps(center){
+    if (Math.abs(center - bmpCenter) < 2) return; bmpCenter = center;
+    for (let d = 0; d <= B_AHEAD; d++){
+      for (const i of (d ? [center + d, center - d] : [center])){
+        if (i < 0 || i >= FRAME_COUNT || bitmaps.has(i) || decoding.has(i) || !blobs[i]) continue;
+        decoding.add(i);
+        createImageBitmap(blobs[i]).then(b => {
+          decoding.delete(i);
+          if (Math.abs(i - bmpCenter) > B_KEEP){ b.close(); return; }
+          bitmaps.set(i, b);
+          if (Math.abs(i - Math.round(current)) <= 2) drawFrame(Math.round(current), true);
+        }).catch(() => decoding.delete(i));
+      }
+    }
+    for (const k of Array.from(bitmaps.keys())) if (k < center - B_KEEP || k > center + B_KEEP){ bitmaps.get(k).close(); bitmaps.delete(k); }
+  }
+  function nearestBitmap(i){ for (let d = 1; d <= B_KEEP; d++){ const a = bitmaps.get(i - d); if (a) return a; const b = bitmaps.get(i + d); if (b) return b; } return null; }
+
+  // ---- draw (cover-fit; keeps the last good frame if nothing near the playhead is decoded yet)
+  let displayed = -1, current = 0, target = 0, progress = 0;
+  function drawFrame(i, force){
+    if (i === displayed && !force) return;
+    const exact = bitmaps.get(i), b = exact || nearestBitmap(i); if (!b) return;
+    const s = Math.max(W / b.width, H / b.height), dw = b.width * s, dh = b.height * s;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(b, (W - dw) / 2, (H - dh) / 2, dw, dh); displayed = exact ? i : -1;
+  }
+
+  // ---- beats
+  function beatAlpha(b, p){ if (p < b.in || p > b.out) return 0; if (p < b.peak) return (p - b.in) / Math.max(1e-4, b.peak - b.in); if (b.out > 1.5) return 1; return 1 - (p - b.peak) / Math.max(1e-4, b.out - b.peak); }
+  function layout(p){
+    for (const b of beats){ const a = beatAlpha(b, p); b.el.style.opacity = a.toFixed(3); b.el.style.transform = `translateY(${((1 - a) * 18).toFixed(1)}px)`; }
+    const seg = Math.min(CHAPTERS.length - 1, Math.floor(p * CHAPTERS.length)); chapName.textContent = CHAPTERS[seg]; chapBar.style.width = (p * 100) + '%';
+    const f = Math.max(0, Math.min(1, (p - 0.95) / 0.05)); fade.style.opacity = (f * 0.9).toFixed(3); oveil.style.opacity = Math.max(0, 1 - p * 9).toFixed(3); grain.style.opacity = (0.14 * (1 - f)).toFixed(3); vig.style.opacity = (1 - f).toFixed(3);
+    hint.style.opacity = Math.max(0, 0.8 - p * 12).toFixed(2);
+  }
+
+  // ---- progress
+  function computeProgress(){ const r = film.getBoundingClientRect(); return Math.max(0, Math.min(1, -r.top / (r.height - innerHeight))); }
+
+  // ---- lenis + tick
+  let lenis = null;
+  if (!reduced && JUMP === null && typeof Lenis !== 'undefined'){ lenis = new Lenis({ lerp: 0.09, smoothWheel: true }); window.__lenis = lenis; }
+  const deltas = []; let lastT = performance.now(), lastLog = lastT;
+  function tick(now){
+    if (lenis) lenis.raf(now);
+    progress = computeProgress(); target = progress * (FRAME_COUNT - 1);
+    current += (target - current) * (reduced ? 1 : 0.14); if (Math.abs(target - current) < 0.01) current = target;
+    const idx = Math.round(current); ensureBitmaps(idx); drawFrame(idx); layout(progress);
+    deltas.push(now - lastT); lastT = now; if (now - lastLog > 2000){ const mx = Math.max(...deltas); if (mx > 50) console.log('jank max', mx.toFixed(1) + 'ms'); deltas.length = 0; lastLog = now; }
+    requestAnimationFrame(tick);
+  }
+
+  // ---- lightbox
+  const lb = document.getElementById('lb'), lbi = document.getElementById('lbi'), lbc = document.getElementById('lbc');
+  document.querySelector('.plates').addEventListener('click', e => { const p = e.target.closest('.plate'); if (!p) return; lbi.src = p.dataset.full; lbi.alt = p.querySelector('img').alt; lbc.textContent = p.dataset.cap; lb.showModal(); });
+  document.getElementById('lbx').addEventListener('click', () => lb.close()); lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
+  document.querySelectorAll('.reveal').forEach(el => el.classList.remove('reveal'));
+
+  // ---- boot
+  addEventListener('resize', resize); resize();
+  pump().then(async () => {
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    ensureBitmaps(0); await wait(300);
+    if (JUMP !== null){
+      await everything; scrollTo(0, +JUMP || 0); progress = computeProgress(); current = target = progress * (FRAME_COUNT - 1);
+      bmpCenter = -999; ensureBitmaps(Math.round(current)); await wait(700);
+    }
+    drawFrame(Math.round(current), true); layout(progress);
+    document.getElementById('loader').classList.add('done');
+    requestAnimationFrame(tick);
+    setTimeout(() => { window.__ready = true; }, 500);
+  });
+})();
+</script>
+<script>
+(function(){
+  var nav = document.getElementById('nav'), sheet = document.getElementById('nav-sheet');
+  if (!nav || !sheet) return;
+  var btn = nav.querySelector('.nav-toggle'), label = btn.querySelector('span');
+  var over = document.querySelector('[data-nav-over]');
+  var darks = Array.prototype.slice.call(document.querySelectorAll('[data-nav-dark]'));
+  var allLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"], .nav-sheet nav a[href^="#"]'));
+  var ids = []; allLinks.forEach(function(a){ var h = a.getAttribute('href'); if (ids.indexOf(h) < 0) ids.push(h); });
+  var targets = ids.map(function(h){ return document.querySelector(h); });
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches, ticking = false;
+
+  function update(){
+    ticking = false;
+    var h = nav.offsetHeight, mode = 'solid';
+    if (over && over.getBoundingClientRect().bottom > h) mode = 'over';
+    else if (darks.some(function(d){ var r = d.getBoundingClientRect(); return r.top <= h - 2 && r.bottom > h + 2; })) mode = 'dark';
+    if (nav.dataset.mode !== mode) nav.dataset.mode = mode;
+    var line = innerHeight * 0.35, cur = null;
+    targets.forEach(function(t, i){ if (t && t.getBoundingClientRect().top <= line) cur = ids[i]; });
+    if (over && over.getBoundingClientRect().bottom > line) cur = null;
+    if (ids.length && innerHeight + scrollY >= document.documentElement.scrollHeight - 4) cur = ids[ids.length - 1];
+    allLinks.forEach(function(a){
+      if (a.getAttribute('href') === cur) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+    });
+  }
+  function req(){ if (!ticking){ ticking = true; requestAnimationFrame(update); } }
+  addEventListener('scroll', req, { passive: true });
+  addEventListener('resize', req);
+
+  function go(hash){
+    var t = document.querySelector(hash); if (!t) return;
+    var off = -nav.offsetHeight;
+    if (window.__lenis) window.__lenis.scrollTo(t, { offset: off, duration: 1.2 });
+    else scrollTo({ top: t.getBoundingClientRect().top + scrollY + off, behavior: reduced ? 'auto' : 'smooth' });
+  }
+  function open(){
+    sheet.hidden = false; nav.classList.add('is-open');
+    btn.setAttribute('aria-expanded', 'true'); label.textContent = 'Close';
+    document.documentElement.style.overflow = 'hidden'; if (window.__lenis) window.__lenis.stop();
+    var first = sheet.querySelector('a'); if (first) first.focus();
+  }
+  function close(){
+    if (sheet.hidden) return;
+    sheet.hidden = true; nav.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false'); label.textContent = 'Menu';
+    document.documentElement.style.overflow = ''; if (window.__lenis) window.__lenis.start();
+  }
+  btn.addEventListener('click', function(){ if (sheet.hidden) open(); else close(); });
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
+    var h = a.getAttribute('href'); if (h.length < 2 || !document.querySelector(h)) return;
+    e.preventDefault(); close(); go(h);
+    if (history.replaceState) history.replaceState(null, '', h);
+  });
+  addEventListener('keydown', function(e){ if (e.key === 'Escape' && !sheet.hidden){ close(); btn.focus(); } });
+  matchMedia('(min-width: 901px)').addEventListener('change', function(m){ if (m.matches) close(); });
+
+  window.__nav = { update: update };
+  update();
+})();
+</script>
+</body>
+</html>

@@ -76,3 +76,12 @@ at 2.5-3.1s. Re-took h3 at 1080p pinned to the same end frame (--end-image clips
 prompt (h3b.txt): max step 8, seam into h4 still 0.91. It has one soft ~8-frame blend from bokeh into the arm.
 v1 kept as clips/h3_v1.mp4. Remaining fast moment: end of ch1, the camera lunges into the keyhole (scrub frames 59-60).
 Credits after re-take: 46.
+
+## 09-17 short film (Jenna liked the scroll, not the length)
+Film = chapter 1 + chapter 2 only: logo -> through the keyhole -> blue luna moth wings -> wings part on golden light.
+film/assemble_wings.sh (every frame, 241; hd 1600 q4 22MB, sd 960 q5 11MB), seam #ac7646. Page: .film 480vh, hero beat
+only, fade to the golden seam from p .80, .landing overlaps the film by 70vh (transparent -> gold -> kraft) so the site
+rises over the wings with no empty screen; nav leaves "over" mode when kraft reaches it. Full 5-chapter version:
+tier2/_engine.fullfilm.bak + film/frames_fullfilm_bak + film/assemble_hd.sh (h3 = re-take).
+Studio info card redesigned (tier1, synced to film site): ink header with cicada mark, labelled rows with
+Directions / Message actions, review as a pull quote on a ticket stub.

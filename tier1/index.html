@@ -107,11 +107,28 @@ section{padding:clamp(72px,10vw,140px) var(--gutter)}
 .book ol{padding-left:0;list-style:none;margin:20px 0 26px;display:grid;gap:14px;counter-reset:s}
 .book li{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:baseline;counter-increment:s}
 .book li::before{content:counter(s,upper-roman);font-family:var(--display);font-size:18px;color:var(--rust)}
-.info{display:grid;gap:20px;align-content:start;background:var(--cream);padding:28px;border:1px solid rgba(27,23,19,.2)}
-.info dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 20px}
-.info dt{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);padding-top:4px}
-.info dd{margin:0}
-.info dd small{display:block;color:var(--ink-2);font-size:14px}
+.info{align-self:start;position:relative;background:var(--cream);border:1px solid rgba(27,23,19,.22);box-shadow:0 1px 0 rgba(27,23,19,.16),0 26px 44px -30px rgba(27,23,19,.6)}
+.info-head{display:flex;align-items:center;gap:16px;padding:20px 26px;background:var(--ink);color:var(--cream)}
+.info-head i{flex:none;width:54px;height:22px;background:var(--kraft);-webkit-mask:url(assets/cicada-mark.png) center/contain no-repeat;mask:url(assets/cicada-mark.png) center/contain no-repeat}
+.info-head b{display:block;font-family:var(--display);font-weight:400;font-size:21px;line-height:1.1;letter-spacing:.02em}
+.info-head span{display:block;margin-top:3px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#cdb98a}
+.info-rows{margin:0;padding:4px 26px}
+.info-row{display:grid;grid-template-columns:96px 1fr auto;gap:4px 18px;align-items:center;padding:17px 0;border-bottom:1px dashed rgba(27,23,19,.24)}
+.info-row:last-child{border-bottom:0}
+.info-row dt{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--rust)}
+.info-row dd{margin:0;font-size:17px;line-height:1.45}
+.info-row dd small{display:block;margin-top:2px;font-size:14px;color:var(--ink-2)}
+.info-row dd a{text-decoration-thickness:1px;text-underline-offset:3px}
+.info-act{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink);border:1px solid var(--ink);padding:9px 13px;white-space:nowrap;transition:background .2s,color .2s}
+.info-act:hover,.info-act:focus-visible{background:var(--ink);color:var(--cream)}
+.info-review{position:relative;margin:0;padding:24px 26px 26px;background:rgba(180,140,90,.2);border-top:2px dashed rgba(27,23,19,.28)}
+.info-review::before,.info-review::after{content:"";position:absolute;top:-11px;width:20px;height:20px;border-radius:50%;background:var(--kraft)}
+.info-review::before{left:-11px;box-shadow:inset -1px 0 0 rgba(27,23,19,.22)}
+.info-review::after{right:-11px;box-shadow:inset 1px 0 0 rgba(27,23,19,.22)}
+.info-review .stars{color:var(--rust);font-size:16px;letter-spacing:.2em}
+.info-review blockquote{margin:8px 0 12px;font-family:var(--display);font-size:clamp(20px,1.9vw,24px);line-height:1.22;text-wrap:balance}
+.info-review figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+@media (max-width:520px){.info-rows,.info-head,.info-review{padding-inline:18px}.info-row{grid-template-columns:1fr auto}.info-row dt{grid-column:1/-1}}
 
 /* aftercare */
 .care{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px;margin-top:30px}
@@ -288,13 +305,18 @@ main [id]{scroll-margin-top:68px}
       </ol>
       <a class="btn solid" href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">Message @jens.art</a>
     </div>
-    <aside class="info">
-      <dl>
-        <dt>Address</dt><dd>755 S Jenkins Ave<br>Norman, OK 73069<small><a href="https://www.google.com/maps/dir/?api=1&destination=755+S+Jenkins+Ave,+Norman,+OK+73069" target="_blank" rel="noopener">Directions</a></small></dd>
-        <dt>Hours</dt><dd>Opens at 10am<small>As listed on Google. Message to confirm a day.</small></dd>
-        <dt>Instagram</dt><dd><a href="https://www.instagram.com/thecicadacloset/" target="_blank" rel="noopener">@thecicadacloset</a><br><a href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">@jens.art</a></dd>
-        <dt>Reviews</dt><dd>5.0 on Google<small>“She makes getting a tattoo a really personable, comfortable experience.”</small></dd>
+    <aside class="info" aria-label="Studio details">
+      <header class="info-head"><i aria-hidden="true"></i><div><b>The Cicada Closet</b><span>Tattoo studio · Norman, Oklahoma</span></div></header>
+      <dl class="info-rows">
+        <div class="info-row"><dt>Find us</dt><dd>755 S Jenkins Ave<br>Norman, OK 73069</dd><a class="info-act" href="https://www.google.com/maps/dir/?api=1&amp;destination=755+S+Jenkins+Ave,+Norman,+OK+73069" target="_blank" rel="noopener">Directions</a></div>
+        <div class="info-row"><dt>Hours</dt><dd>Opens at 10am<small>As listed on Google. Message to confirm a day.</small></dd></div>
+        <div class="info-row"><dt>Instagram</dt><dd><a href="https://www.instagram.com/thecicadacloset/" target="_blank" rel="noopener">@thecicadacloset</a><br><a href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">@jens.art</a></dd><a class="info-act" href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">Message</a></div>
       </dl>
+      <figure class="info-review">
+        <div class="stars" role="img" aria-label="Rated 5.0 out of 5 on Google">★★★★★</div>
+        <blockquote>&ldquo;She makes getting a tattoo a really personable, comfortable experience.&rdquo;</blockquote>
+        <figcaption>5.0 on Google · Client review</figcaption>
+      </figure>
     </aside>
   </section>
 
@@ -396,12 +418,12 @@ main [id]{scroll-margin-top:68px}
   function update(){
     ticking = false;
     var h = nav.offsetHeight, mode = 'solid';
-    if (over && over.getBoundingClientRect().bottom > h) mode = 'over';
+    if (over && over.hasAttribute('data-nav-over') && over.getBoundingClientRect().bottom > h) mode = 'over';
     else if (darks.some(function(d){ var r = d.getBoundingClientRect(); return r.top <= h - 2 && r.bottom > h + 2; })) mode = 'dark';
     if (nav.dataset.mode !== mode) nav.dataset.mode = mode;
     var line = innerHeight * 0.35, cur = null;
     targets.forEach(function(t, i){ if (t && t.getBoundingClientRect().top <= line) cur = ids[i]; });
-    if (over && over.getBoundingClientRect().bottom > line) cur = null;
+    if (over && over.hasAttribute('data-nav-over') && over.getBoundingClientRect().bottom > line) cur = null;
     if (ids.length && innerHeight + scrollY >= document.documentElement.scrollHeight - 4) cur = ids[ids.length - 1];
     allLinks.forEach(function(a){
       if (a.getAttribute('href') === cur) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
