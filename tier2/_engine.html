@@ -56,12 +56,13 @@ body::before{display:none}
 .loader div{font-family:var(--display);font-size:22px;color:var(--ink);display:grid;gap:14px;justify-items:center}
 .loader b{display:block;width:180px;height:2px;background:rgba(27,23,19,.2);position:relative}
 .loader b i{position:absolute;left:0;top:0;bottom:0;background:var(--ink);width:0}
-.landing{margin-top:-70vh;background:linear-gradient(180deg,rgba(172,118,70,0) 0,var(--seam) 22vh,var(--kraft) 52vh);position:relative;z-index:1}
+.landing{margin-top:-70vh;background:linear-gradient(180deg,rgba(172,118,70,0) 0,var(--seam) 22vh,#b98b5a 34vh,#c29a67 44vh,#c7a26f 53vh,var(--kraft) 64vh);position:relative;z-index:1}
 .landing::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;mix-blend-mode:multiply;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .43 0 0 0 0 .28 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .landing > *{position:relative}
 .landing > section:first-of-type{padding-top:calc(52vh + 24px)}
-.landing::before{inset:52vh 0 0 0}
+.landing::before{-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 30vh,rgba(0,0,0,.35) 48vh,#000 78vh);mask-image:linear-gradient(180deg,transparent 0,transparent 30vh,rgba(0,0,0,.35) 48vh,#000 78vh)}
+@media (max-width:760px){.landing{margin-top:-46vh;background:linear-gradient(180deg,rgba(172,118,70,0) 0,var(--seam) 12vh,var(--kraft) 30vh)}.landing > section:first-of-type{padding-top:calc(30vh + 8px)}.landing::before{-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 20vh,#000 40vh);mask-image:linear-gradient(180deg,transparent 0,transparent 20vh,#000 40vh)}}
 @media (max-width:640px){.chapter{display:none}.beat{bottom:16vh}}
 @media (prefers-reduced-motion:reduce){.hint i{animation:none}}
 </style>
@@ -205,7 +206,7 @@ body::before{display:none}
     const seg = Math.min(CHAPTERS.length - 1, Math.floor(p * CHAPTERS.length)); chapName.textContent = CHAPTERS[seg]; chapBar.style.width = (p * 100) + '%';
     const f = Math.max(0, Math.min(1, (p - 0.80) / 0.20)); fade.style.opacity = f.toFixed(3); oveil.style.opacity = Math.max(0, 1 - p * 4).toFixed(3); grain.style.opacity = (0.14 * (1 - f)).toFixed(3); vig.style.opacity = (1 - f).toFixed(3);
     hint.style.opacity = Math.max(0, 0.8 - p * 12).toFixed(2);
-    const lt = landingEl.getBoundingClientRect().top, onKraft = lt + innerHeight * 0.46 <= 70;
+    const lt = landingEl.getBoundingClientRect().top, onKraft = lt + innerHeight * (innerWidth <= 760 ? 0.28 : 0.46) <= 70;
     if (onKraft === film.hasAttribute('data-nav-over')){ if (onKraft) film.removeAttribute('data-nav-over'); else film.setAttribute('data-nav-over', ''); if (window.__nav) window.__nav.update(); }
   }
 

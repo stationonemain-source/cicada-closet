@@ -85,3 +85,9 @@ rises over the wings with no empty screen; nav leaves "over" mode when kraft rea
 tier2/_engine.fullfilm.bak + film/frames_fullfilm_bak + film/assemble_hd.sh (h3 = re-take).
 Studio info card redesigned (tier1, synced to film site): ink header with cicada mark, labelled rows with
 Directions / Message actions, review as a pull quote on a ticket stub.
+
+## 09-17 polish pass (approved by Circle before push)
+shared/polish_0917.py: heading spacing, aftercare cards, studio collage (clean room crop, gallery-wall detail, real
+grand-opening poster; chair snapshot + logo tile dropped), artist scale + new line "Painter, licensed tattoo artist,
+and the owner behind the keyhole." (our wording, not Jenna's), dark footer. Film handoff gradient eased with extra
+stops; phone overlap shortened to 46vh.
