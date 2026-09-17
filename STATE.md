@@ -69,3 +69,10 @@ Nothing is redrawn; the page says so. Studio plate = shop photo cropped to the s
 Jank (headless, software GPU): p95 ~9ms, max 78-177ms; traced to GPU raster of newly visible plates. Blend mode and
 nav backdrop blur removed on this page because they inflated it. Not yet measured on real hardware.
 Gotchas: PIL MinFilter(1) crashes the interpreter (exit 127, no traceback) — guard erode >= 3.
+
+## 09-17 chapter 3 re-take
+Circle flagged the flower-to-forearm section as not smooth. Measured: h3 v1 had 6 frame jumps (max step 28 vs median 7)
+at 2.5-3.1s. Re-took h3 at 1080p pinned to the same end frame (--end-image clips/h3_v1-last.png) with a gradual-morph
+prompt (h3b.txt): max step 8, seam into h4 still 0.91. It has one soft ~8-frame blend from bokeh into the arm.
+v1 kept as clips/h3_v1.mp4. Remaining fast moment: end of ch1, the camera lunges into the keyhole (scrub frames 59-60).
+Credits after re-take: 46.
