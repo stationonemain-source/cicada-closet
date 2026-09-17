@@ -91,3 +91,6 @@ shared/polish_0917.py: heading spacing, aftercare cards, studio collage (clean r
 grand-opening poster; chair snapshot + logo tile dropped), artist scale + new line "Painter, licensed tattoo artist,
 and the owner behind the keyhole." (our wording, not Jenna's), dark footer. Film handoff gradient eased with extra
 stops; phone overlap shortened to 46vh.
+
+## 09-17 dark gap shortened
+Circle: too much dark between keyhole and wings. Frames 136-172 (the black stretch) now every 4th frame: 241 -> 214 frames, 42 dark frames -> 13, film 437vh. Full-length frames kept in tier2/frames_wings_full.
