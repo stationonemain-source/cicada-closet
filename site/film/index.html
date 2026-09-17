@@ -178,7 +178,7 @@ main [id]{scroll-margin-top:68px}
 
 
 /* ---- film engine ---- */
-:root{--seam:#997656}
+:root{--seam:#9c7755}
 body::before{display:none}
 .film{position:relative;height:850vh}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#1b1713}
@@ -395,48 +395,66 @@ body::before{display:none}
   let W = 0, H = 0;
   function resize(){ W = innerWidth; H = innerHeight; cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); ctx.setTransform(DPR, 0, 0, DPR, 0, 0); drawFrame(displayed, true); }
 
-  // ---- frame pump (sprite sheets: PER frames per sheet, COLS across)
-  const PER = 10, COLS = 5, FW = 864, FH = 496, SHEETS = 31;
-  const sheets = new Array(SHEETS); let loaded = 0;
-  const images = { has: i => !!sheetBmp.get(Math.floor(i / PER)) };
-  function rect(i){ const k = i % PER; return { img: sheets[Math.floor(i / PER)], sx: (k % COLS) * FW, sy: Math.floor(k / COLS) * FH }; }
+  // ---- frames: one JPEG per frame in two sizes, fetched coarse-to-fine, decoded off-thread near the playhead
+  const SET = (Math.min(innerWidth, 2400) * DPR > 1100) ? 'hd' : 'sd';
+  const blobs = new Array(FRAME_COUNT);
+  const src = i => `frames/${SET}/f_${String(i + 1).padStart(4, '0')}.jpg`;
+  let allLoaded;
+  const everything = new Promise(r => { allLoaded = r; });
+  everything.then(() => { window.__framesLoaded = true; });
   function pump(){
+    const bar = document.getElementById('bar');
+    const q = [], seen = new Uint8Array(FRAME_COUNT);
+    const add = i => { if (i >= 0 && i < FRAME_COUNT && !seen[i]){ seen[i] = 1; q.push(i); } };
+    for (let i = 0; i < 12; i++) add(i);
+    let gate = 0;
+    for (let step = 8; step >= 1; step >>= 1){ for (let i = 0; i < FRAME_COUNT; i += step) add(i); if (step === 8) gate = q.length; }
     return new Promise(res => {
-      const bar = document.getElementById('bar'); let inflight = 0, next = 0; const CAP = 4;
-      const kick = () => { while (inflight < CAP && next < SHEETS){ const i = next++; inflight++;
-        fetch(`sheets/s_${String(i).padStart(2, '0')}.jpg`).then(r => r.ok ? r.blob() : null).catch(() => null).then(b => { inflight--; loaded++; if (b) sheets[i] = b; bar.style.width = (loaded / SHEETS * 100) + '%'; if (loaded === SHEETS) res(); else kick(); }); } };
+      let next = 0, inflight = 0, done = 0, opened = false; const CAP = 6;
+      const kick = () => {
+        while (inflight < CAP && next < q.length){
+          const i = q[next++]; inflight++;
+          fetch(src(i)).then(r => r.ok ? r.blob() : null).catch(() => null).then(b => {
+            inflight--; done++; if (b) blobs[i] = b; bmpCenter = -999;
+            if (!opened){ bar.style.width = Math.min(100, done / gate * 100) + '%'; if (done >= gate){ opened = true; res(); } }
+            if (done === q.length) allLoaded();
+            kick();
+          });
+        }
+      };
       kick();
     });
   }
-  function nearest(i){ for (let d = 0; d < FRAME_COUNT; d++){ if (i - d >= 0 && images.has(i - d)) return rect(i - d); if (images.has(i + d) && i + d < FRAME_COUNT) return rect(i + d); } return null; }
 
-  // ---- ImageBitmap window (sheet bitmaps decoded once, frames cropped from them on the GPU)
-  const sheetBmp = new Map(), sheetDecoding = new Set();
-  function ensureSheet(k){
-    if (k < 0 || k >= SHEETS || sheetBmp.has(k) || sheetDecoding.has(k) || !sheets[k]) return;
-    sheetDecoding.add(k);
-    createImageBitmap(sheets[k]).then(b => { sheetDecoding.delete(k); sheetBmp.set(k, b); bmpCenter = -999; }).catch(() => sheetDecoding.delete(k));
-  }
-  const bitmaps = new Map(), decoding = new Set(); const B_AHEAD = 18, B_KEEP = 28; let bmpCenter = -999;
+  // ---- ImageBitmap window: nearest frames first, evict outside the keep range
+  const bitmaps = new Map(), decoding = new Set();
+  const B_AHEAD = SET === 'hd' ? 14 : 20, B_KEEP = SET === 'hd' ? 20 : 28; let bmpCenter = -999;
   function ensureBitmaps(center){
-    const ks = Math.floor(center / PER); ensureSheet(ks); ensureSheet(ks + 1); ensureSheet(ks + 2); ensureSheet(ks - 1);
-    for (const k of Array.from(sheetBmp.keys())) if (k < ks - 1 || k > ks + 2){ sheetBmp.get(k).close(); sheetBmp.delete(k); }
-    if (Math.abs(center - bmpCenter) < 3) return; bmpCenter = center;
-    const lo = Math.max(0, center - B_AHEAD), hi = Math.min(FRAME_COUNT - 1, center + B_AHEAD);
-    for (let i = lo; i <= hi; i++){
-      const sb = sheetBmp.get(Math.floor(i / PER)); if (bitmaps.has(i) || decoding.has(i) || !sb) continue; decoding.add(i);
-      const r = rect(i); createImageBitmap(sb, r.sx, r.sy, FW, FH).then(b => { decoding.delete(i); if (Math.abs(i - bmpCenter) > B_KEEP){ b.close(); return; } bitmaps.set(i, b); if (i === displayed) drawFrame(i, true); }).catch(() => decoding.delete(i));
+    if (Math.abs(center - bmpCenter) < 2) return; bmpCenter = center;
+    for (let d = 0; d <= B_AHEAD; d++){
+      for (const i of (d ? [center + d, center - d] : [center])){
+        if (i < 0 || i >= FRAME_COUNT || bitmaps.has(i) || decoding.has(i) || !blobs[i]) continue;
+        decoding.add(i);
+        createImageBitmap(blobs[i]).then(b => {
+          decoding.delete(i);
+          if (Math.abs(i - bmpCenter) > B_KEEP){ b.close(); return; }
+          bitmaps.set(i, b);
+          if (Math.abs(i - Math.round(current)) <= 2) drawFrame(Math.round(current), true);
+        }).catch(() => decoding.delete(i));
+      }
     }
     for (const k of Array.from(bitmaps.keys())) if (k < center - B_KEEP || k > center + B_KEEP){ bitmaps.get(k).close(); bitmaps.delete(k); }
   }
+  function nearestBitmap(i){ for (let d = 1; d <= B_KEEP; d++){ const a = bitmaps.get(i - d); if (a) return a; const b = bitmaps.get(i + d); if (b) return b; } return null; }
 
-  // ---- draw
+  // ---- draw (cover-fit; keeps the last good frame if nothing near the playhead is decoded yet)
   let displayed = -1, current = 0, target = 0, progress = 0;
   function drawFrame(i, force){
     if (i === displayed && !force) return;
-    const s = Math.max(W / FW, H / FH), dw = FW * s, dh = FH * s, x = (W - dw) / 2, y = (H - dh) / 2;
-    const b = bitmaps.get(i); if (b){ ctx.drawImage(b, x, y, dw, dh); displayed = i; return; }
-    const r = nearest(i); if (!r) return; const sb = sheetBmp.get(Math.floor(i / PER)); if (!sb) return; ctx.drawImage(sb, r.sx, r.sy, FW, FH, x, y, dw, dh); displayed = i;
+    const exact = bitmaps.get(i), b = exact || nearestBitmap(i); if (!b) return;
+    const s = Math.max(W / b.width, H / b.height), dw = b.width * s, dh = b.height * s;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(b, (W - dw) / 2, (H - dh) / 2, dw, dh); displayed = exact ? i : -1;
   }
 
   // ---- beats
@@ -473,8 +491,12 @@ body::before{display:none}
   // ---- boot
   addEventListener('resize', resize); resize();
   pump().then(async () => {
-    ensureSheet(0); await new Promise(r => setTimeout(r, 250)); ensureBitmaps(0); await new Promise(r => setTimeout(r, 250));
-    if (JUMP !== null){ scrollTo(0, +JUMP || 0); progress = computeProgress(); current = target = progress * (FRAME_COUNT - 1); ensureBitmaps(Math.round(current)); await new Promise(r => setTimeout(r, 400)); }
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    ensureBitmaps(0); await wait(300);
+    if (JUMP !== null){
+      await everything; scrollTo(0, +JUMP || 0); progress = computeProgress(); current = target = progress * (FRAME_COUNT - 1);
+      bmpCenter = -999; ensureBitmaps(Math.round(current)); await wait(700);
+    }
     drawFrame(Math.round(current), true); layout(progress);
     document.getElementById('loader').classList.add('done');
     requestAnimationFrame(tick);

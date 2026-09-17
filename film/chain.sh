@@ -9,12 +9,12 @@ MODE=std; [[ "$RES" == "480p" || "$RES" == "720p" ]] && MODE=fast
 mkdir -p "$DIR"
 echo "[$NAME] create ($RES/$MODE, audio off)"
 CREATE=$(higgsfield generate create seedance_2_0 --prompt "$PROMPT" --start-image "$START" \
-  --duration 5 --resolution "$RES" --generate-audio false --aspect_ratio 16:9 "$@" --json 2>&1)
-ID=$(echo "$CREATE" | grep -oE '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}' | head -1)
+  --duration 5 --resolution "$RES" --generate-audio false --aspect_ratio 16:9 "$@" --json 2>&1 </dev/null || true)
+ID=$(echo "$CREATE" | grep -oE '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}' | head -1 || true)
 [[ -n "$ID" ]] || { echo "[$NAME] FAILED create:"; echo "$CREATE" | tail -5; exit 1; }
 echo "[$NAME] job $ID"; echo "$ID" > "$DIR/$NAME.job"
-WAIT=$(higgsfield generate wait "$ID" --timeout 15m --interval 5s --json 2>&1 || true)
-URL=$(echo "$WAIT" | grep -oE 'https://[^" ]+\.mp4[^" ]*' | tail -1)
+WAIT=$(higgsfield generate wait "$ID" --timeout 15m --interval 5s --json 2>&1 </dev/null || true)
+URL=$(echo "$WAIT" | grep -oE 'https://[^" ]+\.mp4[^" ]*' | tail -1 || true)
 [[ -n "$URL" ]] || { echo "[$NAME] FAILED no mp4 (unbilled, retry):"; echo "$WAIT" | tail -3; exit 1; }
 curl -fsSL -o "$DIR/$NAME.mp4" "$URL"
 ffmpeg -y -v error -i "$DIR/$NAME.mp4" -vf "select=eq(n\,0)" -frames:v 1 -update 1 -q:v 1 "$DIR/$NAME-first.png"
