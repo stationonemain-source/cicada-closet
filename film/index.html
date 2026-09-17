@@ -210,7 +210,7 @@ main [id]{scroll-margin-top:68px}
 /* ---- film engine ---- */
 :root{--seam:#ac7646}
 body::before{display:none}
-.film{position:relative;height:480vh}
+.film{position:relative;height:437vh}
 .chapter{display:none!important}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#1b1713}
 .stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
@@ -411,7 +411,7 @@ body::before{display:none}
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script>
 (function(){
-  const FRAME_COUNT = 241;
+  const FRAME_COUNT = 214;
   const CHAPTERS = ['The keyhole', 'The wing'];
   const JUMP = new URLSearchParams(location.search).get('jump');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
