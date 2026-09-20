@@ -26,6 +26,16 @@
 - Mobile pass done at 375x812: letterboxed logo start looks right, sections stack, overflowX 0.
 - tier1 got a `.statement` ink band under its hero (text off the logo) — moot while /classic/ is internal.
 
+## 09-20 hero A/B (Circle's ask: text above the logo at rest, no late pop-in)
+- The statement now shows from the start, CENTERED ABOVE the logo, and fades out over the first ~16% of
+  scroll. The late "plunge" beat is gone.
+- Two variants, one engine flag `?bg=` in /film/: **wood** (default, walnut bg, sheet at 84% resting on the
+  desk, cream text) and **tan** (`?bg=tan`, paper-tone bg #9d7d5f, frame's wood bands source-cropped so the
+  sheet sits flush, ink text, nav solid, vignette off). Crop releases late (kc after mix .45) so cover-fit
+  hides the wood before the crop lets go — do not re-tie it to plain (1-mix), the wood strip flashes.
+- Canvas is now alpha:true (background shows through the letterbox), with a #feather inset-shadow that
+  fades with zoom. Once Circle/Jenna picks one, hard-code that variant as the default.
+
 Built 2026-09-16 from Plan A "The Keyhole". Client: Jenna Feezel, @jens.art / @thecicadacloset, 755 S Jenkins Ave, Norman OK. NOT yet sent to her.
 
 ## PUBLIC (GitHub Pages, all noindex)
