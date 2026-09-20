@@ -9,7 +9,7 @@
 <meta property="og:title" content="The Cicada Closet · Norman, OK">
 <meta property="og:image" content="../assets/hero-logo.jpg">
 <link rel="icon" type="image/png" href="../assets/cicada-mark.png">
-<link rel="preload" as="image" href="../assets/logo-flush.webp" fetchpriority="high">
+<link rel="preload" as="image" href="../assets/logo-3d-2k.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rye&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <script type="application/ld+json">
@@ -233,7 +233,8 @@ body::before{display:none}
 .chapter{display:none!important}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#ab7e56}
 .stage .wood{position:absolute;inset:0;background:#ab7e56 url(../assets/hero-kraft.jpg) center/cover no-repeat}
-.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.stage #stage3d{position:absolute;inset:0;pointer-events:none}
+.stage #stage3d canvas{display:block;width:100%!important;height:100%!important}
 .grain{position:absolute;inset:0;pointer-events:none;opacity:.14;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(27,23,19,.45) 100%)}
@@ -316,7 +317,8 @@ body::before{display:none}
   <div class="film" id="film">
     <div class="stage">
       <div class="wood"></div>
-      <canvas id="cv" data-src="../assets/logo-flush.webp" aria-label="The Cicada Closet logo: an art-nouveau cicada with a golden keyhole at its centre, framed in green vines" role="img"></canvas>
+      <div id="stage3d" data-tex4k="../assets/logo-3d-4k.webp" data-tex2k="../assets/logo-3d-2k.webp" data-kraft="../assets/hero-kraft.jpg"
+           role="img" aria-label="The Cicada Closet logo: an art-nouveau cicada with a golden keyhole at its centre, framed in green vines"></div>
       <div class="grain" id="grain" hidden></div><div class="vig" id="vig" hidden></div>
       <div class="beat hero dark" id="heroBeat" data-in="-0.1" data-peak="0" data-out="0.16">
         <p class="eyebrow">Norman, Oklahoma · 755 S Jenkins Ave</p>
@@ -462,6 +464,8 @@ body::before{display:none}
 </footer>
 <dialog id="lb"><button id="lbx" aria-label="Close">×</button><img id="lbi" alt=""><p id="lbc"></p></dialog>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<script src="hero3d.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script>
 (function(){
@@ -484,17 +488,8 @@ body::before{display:none}
   // The card is drawn to a viewport-sized canvas, not scaled as a DOM layer: at the end of
   // the push the card is ~100x the screen, and a transformed <img> makes the compositor
   // rasterise a layer that big. Drawing only the visible slice keeps the cost flat.
-  const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
-  const card = new Image();
-  const DPR = Math.min(devicePixelRatio || 1, 2);
-  let W = 0, H = 0, IW = 2800, IH = 2800;
-  function measure(){
-    W = innerWidth; H = innerHeight;
-    if (card.naturalWidth){ IW = card.naturalWidth; IH = card.naturalHeight; }
-    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-    ctx.imageSmoothingQuality = 'high';
-  }
+  let W = 0, H = 0;
+  function measure(){ W = innerWidth; H = innerHeight; }
 
   function beatAlpha(b, p){
     if (p < b.in || p > b.out) return 0;
@@ -503,32 +498,16 @@ body::before{display:none}
   }
 
   function draw(p){
-    const wide = W >= 700;
-    const s0 = Math.min(W * (wide ? 0.54 : 0.92) / (AW * IW), H * 0.70 / (AH * IH));    // whole logo, at rest
-    const s1 = 1.35 * Math.max(W, H) / (KW * IW);                        // keyhole past the edges
-    const e = reduced ? 0 : Math.pow(p, 0.85);                           // the push builds early
-    const s = s0 * Math.pow(s1 / s0, e);
-    const restCy = H * (wide ? 0.54 : 0.52);
-    const cy = restCy + (H / 2 - restCy) * Math.min(1, p * 2);           // keyhole drifts to centre
-    const dx = W / 2 - KX * IW * s, dy = cy - KY * IH * s;
-    ctx.clearRect(0, 0, W, H);
-    const sx0 = Math.max(0, -dx / s), sy0 = Math.max(0, -dy / s);
-    const sx1 = Math.min(IW, (W - dx) / s), sy1 = Math.min(IH, (H - dy) / s);
-    if (card.naturalWidth && sx1 > sx0 && sy1 > sy0)
-      ctx.drawImage(card, sx0, sy0, sx1 - sx0, sy1 - sy0,
-                    dx + sx0 * s, dy + sy0 * s, (sx1 - sx0) * s, (sy1 - sy0) * s);
+    if (window.__hero3d) window.__hero3d.frame(p);
 
-    const f = Math.max(0, Math.min(1, (p - 0.62) / 0.30));               // into the dark
+    const f = Math.max(0, Math.min(1, (p - 0.70) / 0.18));   // black lands before the camera crosses the sheet
     fade.style.opacity = f.toFixed(3);
-    grain.style.opacity = (0.14 * (1 - f)).toFixed(3);
-    vig.style.opacity = (1 - f).toFixed(3);
-    hint.style.opacity = Math.max(0, 0.8 - p * 12).toFixed(2);
+    hint.style.opacity = Math.max(0, 0.62 - p * 10).toFixed(2);
     for (const b of beats){
       const a = beatAlpha(b, p);
       b.el.style.opacity = a.toFixed(3);
       b.el.style.transform = 'translateY(' + ((1 - a) * 18).toFixed(1) + 'px)';
     }
-    // the hero is light paper, so the nav stays in its solid ink-on-kraft mode throughout
   }
 
   function progress(){
@@ -566,11 +545,10 @@ body::before{display:none}
     requestAnimationFrame(tick);
     setTimeout(() => { window.__ready = true; window.__framesLoaded = true; }, 400);
   }
-  card.addEventListener('load', boot, { once: true });
-  card.addEventListener('error', boot, { once: true });
-  card.src = cv.dataset.src;   // set in the markup so the deploy's path rewrite reaches it
-  if (card.complete && card.naturalWidth) boot();
-  setTimeout(() => { if (!window.__ready) boot(); }, 4000);   // never strand the loader
+  const host3d = document.getElementById('stage3d');
+  if (window.__hero3d && window.__hero3d.isReady()) boot();
+  else host3d.addEventListener('hero3d:ready', boot, { once: true });
+  setTimeout(() => { if (!window.__ready) boot(); }, 6000);   // never strand the loader
 })();
 </script>
 <script>

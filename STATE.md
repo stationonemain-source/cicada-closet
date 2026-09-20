@@ -26,6 +26,34 @@
 - Mobile pass done at 375x812: letterboxed logo start looks right, sections stack, overflowX 0.
 - tier1 got a `.statement` ink band under its hero (text off the logo) — moot while /classic/ is internal.
 
+## 09-20 ROUND 3 — 4K + REAL 3D HERO (current local build, **NOT DEPLOYED**)
+Circle: "make the image 4k, and now we are going to render it with 3d". Credits topped up to 529.
+
+- **4K**: her logo upscaled 1100 -> 4096 by `bytedance_image_upscale` (2 cr, job 68e3565f).
+  VERIFIED it preserved her artwork: downscaled back and diffed against the original, mean abs
+  diff 7.3. Source kept at `film/logo_4k.png`. This is also what keeps the keyhole sharp on the
+  way in -- the old 1100px source went soft about halfway through the push.
+- **Real 3D**, not a scale: `film/hero3d.js` (copied to tier2/, carried into site/film/ by
+  assemble_site.py) puts her logo on a plane in Three.js with the **keyhole punched out of the
+  texture**, a dark shaft behind it, and a perspective camera that flies through the hole. The
+  perspective genuinely changes as you move -- that parallax is the thing a 2D zoom cannot fake.
+  Her artwork is a texture, never regenerated.
+- Assets from `film/build_3d_assets.py`: `logo-3d-4k.webp` (4096, keyhole alpha-punched, margin
+  feathered), `logo-3d-2k.webp` (phones / low-DPR), `hero-kraft.jpg` (3840x2160 at her tone).
+
+⚠️ Three traps, each cost a pass:
+1. The shaft was a `BoxGeometry` with `side: BackSide` -- **invisible from outside**, so the kraft
+   field showed straight through the keyhole. It needs `DoubleSide`.
+2. The shaft's mouth and the kraft field plane were both at z=-0.02 and **z-fought**, punching a
+   dark bar across her artwork. The field now sits at z=-0.30, the mouth at z=-0.05.
+3. The shaft must stay NARROWER than the sheet's opaque area (0.55 of it), or it darkens the
+   paper's feathered edges.
+
+Verified by sampling the WebGL framebuffer with `gl.readPixels` after calling `__hero3d.frame(p)`
+directly -- that renders synchronously and does **not** need rAF, so it works even when the browser
+pane is hidden and screenshots are timing out. Keyhole centre stays (11,8,6) through the approach
+while the corners run kraft -> ink -> wing green -> dark: a real camera moving through a scene.
+
 ## 09-20 ROUND 2c — FLUSH KRAFT (current local build, **NOT DEPLOYED**)
 Circle sent a kraft swatch: "i want this to be the whole thing, so the logo is flush on the website".
 The wood is gone. The hero is one sheet of kraft and her logo is printed straight onto it -- no card,
