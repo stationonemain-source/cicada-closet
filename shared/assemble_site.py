@@ -22,8 +22,12 @@ def page(src, dst, subdir):
 page(root / 'tier1' / 'index.html', site / 'index.html', False)
 shutil.copytree(root / 'tier1' / 'assets', site / 'assets', ignore=shutil.ignore_patterns('*.png', '!cicada-mark.png'))
 shutil.copy(root / 'tier1' / 'assets' / 'cicada-mark.png', site / 'assets' / 'cicada-mark.png')
+shutil.copy(root / 'tier1' / 'works.json', site / 'works.json')
 page(root / 'tier2' / 'index.html', site / 'film' / 'index.html', True)
 shutil.copytree(root / 'tier2' / 'frames', site / 'film' / 'frames')
+(site / 'film' / 'works.json').write_text(
+    (root / 'tier2' / 'works.json').read_text(encoding='utf-8').replace('"assets/', '"../assets/'),
+    encoding='utf-8')
 for name, folder in (('field-guide', 'planB'), ('living-plates', 'planB2'), ('healed', 'planC')):
     page(root / folder / 'index.html', site / name / 'index.html', False)
     shutil.copytree(root / folder / 'assets', site / name / 'assets', ignore=shutil.ignore_patterns('logo.jpg', 'hero-logo.jpg', 'shop-chair.jpg'))

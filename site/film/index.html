@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>The Cicada Closet · Tattoo Studio · Norman, OK</title>
-<meta name="description" content="The Cicada Closet is a female-owned tattoo studio at 755 S Jenkins Ave, Norman, Oklahoma. Fine-line and illustrative tattoos by Jenna Feezel, BFA. Booking by message.">
+<meta name="description" content="The Cicada Closet is a female-owned tattoo studio and local art gallery at 755 S Jenkins Ave, Norman, Oklahoma. Custom tattoos, original artwork, and creative connection. Booking by message.">
 <meta property="og:title" content="The Cicada Closet · Norman, OK">
 <meta property="og:image" content="../assets/hero-logo.jpg">
 <link rel="icon" type="image/png" href="../assets/cicada-mark.png">
@@ -92,17 +92,30 @@ section h2{margin-bottom:18px}
 .quote{border-left:3px solid var(--rust);padding-left:18px;font-style:italic;color:var(--ink-2);margin:22px 0}
 .quote b{font-style:normal;color:var(--ink)}
 
-/* artist */
-.artist{background:var(--ink);color:var(--cream);display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,5vw,80px);align-items:center}
-@media (max-width:820px){.artist{grid-template-columns:1fr}}
-.artist img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 30%;display:block;filter:saturate(.85)}
-.artist .eyebrow{color:var(--berry)}
-.artist h2{color:var(--cream)}
-.artist h2{font-size:clamp(40px,5.4vw,68px);margin-bottom:10px}
-.artist p.lede{font-family:var(--display);font-size:clamp(20px,2vw,26px);line-height:1.25;color:#cdb98a;opacity:1;margin-bottom:22px;max-width:30ch}
-.artist p{color:var(--cream);opacity:.92;font-size:18.5px;line-height:1.65}
-.artist .creds{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.artist .creds span{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(239,227,204,.45);padding:10px 15px}
+/* artists roster */
+.artists{background:var(--ink);color:var(--cream)}
+.artists .eyebrow{color:var(--berry)}
+.artists h2{color:var(--cream);font-size:clamp(40px,5.4vw,68px);margin-bottom:10px}
+.artists-head{max-width:760px;margin-bottom:clamp(30px,4vw,52px)}
+.artists-head > p:not(.eyebrow){color:var(--cream);opacity:.85;font-size:18px}
+.profile{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,5vw,80px);align-items:start;padding-top:clamp(30px,4vw,48px);border-top:1px solid rgba(239,227,204,.18)}
+.profile + .profile{margin-top:clamp(44px,6vw,76px)}
+@media (max-width:820px){.profile{grid-template-columns:1fr}}
+.profile .portrait{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 30%;display:block;filter:saturate(.85)}
+.profile .role{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--berry);margin-bottom:12px}
+.profile h3{font-family:var(--display);font-weight:400;font-size:clamp(30px,3.8vw,46px);line-height:1.05;color:var(--cream);margin:0 0 10px}
+.profile p{color:var(--cream);opacity:.92;font-size:18px;line-height:1.65}
+.profile p.lede{font-family:var(--display);font-size:clamp(19px,2vw,25px);line-height:1.25;color:#cdb98a;opacity:1;margin-bottom:18px;max-width:34ch}
+.profile .creds{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.profile .creds span{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(239,227,204,.45);padding:9px 14px}
+.profile .folio{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}
+@media (max-width:520px){.profile .folio{grid-template-columns:repeat(2,1fr)}}
+.profile .folio img{width:100%;aspect-ratio:1;object-fit:cover;display:block;border:1px solid rgba(239,227,204,.25)}
+.profile .plinks{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.profile .plinks .btn{border-color:var(--cream);color:var(--cream)}
+.profile .plinks .btn:hover,.profile .plinks .btn:focus-visible{background:var(--cream);color:var(--ink)}
+.profile .plinks .btn.solid{background:var(--cream);color:var(--ink)}
+.profile .plinks .btn.solid:hover{background:var(--rust);border-color:var(--rust);color:var(--cream)}
 
 /* booking */
 .book{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px)}
@@ -133,12 +146,14 @@ section h2{margin-bottom:18px}
 .info-review figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
 @media (max-width:520px){.info-rows,.info-head,.info-review{padding-inline:18px}.info-row{grid-template-columns:1fr auto}.info-row dt{grid-column:1/-1}}
 
-/* aftercare */
-.care{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:34px}
-.care div{background:rgba(239,227,204,.6);border-top:3px solid var(--ink);padding:20px 22px 22px}
-.care b{display:block;font-family:var(--display);font-weight:400;font-size:21px;line-height:1.15;margin-bottom:10px}
-.care p{font-size:16.5px;line-height:1.6;color:var(--ink);margin:0}
-#care > p{font-size:18px;color:var(--ink-2)}
+/* aftercare sheet */
+.sheet{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,5vw,72px);align-items:center;margin-top:30px}
+@media (max-width:820px){.sheet{grid-template-columns:1fr}}
+.sheet-view{display:block;max-width:420px;background:var(--cream);padding:14px;border:1px solid rgba(27,23,19,.22);box-shadow:0 1px 0 rgba(27,23,19,.2),0 24px 44px -26px rgba(27,23,19,.55);transition:transform .3s}
+.sheet-view:hover{transform:translateY(-3px) rotate(-.4deg)}
+.sheet-view img{width:100%;display:block}
+.sheet > div > p{font-size:18px;color:var(--ink-2)}
+.sheet-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
 
 /* footer */
 footer{background:var(--ink);color:var(--cream);padding:clamp(48px,6vw,72px) var(--gutter) 28px;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:34px 40px;font-family:var(--body)}
@@ -208,9 +223,9 @@ main [id]{scroll-margin-top:68px}
 
 
 /* ---- film engine ---- */
-:root{--seam:#ac7646}
+:root{--seam:#0a0705}
 body::before{display:none}
-.film{position:relative;height:437vh}
+.film{position:relative;height:300vh}
 .chapter{display:none!important}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#1b1713}
 .stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
@@ -243,13 +258,13 @@ body::before{display:none}
 .loader div{font-family:var(--display);font-size:22px;color:var(--ink);display:grid;gap:14px;justify-items:center}
 .loader b{display:block;width:180px;height:2px;background:rgba(27,23,19,.2);position:relative}
 .loader b i{position:absolute;left:0;top:0;bottom:0;background:var(--ink);width:0}
-.landing{margin-top:-70vh;background:linear-gradient(180deg,rgba(172,118,70,0) 0,var(--seam) 22vh,#b98b5a 34vh,#c29a67 44vh,#c7a26f 53vh,var(--kraft) 64vh);position:relative;z-index:1}
+.landing{margin-top:-70vh;background:linear-gradient(180deg,rgba(10,7,5,0) 0,var(--seam) 16vh,#241a11 27vh,#6b5238 38vh,#a8845a 47vh,var(--kraft) 56vh);position:relative;z-index:1}
 .landing::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;mix-blend-mode:multiply;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .43 0 0 0 0 .28 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .landing > *{position:relative}
 .landing > section:first-of-type{padding-top:calc(52vh + 24px)}
 .landing::before{-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 30vh,rgba(0,0,0,.35) 48vh,#000 78vh);mask-image:linear-gradient(180deg,transparent 0,transparent 30vh,rgba(0,0,0,.35) 48vh,#000 78vh)}
-@media (max-width:760px){.landing{margin-top:-46vh;background:linear-gradient(180deg,rgba(172,118,70,0) 0,var(--seam) 12vh,var(--kraft) 30vh)}.landing > section:first-of-type{padding-top:calc(30vh + 8px)}.landing::before{-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 20vh,#000 40vh);mask-image:linear-gradient(180deg,transparent 0,transparent 20vh,#000 40vh)}}
+@media (max-width:760px){.landing{margin-top:-46vh;background:linear-gradient(180deg,rgba(10,7,5,0) 0,var(--seam) 10vh,#3a2b1c 18vh,var(--kraft) 30vh)}.landing > section:first-of-type{padding-top:calc(30vh + 8px)}.landing::before{-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 20vh,#000 40vh);mask-image:linear-gradient(180deg,transparent 0,transparent 20vh,#000 40vh)}}
 @media (max-width:640px){.chapter{display:none}.beat{bottom:16vh}}
 @media (prefers-reduced-motion:reduce){.hint i{animation:none}}
 </style>
@@ -259,9 +274,9 @@ body::before{display:none}
 <header class="nav" id="nav" data-mode="over" style="--mark:url(../assets/cicada-mark.png)">
   <a class="nav-mark" href="#top" aria-label="The Cicada Closet, home"><i aria-hidden="true"></i><span>The Cicada Closet</span></a>
   <nav class="nav-links" aria-label="Sections">
-    <a href="#work">Work</a>
-    <a href="#studio">Studio</a>
-    <a href="#artist">Artist</a>
+    <a href="#work">Recent Works</a>
+    <a href="#studio">The Space</a>
+    <a href="#artists">Artists</a>
     <a href="#book">Booking</a>
     <a href="#care">Aftercare</a>
   </nav>
@@ -270,11 +285,11 @@ body::before{display:none}
 </header>
 <div class="nav-sheet" id="nav-sheet" hidden>
   <nav aria-label="Sections">
-    <a href="#work">Work<small>Selected pieces</small></a>
-    <a href="#studio">Studio<small>Gallery wall</small></a>
-    <a href="#artist">Artist<small>Jenna Feezel</small></a>
+    <a href="#work">Recent Works<small>From the studio</small></a>
+    <a href="#studio">The Space<small>Artist walls</small></a>
+    <a href="#artists">Artists<small>The roster</small></a>
     <a href="#book">Booking<small>By message</small></a>
-    <a href="#care">Aftercare<small>The basics</small></a>
+    <a href="#care">Aftercare<small>The sheet</small></a>
   </nav>
   <div class="sheet-foot">
     <a class="btn solid" href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">Book through @jens.art</a>
@@ -291,7 +306,7 @@ body::before{display:none}
       <div class="beat hero" data-in="-0.1" data-peak="0" data-out="0.22">
         <p class="eyebrow">Norman, Oklahoma · 755 S Jenkins Ave</p>
         <h2>Female-owned<br>tattoo studio.</h2>
-        <p>Fine-line, illustrative and botanical work by Jenna Feezel.</p>
+        <p>Custom tattoos, original artwork, and creative connection.</p>
       </div>
       <div class="hint" id="hint">Scroll to step inside <i></i></div>
       <div class="fade" id="fade"></div>
@@ -304,20 +319,20 @@ body::before{display:none}
   <section class="intro" id="about">
     <div>
       <p class="eyebrow">The studio</p>
-      <p class="big">A small studio with green walls, a keyhole in its logo, and an owner who is a fine artist as well as a tattooer.</p>
+      <p class="big">A tattoo studio rooted in art, nature, and community.</p>
     </div>
     <div>
-      <p>The Cicada Closet opened in 2026 on South Jenkins Avenue, a few blocks from campus. It is owned and run by Jenna Feezel, a licensed tattoo artist with a Bachelor of Fine Arts, whose work leans toward moths, birds, beetles and botanicals, in black and grey and in colour.</p>
-      <p>The walls double as a small gallery. Local artists can hang work there and keep 100% of what sells, with no commission and no fees.</p>
+      <p>The Cicada Closet is a female-owned tattoo studio and local art gallery in Norman, Oklahoma&mdash;a welcoming space for custom tattoos, original artwork, and creative connection.</p>
+      <p>The walls double as a gallery. Local artists can hang work there and keep 100% of what sells, with no commission and no fees.</p>
     </div>
   </section>
 
   <div class="rule"></div>
 
   <section id="work">
-    <p class="eyebrow">Selected work</p>
-    <h2>Plates from the studio</h2>
-    <div class="plates">
+    <p class="eyebrow">From the studio</p>
+    <h2>Recent Works</h2>
+    <div class="plates" id="plates">
       <button class="plate tall reveal" data-full="../assets/luna-moth.jpg" data-cap="Chappell-inspired luna moth · colour tattoo, July 2026"><figure><div class="img"><img src="../assets/luna-moth.jpg" alt="Colour tattoo of a teal luna moth with a gold crescent moon and green sprigs" loading="lazy"></div><figcaption><b>Luna moth</b><span>colour</span></figcaption></figure></button>
       <button class="plate tall reveal" data-full="../assets/stag-beetle-seraphim.jpg" data-cap="Stag beetle seraphim · tattoo, July 2025"><figure><div class="img"><img src="../assets/stag-beetle-seraphim.jpg" alt="Black and grey tattoo of a stag beetle with six wings patterned with eyes" loading="lazy"></div><figcaption><b>Stag beetle seraphim</b><span>black &amp; grey</span></figcaption></figure></button>
       <button class="plate tall reveal" data-full="../assets/bluebird.jpg" data-cap="Bluebird · tattoo, September 2026"><figure><div class="img"><img src="../assets/bluebird.jpg" alt="Black and grey tattoo of a bluebird in flight on an upper arm" loading="lazy"></div><figcaption><b>Bluebird</b><span>black &amp; grey</span></figcaption></figure></button>
@@ -325,7 +340,7 @@ body::before{display:none}
       <button class="plate tall reveal" data-full="../assets/salamander.jpg" data-cap="Salamander · watercolour and Micron pen on paper, July 2026"><figure><div class="img"><img src="../assets/salamander.jpg" alt="Watercolour and ink drawing of a black salamander with yellow spots curled on a dry oak leaf" loading="lazy"></div><figcaption><b>Salamander</b><span>on paper</span></figcaption></figure></button>
       <button class="plate tall reveal" data-full="../assets/murals.jpg" data-cap="Murals painted for Mira’s room · July 2026"><figure><div class="img"><img src="../assets/murals.jpg" alt="Two painted murals on a rust ground: cicadas, morning glories, strawberries and hearts" loading="lazy"></div><figcaption><b>Murals for Mira</b><span>paint</span></figcaption></figure></button>
     </div>
-    <p style="margin-top:34px;font-size:15px;color:var(--ink-2)">More on Instagram, including healed pieces and the current want-to-do list: <a href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">@jens.art</a>.</p>
+    <p style="margin-top:34px;font-size:15px;color:var(--ink-2)">More on Instagram, including healed pieces and the current want-to-do list: <a href="https://www.instagram.com/thecicadacloset/" target="_blank" rel="noopener">@thecicadacloset</a>.</p>
   </section>
 
   <div class="rule"></div>
@@ -337,34 +352,52 @@ body::before{display:none}
       <img class="poster" src="../assets/studio-opening.jpg" alt="Poster for Grillin&rsquo; and Chillin&rsquo;, the grand opening and art show at The Cicada Closet on Saturday, July 11" loading="lazy">
     </div>
     <div>
-      <p class="eyebrow">The room</p>
-      <h2>Green walls, and a gallery that pays its artists in full.</h2>
-      <div class="quote"><b>Local artist call.</b> A small gallery wall, open to local artists. Artists keep 100% of sales. No commissions, no fees. Just community.</div>
-      <p>The studio opened with Grillin&rsquo; &amp; Chillin&rsquo;, a grand opening and art show on Saturday, July 11, 2026. If you make art and want it on the wall, message the shop.</p>
+      <p class="eyebrow">The Space</p>
+      <h2>The Cicada Closet Artist Walls</h2>
+      <p>Set against the studio&rsquo;s deep green walls, The Cicada Closet Artist Walls feature rotating work from local artists. Artists can exhibit and sell their work with no commission or display fees, allowing every purchase to go directly to the artist.</p>
+      <p>The Cicada Closet was built to be more than a tattoo studio. It is a place where creativity is celebrated, shared, and supported in all its forms.</p>
       <a class="btn" href="https://www.instagram.com/thecicadacloset/" target="_blank" rel="noopener">Ask about the wall</a>
     </div>
   </section>
 
-  <section class="artist" id="artist" data-nav-dark>
-    <img src="../assets/jenna.jpg" alt="Jenna Feezel seated in a cream suit against a painted backdrop" loading="lazy">
-    <div>
-      <p class="eyebrow">The artist</p>
-      <h2>Jenna Feezel</h2>
-      <p class="lede">Painter, licensed tattoo artist, and the owner behind the keyhole.</p>
-      <p>Jenna holds a Bachelor of Fine Arts and paints as well as tattoos. Her BFA exhibition and her paintings sit alongside the tattoo work on her Instagram.</p>
-      <p>Her subjects come from the field and the garden: luna moths, bluebirds, stag beetles, salamanders, morning glories and, fittingly, cicadas.</p>
-      <div class="creds"><span>Bachelor of Fine Arts</span><span>Licensed tattoo artist</span><span>Owner, The Cicada Closet</span></div>
+  <section class="artists" id="artists" data-nav-dark>
+    <div class="artists-head">
+      <p class="eyebrow">The roster</p>
+      <h2>Artists</h2>
+      <p>Every artist at The Cicada Closet books their own work. Find the style that speaks to you and reach out directly.</p>
     </div>
+    <article class="profile">
+      <img class="portrait" src="../assets/jenna.jpg" alt="Jenna Feezel seated in a cream suit against a painted backdrop" loading="lazy">
+      <div>
+        <p class="role">Owner &amp; Founder</p>
+        <h3>Jenna Feezel</h3>
+        <p class="lede">Tattoo artist, painter, and the founder of The Cicada Closet.</p>
+        <p>Jenna Feezel is a tattoo artist, painter, and the founder of The Cicada Closet. She earned her Bachelor of Fine Arts in Studio Art before beginning her career in tattooing.</p>
+        <p>Nature is the foundation of Jenna&rsquo;s work. Inspired by its movement, resilience, and quiet lessons of growth and release, her paintings explore color and organic form, while her tattoo work lives primarily in black and grey&mdash;illustrative, intentional, and deeply personal.</p>
+        <p>Motherhood has deepened Jenna&rsquo;s relationship with creativity and connection. For her, tattooing is more than the finished piece&mdash;it is a process built on vulnerability, laughter, healing, and trust, with many clients becoming friends along the way.</p>
+        <div class="creds"><span>Black &amp; grey</span><span>Illustrative</span><span>Botanical &amp; nature</span><span>BFA, Studio Art</span></div>
+        <div class="folio" aria-label="Selected pieces by Jenna Feezel">
+          <img src="../assets/stag-beetle-seraphim.jpg" alt="Black and grey stag beetle seraphim tattoo" loading="lazy">
+          <img src="../assets/bluebird.jpg" alt="Black and grey bluebird tattoo" loading="lazy">
+          <img src="../assets/luna-moth.jpg" alt="Colour luna moth tattoo" loading="lazy">
+          <img src="../assets/pink-skies.jpg" alt="Colour tattoo of a pink sunset in a gilt mirror" loading="lazy">
+        </div>
+        <div class="plinks">
+          <a class="btn solid" href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">Book with Jenna</a>
+          <a class="btn" href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">@jens.art</a>
+        </div>
+      </div>
+    </article>
   </section>
 
   <section class="book" id="book">
     <div>
       <p class="eyebrow">Booking</p>
       <h2>Book with a message.</h2>
-      <p>Send Jenna a message on Instagram at @jens.art. Including the three things below saves a round of questions. Her Booking highlight on Instagram has her current details.</p>
+      <p>Booking at The Cicada Closet is by message. Send the studio a DM on Instagram with the three things below&mdash;it saves a round of questions and gets you on the schedule faster. Current details live in the Booking highlight on Instagram.</p>
       <ol>
-        <li><span>What you want, in a sentence, and any reference images.</span></li>
-        <li><span>Where on the body and roughly how big, in inches.</span></li>
+        <li><span>Describe the tattoo you want and include reference images, if possible.</span></li>
+        <li><span>Where you would like the tattoo placed and approximately how large you want it.</span></li>
         <li><span>Days and times that work for you.</span></li>
       </ol>
       <a class="btn solid" href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">Message @jens.art</a>
@@ -388,13 +421,18 @@ body::before{display:none}
 
   <section id="care">
     <p class="eyebrow">Aftercare</p>
-    <h2>The first weeks matter most.</h2>
-    <p>Follow the aftercare instructions Jenna gives you. Her Aftercare highlight on Instagram has her version. These are the general basics most artists agree on.</p>
-    <div class="care">
-      <div><b>The first night</b><p>Leave the wrap on as long as Jenna told you. When it comes off, wash gently with lukewarm water and unscented soap, then pat dry with a clean paper towel.</p></div>
-      <div><b>Days two to fourteen</b><p>Wash twice a day. Apply a thin layer of the ointment or lotion she recommends. Thin means you can barely see it.</p></div>
-      <div><b>Leave it alone</b><p>No picking, no scratching, no soaking. Showers are fine. Baths, pools, lakes and hot tubs are not until it is fully healed.</p></div>
-      <div><b>Sun</b><p>Keep it out of direct sun while healing. After that, sunscreen is what keeps fine line fine.</p></div>
+    <h2>The official aftercare sheet.</h2>
+    <div class="sheet">
+      <a class="sheet-view" href="../assets/aftercare/cicada-closet-aftercare.pdf" target="_blank" rel="noopener" aria-label="Open the full aftercare sheet">
+        <img src="../assets/aftercare/aftercare-sheet.jpg" alt="The Cicada Closet official aftercare sheet" loading="lazy">
+      </a>
+      <div>
+        <p>Every tattoo from The Cicada Closet leaves with the studio&rsquo;s official aftercare sheet. The full version lives right here&mdash;open it, download it, and come back to it any time while you heal.</p>
+        <div class="sheet-cta">
+          <a class="btn solid" href="../assets/aftercare/cicada-closet-aftercare.pdf" target="_blank" rel="noopener">Open the sheet</a>
+          <a class="btn" href="../assets/aftercare/cicada-closet-aftercare.pdf" download>Download PDF</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -411,8 +449,8 @@ body::before{display:none}
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script>
 (function(){
-  const FRAME_COUNT = 214;
-  const CHAPTERS = ['The keyhole', 'The wing'];
+  const FRAME_COUNT = 121;
+  const CHAPTERS = ['The keyhole'];
   const JUMP = new URLSearchParams(location.search).get('jump');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (JUMP !== null) history.scrollRestoration = 'manual';
@@ -478,14 +516,20 @@ body::before{display:none}
   }
   function nearestBitmap(i){ for (let d = 1; d <= B_KEEP; d++){ const a = bitmaps.get(i - d); if (a) return a; const b = bitmaps.get(i + d); if (b) return b; } return null; }
 
-  // ---- draw (cover-fit; keeps the last good frame if nothing near the playhead is decoded yet)
-  let displayed = -1, current = 0, target = 0, progress = 0;
+  // ---- draw: starts contain-fit so the whole logo and lettering are on screen,
+  // eases to cover-fit as the visitor zooms toward the keyhole
+  let displayed = -1, current = 0, target = 0, progress = 0, lastMix = -1;
   function drawFrame(i, force){
-    if (i === displayed && !force) return;
+    const m0 = reduced ? 1 : Math.max(0, Math.min(1, progress / 0.20));
+    const mix = m0 * m0 * (3 - 2 * m0);
+    if (i === displayed && !force && Math.abs(mix - lastMix) < 0.002) return;
     const exact = bitmaps.get(i), b = exact || nearestBitmap(i); if (!b) return;
-    const s = Math.max(W / b.width, H / b.height), dw = b.width * s, dh = b.height * s;
+    const sC = Math.min(W / b.width, H / b.height), sV = Math.max(W / b.width, H / b.height);
+    const s = sC + (sV - sC) * mix, dw = b.width * s, dh = b.height * s;
+    if (mix < 0.999){ ctx.fillStyle = '#2a1c11'; ctx.fillRect(0, 0, W, H); }
     ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(b, (W - dw) / 2, (H - dh) / 2, dw, dh); displayed = exact ? i : -1;
+    ctx.drawImage(b, (W - dw) / 2, (H - dh) / 2, dw, dh);
+    displayed = exact ? i : -1; lastMix = mix;
   }
 
   // ---- beats
@@ -506,15 +550,25 @@ body::before{display:none}
   // ---- lenis + tick
   let lenis = null;
   if (!reduced && JUMP === null && typeof Lenis !== 'undefined'){ lenis = new Lenis({ lerp: 0.09, smoothWheel: true }); window.__lenis = lenis; }
-  const deltas = []; let lastT = performance.now(), lastLog = lastT;
+  const deltas = []; let lastT = performance.now(), lastLog = lastT, lastHeal = 0;
   function tick(now){
     if (lenis) lenis.raf(now);
     progress = computeProgress(); target = progress * (FRAME_COUNT - 1);
+    if (displayed === -1 && now - lastHeal > 800){ lastHeal = now; bmpCenter = -999; } // self-heal: re-kick decoding if nothing is on screen
     current += (target - current) * (reduced ? 1 : 0.14); if (Math.abs(target - current) < 0.01) current = target;
     const idx = Math.round(current); ensureBitmaps(idx); drawFrame(idx); layout(progress);
     deltas.push(now - lastT); lastT = now; if (now - lastLog > 2000){ const mx = Math.max(...deltas); if (mx > 50) console.log('jank max', mx.toFixed(1) + 'ms'); deltas.length = 0; lastLog = now; }
     requestAnimationFrame(tick);
   }
+
+  // ---- Recent Works: curated from works.json — add/remove/reorder pieces there, no code changes
+  fetch('works.json').then(r => r.ok ? r.json() : null).then(j => {
+    if (!j || !Array.isArray(j.works) || !j.works.length) return;
+    const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+    document.getElementById('plates').innerHTML = j.works.map(w =>
+      `<button class="plate tall" data-full="${esc(w.image)}" data-cap="${esc(w.caption || w.title)}"><figure><div class="img"><img src="${esc(w.image)}" alt="${esc(w.alt || w.title)}" loading="lazy"></div><figcaption><b>${esc(w.title)}</b><span>${esc(w.tag)}</span></figcaption></figure></button>`
+    ).join('');
+  }).catch(() => {});
 
   // ---- lightbox
   const lb = document.getElementById('lb'), lbi = document.getElementById('lbi'), lbc = document.getElementById('lbc');

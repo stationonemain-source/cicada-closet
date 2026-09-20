@@ -94,3 +94,15 @@ stops; phone overlap shortened to 46vh.
 
 ## 09-17 dark gap shortened
 Circle: too much dark between keyhole and wings. Frames 136-172 (the black stretch) now every 4th frame: 241 -> 214 frames, 42 dark frames -> 13, film 437vh. Full-length frames kept in tier2/frames_wings_full.
+
+## Domain + handover facts (checked 2026-09-18)
+- `cicadacloset.com` IS registered: GoDaddy, created 2025-01-13, expires 2027-01-13, GoDaddy default NS, serves
+  GoDaddy's parked "/lander" page, no MX. Owner hidden by privacy. The date fits the studio opening, so it may be
+  Jenna's and never set up -- ASK HER before buying anything. If hers: connect it. If not: register
+  `thecicadacloset.com` (available 09-18) in HER name.
+- No analytics on any of the 5 pages. All 5 carry noindex. Hosting is Station's GitHub (stationonemain-source).
+- Images are Jenna's own Instagram work (fine to hand over). The film is Higgsfield/Seedance output generated on
+  Station's paid account from a Nano Banana keyframe of her logo -- confirm Higgsfield's commercial terms before
+  telling her she "owns" the film.
+- Quote sent: $750 build, $49.99/mo managed offered then made optional. station.solutions lists storefront sites
+  as Premium $500 + $49/mo Care or Custom $1,250 + $49/mo Care; the quote matches neither.
