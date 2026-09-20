@@ -35,6 +35,12 @@
   hides the wood before the crop lets go — do not re-tie it to plain (1-mix), the wood strip flashes.
 - Canvas is now alpha:true (background shows through the letterbox), with a #feather inset-shadow that
   fades with zoom. Once Circle/Jenna picks one, hard-code that variant as the default.
+- 09-20 later: both hero backgrounds are now REAL TEXTURES made by Nano Banana 2 outpainting the hero shot
+  itself (film/wood_raw.png + film/kraft_raw.png are the 2k masters; 3 cr total, balance 31.1):
+  assets/hero-wood.jpg (walnut desk, "remove the paper") and assets/hero-kraft.jpg (blank kraft, "remove
+  the ink"). Feather colors sampled from the texture edges (#3a2a1e / #bc936f).
+- 09-20: Jenna's REAL aftercare sheet arrived (the @jens.art "Tattoo Aftercare / Week 1-3" page) and
+  replaced the placeholder at assets/aftercare/ (jpg preview + PDF). Placeholder script kept but obsolete.
 
 Built 2026-09-16 from Plan A "The Keyhole". Client: Jenna Feezel, @jens.art / @thecicadacloset, 755 S Jenkins Ave, Norman OK. NOT yet sent to her.
 
