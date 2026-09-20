@@ -252,7 +252,8 @@ body::before{display:none}
 .beat.hero{display:block;min-height:0;bottom:auto;top:calc(68px + 3.5vh);left:var(--gutter);right:var(--gutter);max-width:none;text-align:center}
 .beat.hero h2{font-size:clamp(26px,4.2vw,50px);line-height:1.04}
 .beat.hero .eyebrow{margin-bottom:10px}
-.beat.hero p:not(.eyebrow){font-size:clamp(15px,1.5vw,19px);margin-top:10px}
+.beat.hero p:not(.eyebrow){font-size:clamp(15px,1.5vw,19px);margin-top:10px;text-wrap:balance}
+@media (max-width:480px){.beat.hero .eyebrow{font-size:10px;letter-spacing:.07em}.beat.hero p:not(.eyebrow){font-size:14.5px}}
 .beat.hero.dark{color:var(--ink)}
 .beat.hero.dark h2,.beat.hero.dark p{text-shadow:none}
 .beat.hero.dark .eyebrow{color:var(--rust)}
@@ -316,7 +317,7 @@ body::before{display:none}
     <div class="stage">
       <div class="wood"></div>
       <canvas id="cv" data-src="../assets/logo-card.webp" aria-label="The Cicada Closet logo: an art-nouveau cicada with a golden keyhole at its centre, framed in green vines" role="img"></canvas>
-      <div class="grain" id="grain"></div><div class="vig" id="vig"></div>
+      <div class="grain" id="grain"></div><div class="vig" id="vig" hidden></div>
       <div class="beat hero" id="heroBeat" data-in="-0.1" data-peak="0" data-out="0.16">
         <p class="eyebrow">Norman, Oklahoma · 755 S Jenkins Ave</p>
         <h2>Female-owned tattoo studio.</h2>
@@ -466,8 +467,10 @@ body::before{display:none}
 (function(){
   // The desk never moves. Only her card does: it scales about the keyhole until the
   // keyhole swallows the screen, and the site rises out of that darkness.
-  const KX = 0.4993, KY = 0.3950, KW = 0.0371;   // keyhole centre and width inside logo-card.webp
-  const ART = 0.7857;                            // the card asset is 21% shadow padding; fit the artwork, not the file
+  // keyhole centre/width and the card's extent inside logo-card.webp — all four come from
+  // film/build_card3d.py, which prints them; they move together or the push drifts off the keyhole
+  const KX = 0.5151, KY = 0.3840, KW = 0.0318;
+  const AW = 0.7524, AH = 0.6682;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const JUMP = new URLSearchParams(location.search).get('jump');
   if (JUMP !== null) history.scrollRestoration = 'manual';
@@ -501,11 +504,11 @@ body::before{display:none}
 
   function draw(p){
     const wide = W >= 700;
-    const s0 = Math.min(W * (wide ? 0.76 : 0.88) / (ART * IW), H * 0.74 / (ART * IH));  // whole card, at rest
+    const s0 = Math.min(W * (wide ? 0.66 : 0.90) / (AW * IW), H * 0.62 / (AH * IH));    // whole card, at rest
     const s1 = 1.35 * Math.max(W, H) / (KW * IW);                        // keyhole past the edges
     const e = reduced ? 0 : Math.pow(p, 0.85);                           // the push builds early
     const s = s0 * Math.pow(s1 / s0, e);
-    const restCy = H * (wide ? 0.58 : 0.56);
+    const restCy = H * (wide ? 0.56 : 0.52);
     const cy = restCy + (H / 2 - restCy) * Math.min(1, p * 2);           // keyhole drifts to centre
     const dx = W / 2 - KX * IW * s, dy = cy - KY * IH * s;
     ctx.clearRect(0, 0, W, H);
