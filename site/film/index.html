@@ -9,7 +9,6 @@
 <meta property="og:title" content="The Cicada Closet · Norman, OK">
 <meta property="og:image" content="../assets/hero-logo.jpg">
 <link rel="icon" type="image/png" href="../assets/cicada-mark.png">
-<link rel="preload" as="image" href="../assets/logo-3d-2k.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rye&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <script type="application/ld+json">
@@ -232,7 +231,7 @@ body::before{display:none}
 .film{position:relative;height:340vh}
 .chapter{display:none!important}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#ab7e56}
-.stage .wood{position:absolute;inset:0;background:#ab7e56 url(../assets/hero-kraft.jpg) center/cover no-repeat}
+.stage .wood{position:absolute;inset:0;background:#ab7e56 url(../assets/kraft-tile.jpg) repeat;background-size:512px 512px}
 .stage #stage3d{position:absolute;inset:0;pointer-events:none}
 .stage #stage3d canvas{display:block;width:100%!important;height:100%!important}
 .grain{position:absolute;inset:0;pointer-events:none;opacity:.14;mix-blend-mode:overlay;
@@ -255,6 +254,14 @@ body::before{display:none}
 .beat.hero .eyebrow{margin-bottom:10px}
 .beat.hero p:not(.eyebrow){font-size:clamp(15px,1.5vw,19px);margin-top:10px;text-wrap:balance}
 @media (max-width:480px){.beat.hero .eyebrow{font-size:10px;letter-spacing:.07em}.beat.hero p:not(.eyebrow){font-size:14.5px}}
+/* wide screens: copy in a left column beside the sheet, not stacked over it */
+@media (min-width:960px) and (min-aspect-ratio:5/4){
+  .beat.hero{top:0;bottom:0;display:grid;align-content:center;right:auto;width:min(36vw,520px);text-align:left;padding-top:68px}
+  .beat.hero h2{font-size:clamp(34px,3.7vw,56px);line-height:1.02}
+  .beat.hero p:not(.eyebrow){font-size:clamp(16px,1.25vw,19px);max-width:34ch;margin-top:14px}
+  .beat.hero .eyebrow{margin-bottom:14px;font-size:11px;letter-spacing:.11em}
+  .hint{right:auto;left:var(--gutter)}   /* under the copy, off the artwork */
+}
 .beat.hero.dark{color:var(--ink)}
 .beat.hero.dark h2,.beat.hero.dark p{text-shadow:none}
 .beat.hero.dark .eyebrow{color:var(--rust)}
@@ -317,7 +324,7 @@ body::before{display:none}
   <div class="film" id="film">
     <div class="stage">
       <div class="wood"></div>
-      <div id="stage3d" data-tex4k="../assets/logo-3d-4k.webp" data-tex2k="../assets/logo-3d-2k.webp" data-kraft="../assets/hero-kraft.jpg"
+      <div id="stage3d" data-tex4k="../assets/logo-3d-4k.webp" data-tex2k="../assets/logo-3d-2k.webp" data-kraft="../assets/kraft-tile.jpg"
            role="img" aria-label="The Cicada Closet logo: an art-nouveau cicada with a golden keyhole at its centre, framed in green vines"></div>
       <div class="grain" id="grain" hidden></div><div class="vig" id="vig" hidden></div>
       <div class="beat hero dark" id="heroBeat" data-in="-0.1" data-peak="0" data-out="0.16">
@@ -521,13 +528,19 @@ body::before{display:none}
   addEventListener('resize', () => { measure(); draw(progress()); });
 
   // ---- Recent Works: curated from works.json — add/remove/reorder pieces there, no code changes
-  fetch('works.json').then(r => r.ok ? r.json() : null).then(j => {
+  const loadWorks = () => fetch('works.json').then(r => r.ok ? r.json() : null).then(j => {
     if (!j || !Array.isArray(j.works) || !j.works.length) return;
     const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
     document.getElementById('plates').innerHTML = j.works.map(w =>
       `<button class="plate tall" data-full="${esc(w.image)}" data-cap="${esc(w.caption || w.title)}"><figure><div class="img"><img src="${esc(w.image)}" alt="${esc(w.alt || w.title)}" loading="lazy"></div><figcaption><b>${esc(w.title)}</b><span>${esc(w.tag)}</span></figcaption></figure></button>`
     ).join('');
   }).catch(() => {});
+  // the hero must own the first paint: the gallery's plates load when the visitor nears them
+  const workSec = document.getElementById('work');
+  if ('IntersectionObserver' in window && workSec){
+    const io = new IntersectionObserver((es) => { if (es.some(e => e.isIntersecting)){ io.disconnect(); loadWorks(); } }, { rootMargin: '900px 0px' });
+    io.observe(workSec);
+  } else loadWorks();
 
   // ---- lightbox
   const lb = document.getElementById('lb'), lbi = document.getElementById('lbi'), lbc = document.getElementById('lbc');

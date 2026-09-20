@@ -26,6 +26,34 @@
 - Mobile pass done at 375x812: letterboxed logo start looks right, sections stack, overflowX 0.
 - tier1 got a `.statement` ink band under its hero (text off the logo) — moot while /classic/ is internal.
 
+## 09-20 ROUND 3b — DESKTOP + MOBILE OPTIMISED (current local build, **NOT DEPLOYED**)
+Measured with `node film/measure.js <url>` (puppeteer, cache OFF, software GL). First paint:
+**phone 4518 -> 1641 KB, desktop 5506 -> 1590 KB**, before compression. Real transfer is lower still:
+GitHub Pages gzips (verified: film/ index served `content-encoding: gzip`) and cdnjs serves
+three.min.js as **135 KB brotli** (verified by header), not the 654 KB the local server shows.
+- `assets/kraft-tile.jpg` 1024x1024 **seamless** (113 KB) replaces the 3840x2160 plate (1398 KB).
+  Seamless by construction: grain filtered in the frequency domain (`film/build_opt.py`), edge diff
+  1.94 vs interior 1.97. Used by `.stage .wood` (repeat, 512px) and as the 3D field (repeat 16).
+- Logo textures recompressed q80: 4K 975 KB (was 1653), 2K 474 KB (was 831). 4K stays 4096 --
+  it is what keeps the keyhole sharp at the end of the push.
+- The `<link rel=preload>` for the 2K is GONE: it fetched the 2K even when the page then chose the
+  4K (retina desktops), pure waste.
+- Gallery plates now load via IntersectionObserver (`loadWorks`, rootMargin 900px) instead of on
+  first paint -- six full plates were riding along with the hero.
+
+**Wide-screen layout (>=960px and aspect >=5/4): the hero copy is a LEFT COLUMN, the sheet fills
+the right.** On a wide screen a square logo and a stacked headline cannot both fit: every camera
+tweak traded ornament-under-headline for lettering-off-the-bottom (both happened). `restShift`
+in hero3d.js parks the sheet beside the copy at rest; `restZ/restLift/restShift` per aspect band;
+all rest offsets ease out by e=0.68 (`k` in frame()) so the camera passes through the keyhole
+dead centre. `.hint` moves under the copy on wide screens so it never touches the artwork.
+
+⚠️ Measurement traps, so the numbers are read right: (1) cache-off double-counts anything fetched
+twice (kraft-tile shows 228 = 2x113); (2) the frame-cost loop scrolls the whole push, which pulls
+the gallery into IntersectionObserver range -- hence FIRST PAINT is reported separately from
+"after full push"; (3) headless GL is swiftshader, so frame times are relative only, never quote
+them as device performance.
+
 ## 09-20 ROUND 3 — 4K + REAL 3D HERO (current local build, **NOT DEPLOYED**)
 Circle: "make the image 4k, and now we are going to render it with 3d". Credits topped up to 529.
 
