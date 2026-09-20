@@ -7,19 +7,21 @@
 <title>The Cicada Closet · Tattoo Studio · Norman, OK</title>
 <meta name="description" content="The Cicada Closet is a female-owned tattoo studio and local art gallery at 755 S Jenkins Ave, Norman, Oklahoma. Custom tattoos, original artwork, and creative connection. Booking by message.">
 <meta property="og:title" content="The Cicada Closet · Norman, OK">
+<meta property="og:description" content="A tattoo studio rooted in art, nature, and community.">
 <meta property="og:image" content="../assets/hero-logo.jpg">
 <link rel="icon" type="image/png" href="../assets/cicada-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rye&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TattooParlor","name":"The Cicada Closet",
+ "description":"Female-owned tattoo studio and local art gallery in Norman, Oklahoma. Custom tattoos, original artwork, and creative connection.",
  "address":{"@type":"PostalAddress","streetAddress":"755 S Jenkins Ave","addressLocality":"Norman","addressRegion":"OK","postalCode":"73069","addressCountry":"US"},
  "geo":{"@type":"GeoCoordinates","latitude":35.212148,"longitude":-97.440973},
  "founder":{"@type":"Person","name":"Jenna Feezel"},
- "sameAs":["https://www.instagram.com/thecicadacloset/","https://www.instagram.com/jens.art/"],"image":"../assets/hero-logo.jpg"}
+ "sameAs":["https://www.instagram.com/thecicadacloset/","https://www.instagram.com/jens.art/"],
+ "image":"../assets/hero-logo.jpg","priceRange":"$$"}
 </script>
 <style>
-
 :root{
   --kraft:#c9a472; --kraft-deep:#b48c5a; --cream:#efe3cc; --ink:#1b1713; --ink-2:#4a3d31;
   --walnut:#3b2a1e; --rust:#a4461c; --sage:#6e7c55; --berry:#d98a9a;
@@ -45,19 +47,24 @@ p{margin:0 0 1em;max-width:62ch}
 :focus-visible{outline:2px solid var(--rust);outline-offset:3px}
 
 /* hero */
-.hero{position:relative;min-height:88vh;display:grid;align-items:end;overflow:hidden}
-.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 40%;will-change:transform}
-.hero .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,23,19,0) 30%,rgba(27,23,19,.82) 100%),linear-gradient(90deg,rgba(27,23,19,.45) 0,rgba(27,23,19,0) 55%)}
+.hero{position:relative;min-height:78vh;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 38%;will-change:transform}
+.hero .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,23,19,.28) 0,rgba(27,23,19,0) 22%,rgba(27,23,19,0) 72%,rgba(27,23,19,.55) 100%)}
 .hero .keyhole{position:absolute;inset:0;background:var(--ink);clip-path:circle(0% at 50% 34%);pointer-events:none}
-.hero .copy{position:relative;padding:0 var(--gutter) 56px;color:var(--cream);display:grid;gap:18px;max-width:720px}
-.hero h1{font-family:var(--display);font-size:clamp(34px,6.4vw,74px);line-height:.98;letter-spacing:.005em}
-.hero h1 span{display:block;overflow:hidden}
-.hero h1 span i{display:block;font-style:normal;will-change:transform}
-.hero .sub{font-size:clamp(16px,1.6vw,20px);font-style:italic;max-width:46ch;opacity:.92;margin:0}
-.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
-.hero .cta .btn{border-color:var(--cream);color:var(--cream)}
-.hero .cta .btn.solid{background:var(--cream);color:var(--ink)}
-.hero .cta .btn.solid:hover{background:var(--rust);color:var(--cream);border-color:var(--rust)}
+@media (max-width:700px){.hero{min-height:56vh}}
+
+/* statement band under the hero */
+.statement{background:var(--ink);color:var(--cream);padding:clamp(56px,7vw,96px) var(--gutter);display:grid;gap:18px}
+.statement h1{font-family:var(--display);font-size:clamp(34px,6.4vw,74px);line-height:.98;letter-spacing:.005em}
+.statement h1 span{display:block;overflow:hidden}
+.statement h1 span i{display:block;font-style:normal;will-change:transform}
+.statement .eyebrow{color:var(--berry);margin:0}
+.statement .sub{font-size:clamp(16px,1.6vw,20px);font-style:italic;max-width:52ch;opacity:.92;margin:0;color:var(--cream)}
+.statement .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
+.statement .cta .btn{border-color:var(--cream);color:var(--cream)}
+.statement .cta .btn:hover,.statement .cta .btn:focus-visible{background:var(--cream);color:var(--ink)}
+.statement .cta .btn.solid{background:var(--cream);color:var(--ink)}
+.statement .cta .btn.solid:hover{background:var(--rust);color:var(--cream);border-color:var(--rust)}
 
 /* sections */
 section{padding:clamp(64px,8vw,112px) var(--gutter)}
@@ -220,60 +227,9 @@ main [id]{scroll-margin-top:68px}
 @media (max-width:900px){.nav{grid-template-columns:1fr auto auto}.nav-links{display:none}.nav-toggle{display:inline-flex}}
 @media (max-width:480px){.nav{height:60px}.nav-mark span{font-size:15px}.nav-mark i{width:38px;height:16px}.nav-book{display:none}}
 
-
-
-/* ---- film engine ---- */
-:root{--seam:#0a0705}
-body::before{display:none}
-.film{position:relative;height:300vh}
-.chapter{display:none!important}
-.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#1b1713}
-.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.grain{position:absolute;inset:0;pointer-events:none;opacity:.14;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(27,23,19,.45) 100%)}
-.fade{position:absolute;inset:0;pointer-events:none;background:var(--seam);opacity:0}
-.oveil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(27,23,19,.74) 0,rgba(27,23,19,.3) 42%,rgba(27,23,19,0) 65%),linear-gradient(180deg,rgba(27,23,19,0) 45%,rgba(27,23,19,.55) 100%)}
-.beat::before{content:"";position:absolute;inset:-18vh -30vw -14vh -20vw;z-index:-1;background:radial-gradient(ellipse at 30% 75%,rgba(27,23,19,.62),rgba(27,23,19,0) 65%);pointer-events:none}
-.beat.hero::before{background:radial-gradient(ellipse at 30% 75%,rgba(14,10,7,.9),rgba(14,10,7,0) 74%)}
-.beat.hero h2{text-shadow:0 2px 10px rgba(14,10,7,.9),0 4px 34px rgba(14,10,7,.8)}
-.beat.hero p{text-shadow:0 1px 8px rgba(14,10,7,.95),0 2px 20px rgba(14,10,7,.85)}
-.beat{position:absolute;left:var(--gutter);right:var(--gutter);bottom:12vh;max-width:640px;opacity:0;color:var(--cream);will-change:opacity,transform;pointer-events:none}
-.beat.finale{pointer-events:auto}
-.beat h2{color:inherit;font-size:clamp(30px,5vw,64px);line-height:1;text-shadow:0 2px 24px rgba(27,23,19,.55)}
-.beat p{font-style:italic;font-size:clamp(16px,1.6vw,20px);margin:14px 0 0;text-shadow:0 1px 12px rgba(27,23,19,.6)}
-.beat .eyebrow{color:var(--berry);margin-bottom:12px}
-.beat .cta{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
-.beat .btn{border-color:var(--cream);color:var(--cream)}
-.beat .btn.solid{background:var(--cream);color:var(--ink)}
-.beat.hero{display:block;min-height:0}
-.beat.hero h2{font-size:clamp(36px,6vw,72px)}
-.beat.dark{color:var(--ink)}
-.beat.dark h2,.beat.dark p{text-shadow:none}
-.hint{position:absolute;right:var(--gutter);bottom:5vh;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);opacity:.8;display:flex;align-items:center;gap:10px}
-.hint i{display:block;width:1px;height:40px;background:currentColor;animation:drop 1.8s ease-in-out infinite;transform-origin:top}
-@keyframes drop{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
-.chapter{position:absolute;left:var(--gutter);top:calc(50% - 20px);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream);opacity:.9;display:grid;gap:8px;mix-blend-mode:difference}
-.chapter .bar{width:120px;height:1px;background:rgba(255,255,255,.35);position:relative}
-.chapter .bar i{position:absolute;left:0;top:-1px;height:3px;background:currentColor;width:0}
-.loader{position:fixed;inset:0;z-index:50;background:var(--kraft);display:grid;place-items:center;transition:opacity .6s}
-.loader.done{opacity:0;pointer-events:none}
-.loader div{font-family:var(--display);font-size:22px;color:var(--ink);display:grid;gap:14px;justify-items:center}
-.loader b{display:block;width:180px;height:2px;background:rgba(27,23,19,.2);position:relative}
-.loader b i{position:absolute;left:0;top:0;bottom:0;background:var(--ink);width:0}
-.landing{margin-top:-70vh;background:linear-gradient(180deg,rgba(10,7,5,0) 0,var(--seam) 16vh,#241a11 27vh,#6b5238 38vh,#a8845a 47vh,var(--kraft) 56vh);position:relative;z-index:1}
-.landing::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .43 0 0 0 0 .28 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.landing > *{position:relative}
-.landing > section:first-of-type{padding-top:calc(52vh + 24px)}
-.landing::before{-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 30vh,rgba(0,0,0,.35) 48vh,#000 78vh);mask-image:linear-gradient(180deg,transparent 0,transparent 30vh,rgba(0,0,0,.35) 48vh,#000 78vh)}
-@media (max-width:760px){.landing{margin-top:-46vh;background:linear-gradient(180deg,rgba(10,7,5,0) 0,var(--seam) 10vh,#3a2b1c 18vh,var(--kraft) 30vh)}.landing > section:first-of-type{padding-top:calc(30vh + 8px)}.landing::before{-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 20vh,#000 40vh);mask-image:linear-gradient(180deg,transparent 0,transparent 20vh,#000 40vh)}}
-@media (max-width:640px){.chapter{display:none}.beat{bottom:16vh}}
-@media (prefers-reduced-motion:reduce){.hint i{animation:none}}
 </style>
 </head>
 <body>
-<div class="loader" id="loader"><div>The Cicada Closet<b><i id="bar"></i></b></div></div>
 <header class="nav" id="nav" data-mode="over" style="--mark:url(../assets/cicada-mark.png)">
   <a class="nav-mark" href="#top" aria-label="The Cicada Closet, home"><i aria-hidden="true"></i><span>The Cicada Closet</span></a>
   <nav class="nav-links" aria-label="Sections">
@@ -301,23 +257,21 @@ body::before{display:none}
 </div>
 
 <main id="top">
-  <div class="film" id="film" data-nav-over>
-    <div class="stage">
-      <canvas id="cv"></canvas>
-      <div class="oveil" id="oveil"></div><div class="grain" id="grain"></div><div class="vig" id="vig"></div>
-      <div class="chapter" id="chap"><span id="chapName">Paper</span><div class="bar"><i id="chapBar"></i></div></div>
-      <div class="beat hero" data-in="0.58" data-peak="0.76" data-out="0.98">
-        <p class="eyebrow">Norman, Oklahoma · 755 S Jenkins Ave</p>
-        <h2>Female-owned<br>tattoo studio.</h2>
-        <p>Custom tattoos, original artwork, and creative connection.</p>
-      </div>
-      <div class="hint" id="hint">Scroll to step inside <i></i></div>
-      <div class="fade" id="fade"></div>
-    </div>
-  </div>
+  <section class="hero" data-nav-over style="padding:0">
+    <img src="../assets/hero-logo.jpg" alt="The Cicada Closet logo, hand-lettered in ink on kraft paper: a cicada with a keyhole on its back above the studio name" fetchpriority="high">
+    <div class="veil"></div>
+    <div class="keyhole" aria-hidden="true"></div>
+  </section>
 
-  <div class="landing">
-  
+  <section class="statement" data-nav-dark>
+    <p class="eyebrow" style="color:var(--berry)">Norman, Oklahoma · 755 S Jenkins Ave</p>
+    <h1><span><i>Female-owned</i></span><span><i>tattoo studio.</i></span></h1>
+    <p class="sub">A tattoo studio and local art gallery rooted in art, nature, and community. Rated 5.0 on Google, with artist walls where local artists keep every dollar.</p>
+    <div class="cta">
+      <a class="btn solid" href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">Book by message</a>
+      <a class="btn" href="#work">See the work</a>
+    </div>
+  </section>
 
   <section class="intro" id="about">
     <div>
@@ -438,133 +392,58 @@ body::before{display:none}
       </div>
     </div>
   </section>
-
-  </div>
 </main>
+
 <footer>
   <div class="foot-brand"><i aria-hidden="true"></i><div><b>The Cicada Closet</b><span>Female-owned tattoo studio in Norman, Oklahoma.</span></div></div>
   <div class="foot-col"><span class="k">Visit</span><span>755 S Jenkins Ave<br>Norman, OK 73069</span><a href="https://www.google.com/maps/dir/?api=1&amp;destination=755+S+Jenkins+Ave,+Norman,+OK+73069" target="_blank" rel="noopener">Get directions</a></div>
   <div class="foot-col"><span class="k">Book &amp; follow</span><a class="ig" href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2M12 0C8.7 0 8.3 0 7.1.1 5.8.1 4.9.3 4.1.6c-.8.3-1.5.7-2.1 1.4C1.3 2.6.9 3.3.6 4.1.3 4.9.1 5.8.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.3.3 2.2.6 3 .3.8.7 1.5 1.4 2.1.6.6 1.3 1.1 2.1 1.4.8.3 1.7.5 3 .6C8.3 24 8.7 24 12 24s3.7 0 4.9-.1c1.3-.1 2.2-.3 3-.6.8-.3 1.5-.7 2.1-1.4.6-.6 1.1-1.3 1.4-2.1.3-.8.5-1.7.6-3 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.3-.3-2.2-.6-3-.3-.8-.7-1.5-1.4-2.1C21.4 1.3 20.7.9 19.9.6c-.8-.3-1.7-.5-3-.6C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4 6.2 6.2 0 000-12.4zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-11.8a1.4 1.4 0 100 2.9 1.4 1.4 0 000-2.9z"/></svg>Message @jens.art</a><a class="ig" href="https://www.instagram.com/thecicadacloset/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2M12 0C8.7 0 8.3 0 7.1.1 5.8.1 4.9.3 4.1.6c-.8.3-1.5.7-2.1 1.4C1.3 2.6.9 3.3.6 4.1.3 4.9.1 5.8.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.3.3 2.2.6 3 .3.8.7 1.5 1.4 2.1.6.6 1.3 1.1 2.1 1.4.8.3 1.7.5 3 .6C8.3 24 8.7 24 12 24s3.7 0 4.9-.1c1.3-.1 2.2-.3 3-.6.8-.3 1.5-.7 2.1-1.4.6-.6 1.1-1.3 1.4-2.1.3-.8.5-1.7.6-3 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.3-.3-2.2-.6-3-.3-.8-.7-1.5-1.4-2.1C21.4 1.3 20.7.9 19.9.6c-.8-.3-1.7-.5-3-.6C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4 6.2 6.2 0 000-12.4zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-11.8a1.4 1.4 0 100 2.9 1.4 1.4 0 000-2.9z"/></svg>@thecicadacloset</a></div>
   <div class="foot-base"><span>&copy; 2026 The Cicada Closet</span><a href="#top">Back to top</a></div>
 </footer>
+
 <dialog id="lb"><button id="lbx" aria-label="Close">×</button><img id="lbi" alt=""><p id="lbc"></p></dialog>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script>
 (function(){
-  const FRAME_COUNT = 121;
-  const CHAPTERS = ['The keyhole'];
   const JUMP = new URLSearchParams(location.search).get('jump');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (JUMP !== null) history.scrollRestoration = 'manual';
+  gsap.registerPlugin(ScrollTrigger);
 
-  const cv = document.getElementById('cv'), ctx = cv.getContext('2d', { alpha: false });
-  const film = document.getElementById('film');
-  const fade = document.getElementById('fade'), oveil = document.getElementById('oveil'), grain = document.getElementById('grain'), vig = document.getElementById('vig'), hint = document.getElementById('hint');
-  const chapName = document.getElementById('chapName'), chapBar = document.getElementById('chapBar');
-  const beats = [...document.querySelectorAll('.beat')].map(el => ({ el, in: +el.dataset.in, peak: +el.dataset.peak, out: +el.dataset.out }));
-  const DPR = Math.min(devicePixelRatio || 1, 1.5);
-  let W = 0, H = 0;
-  function resize(){ W = innerWidth; H = innerHeight; cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); ctx.setTransform(DPR, 0, 0, DPR, 0, 0); drawFrame(displayed, true); }
-
-  // ---- frames: one JPEG per frame in two sizes, fetched coarse-to-fine, decoded off-thread near the playhead
-  const SET = (Math.min(innerWidth, 2400) * DPR > 1100) ? 'hd' : 'sd';
-  const blobs = new Array(FRAME_COUNT);
-  const src = i => `frames/${SET}/f_${String(i + 1).padStart(4, '0')}.jpg`;
-  let allLoaded;
-  const everything = new Promise(r => { allLoaded = r; });
-  everything.then(() => { window.__framesLoaded = true; });
-  function pump(){
-    const bar = document.getElementById('bar');
-    const q = [], seen = new Uint8Array(FRAME_COUNT);
-    const add = i => { if (i >= 0 && i < FRAME_COUNT && !seen[i]){ seen[i] = 1; q.push(i); } };
-    for (let i = 0; i < 12; i++) add(i);
-    let gate = 0;
-    for (let step = 8; step >= 1; step >>= 1){ for (let i = 0; i < FRAME_COUNT; i += step) add(i); if (step === 8) gate = q.length; }
-    return new Promise(res => {
-      let next = 0, inflight = 0, done = 0, opened = false; const CAP = 6;
-      const kick = () => {
-        while (inflight < CAP && next < q.length){
-          const i = q[next++]; inflight++;
-          fetch(src(i)).then(r => r.ok ? r.blob() : null).catch(() => null).then(b => {
-            inflight--; done++; if (b) blobs[i] = b; bmpCenter = -999;
-            if (!opened){ bar.style.width = Math.min(100, done / gate * 100) + '%'; if (done >= gate){ opened = true; res(); } }
-            if (done === q.length) allLoaded();
-            kick();
-          });
-        }
-      };
-      kick();
-    });
-  }
-
-  // ---- ImageBitmap window: nearest frames first, evict outside the keep range
-  const bitmaps = new Map(), decoding = new Set();
-  const B_AHEAD = SET === 'hd' ? 14 : 20, B_KEEP = SET === 'hd' ? 20 : 28; let bmpCenter = -999;
-  function ensureBitmaps(center){
-    if (Math.abs(center - bmpCenter) < 2) return; bmpCenter = center;
-    for (let d = 0; d <= B_AHEAD; d++){
-      for (const i of (d ? [center + d, center - d] : [center])){
-        if (i < 0 || i >= FRAME_COUNT || bitmaps.has(i) || decoding.has(i) || !blobs[i]) continue;
-        decoding.add(i);
-        createImageBitmap(blobs[i]).then(b => {
-          decoding.delete(i);
-          if (Math.abs(i - bmpCenter) > B_KEEP){ b.close(); return; }
-          bitmaps.set(i, b);
-          if (Math.abs(i - Math.round(current)) <= 2) drawFrame(Math.round(current), true);
-        }).catch(() => decoding.delete(i));
-      }
-    }
-    for (const k of Array.from(bitmaps.keys())) if (k < center - B_KEEP || k > center + B_KEEP){ bitmaps.get(k).close(); bitmaps.delete(k); }
-  }
-  function nearestBitmap(i){ for (let d = 1; d <= B_KEEP; d++){ const a = bitmaps.get(i - d); if (a) return a; const b = bitmaps.get(i + d); if (b) return b; } return null; }
-
-  // ---- draw: starts contain-fit so the whole logo and lettering are on screen,
-  // eases to cover-fit as the visitor zooms toward the keyhole
-  let displayed = -1, current = 0, target = 0, progress = 0, lastMix = -1;
-  function drawFrame(i, force){
-    const m0 = reduced ? 1 : Math.max(0, Math.min(1, progress / 0.20));
-    const mix = m0 * m0 * (3 - 2 * m0);
-    if (i === displayed && !force && Math.abs(mix - lastMix) < 0.002) return;
-    const exact = bitmaps.get(i), b = exact || nearestBitmap(i); if (!b) return;
-    const sC = Math.min(W / b.width, H / b.height), sV = Math.max(W / b.width, H / b.height);
-    const s = sC + (sV - sC) * mix, dw = b.width * s, dh = b.height * s;
-    if (mix < 0.999){ ctx.fillStyle = '#2a1c11'; ctx.fillRect(0, 0, W, H); }
-    ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(b, (W - dw) / 2, (H - dh) / 2, dw, dh);
-    displayed = exact ? i : -1; lastMix = mix;
-  }
-
-  // ---- beats
-  function beatAlpha(b, p){ if (p < b.in || p > b.out) return 0; if (p < b.peak) return (p - b.in) / Math.max(1e-4, b.peak - b.in); if (b.out > 1.5) return 1; return 1 - (p - b.peak) / Math.max(1e-4, b.out - b.peak); }
-  const landingEl = document.querySelector('.landing');
-  function layout(p){
-    for (const b of beats){ const a = beatAlpha(b, p); b.el.style.opacity = a.toFixed(3); b.el.style.transform = `translateY(${((1 - a) * 18).toFixed(1)}px)`; }
-    const seg = Math.min(CHAPTERS.length - 1, Math.floor(p * CHAPTERS.length)); chapName.textContent = CHAPTERS[seg]; chapBar.style.width = (p * 100) + '%';
-    const f = Math.max(0, Math.min(1, (p - 0.80) / 0.20)); fade.style.opacity = f.toFixed(3); oveil.style.opacity = Math.max(0, 1 - p * 4).toFixed(3); grain.style.opacity = (0.14 * (1 - f)).toFixed(3); vig.style.opacity = (1 - f).toFixed(3);
-    hint.style.opacity = Math.max(0, 0.8 - p * 12).toFixed(2);
-    const lt = landingEl.getBoundingClientRect().top, onKraft = lt + innerHeight * (innerWidth <= 760 ? 0.28 : 0.46) <= 70;
-    if (onKraft === film.hasAttribute('data-nav-over')){ if (onKraft) film.removeAttribute('data-nav-over'); else film.setAttribute('data-nav-over', ''); if (window.__nav) window.__nav.update(); }
-  }
-
-  // ---- progress
-  function computeProgress(){ const r = film.getBoundingClientRect(); return Math.max(0, Math.min(1, -r.top / (r.height - innerHeight))); }
-
-  // ---- lenis + tick
   let lenis = null;
-  if (!reduced && JUMP === null && typeof Lenis !== 'undefined'){ lenis = new Lenis({ lerp: 0.09, smoothWheel: true }); window.__lenis = lenis; }
-  const deltas = []; let lastT = performance.now(), lastLog = lastT, lastHeal = 0;
-  function tick(now){
-    if (lenis) lenis.raf(now);
-    progress = computeProgress(); target = progress * (FRAME_COUNT - 1);
-    if (displayed === -1 && now - lastHeal > 800){ lastHeal = now; bmpCenter = -999; } // self-heal: re-kick decoding if nothing is on screen
-    current += (target - current) * (reduced ? 1 : 0.14); if (Math.abs(target - current) < 0.01) current = target;
-    const idx = Math.round(current); ensureBitmaps(idx); drawFrame(idx); layout(progress);
-    deltas.push(now - lastT); lastT = now; if (now - lastLog > 2000){ const mx = Math.max(...deltas); if (mx > 50) console.log('jank max', mx.toFixed(1) + 'ms'); deltas.length = 0; lastLog = now; }
-    requestAnimationFrame(tick);
+  if (!reduced && JUMP === null && typeof Lenis !== 'undefined'){
+    lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
+    window.__lenis = lenis;
   }
 
-  // ---- Recent Works: curated from works.json — add/remove/reorder pieces there, no code changes
+  // hero: keyhole irises open, wordmark lines rise
+  const kh = document.querySelector('.hero .keyhole');
+  const lines = document.querySelectorAll('.statement h1 span i');
+  if (!reduced){
+    gsap.set(kh, { clipPath: 'circle(140% at 50% 34%)' });
+    gsap.set(lines, { yPercent: 110 });
+    const intro = gsap.timeline({ defaults: { ease: 'power4.out' } });
+    intro.to(kh, { clipPath: 'circle(0% at 50% 34%)', duration: 1.6, ease: 'power3.inOut' }, 0)
+         .to(lines, { yPercent: 0, duration: 1.1, stagger: 0.12 }, 0.7)
+         .from('.statement .sub, .statement .cta, .statement .eyebrow', { opacity: 0, y: 14, duration: .8, stagger: .08 }, 1.1);
+    if (JUMP !== null) intro.progress(1);
+  }
+
+  // scrubbed: hero image drifts, plates reveal
+  gsap.to('.hero img', { yPercent: 12, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    gsap.to(el, { clipPath: 'inset(0 0 0% 0)', duration: 1.1, ease: 'power3.out', delay: (i % 3) * .08,
+      scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+  });
+  gsap.utils.toArray('.profile .portrait').forEach(img => gsap.to(img, { yPercent: -8, ease: 'none', scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true } }));
+
+
+  // Recent Works: curated from works.json — add/remove/reorder pieces there, no code changes
   fetch('works.json').then(r => r.ok ? r.json() : null).then(j => {
     if (!j || !Array.isArray(j.works) || !j.works.length) return;
     const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
@@ -573,26 +452,22 @@ body::before{display:none}
     ).join('');
   }).catch(() => {});
 
-  // ---- lightbox
+  // lightbox
   const lb = document.getElementById('lb'), lbi = document.getElementById('lbi'), lbc = document.getElementById('lbc');
-  document.querySelector('.plates').addEventListener('click', e => { const p = e.target.closest('.plate'); if (!p) return; lbi.src = p.dataset.full; lbi.alt = p.querySelector('img').alt; lbc.textContent = p.dataset.cap; lb.showModal(); });
-  document.getElementById('lbx').addEventListener('click', () => lb.close()); lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
-  document.querySelectorAll('.reveal').forEach(el => el.classList.remove('reveal'));
-
-  // ---- boot
-  addEventListener('resize', resize); resize();
-  pump().then(async () => {
-    const wait = ms => new Promise(r => setTimeout(r, ms));
-    ensureBitmaps(0); await wait(300);
-    if (JUMP !== null){
-      await everything; scrollTo(0, +JUMP || 0); progress = computeProgress(); current = target = progress * (FRAME_COUNT - 1);
-      bmpCenter = -999; ensureBitmaps(Math.round(current)); await wait(700);
-    }
-    drawFrame(Math.round(current), true); layout(progress);
-    document.getElementById('loader').classList.add('done');
-    requestAnimationFrame(tick);
-    setTimeout(() => { window.__ready = true; }, 500);
+  document.querySelector('.plates').addEventListener('click', e => {
+    const p = e.target.closest('.plate'); if (!p) return;
+    lbi.src = p.dataset.full; lbi.alt = p.querySelector('img').alt; lbc.textContent = p.dataset.cap; lb.showModal();
   });
+  document.getElementById('lbx').addEventListener('click', () => lb.close());
+  lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
+
+  // dev contract
+  const ready = () => {
+    ScrollTrigger.refresh();
+    if (JUMP !== null){ scrollTo(0, +JUMP || 0); ScrollTrigger.update(); ScrollTrigger.getAll().forEach(st => { if (st.animation && st.vars.once !== true) st.animation.progress(st.progress); else if (st.animation && st.progress > 0) st.animation.progress(1); }); }
+    requestAnimationFrame(() => { window.__ready = true; });
+  };
+  if (document.readyState === 'complete') ready(); else addEventListener('load', ready);
 })();
 </script>
 <script>
