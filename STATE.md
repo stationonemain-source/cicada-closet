@@ -17,6 +17,15 @@
   (pdf + page-1 jpg, same filenames), rebuild, push.
 - User note 09-20 said "The Cicada Lounge" once — treated as a slip, everything stays Cicada Closet.
 
+## 09-20 round-1 fixes (after Circle's review)
+- FILM IS THE SITE: root / now redirects to /film/. The quiet one-pager is deprecated, kept at /classic/
+  (internal only, never send). Circle: "she doesn't want a quiet one pager".
+- Hero text no longer sits on the logo anywhere: film hero beat plays at p .58–.98 (on the black keyhole
+  plunge) with a real scrim + heavy text-shadow. ⚠️ `.beat.hero` collides with the page's legacy `.hero`
+  CSS (display:grid;min-height:88vh) — `.beat.hero{display:block;min-height:0}` overrides it; keep that.
+- Mobile pass done at 375x812: letterboxed logo start looks right, sections stack, overflowX 0.
+- tier1 got a `.statement` ink band under its hero (text off the logo) — moot while /classic/ is internal.
+
 Built 2026-09-16 from Plan A "The Keyhole". Client: Jenna Feezel, @jens.art / @thecicadacloset, 755 S Jenkins Ave, Norman OK. NOT yet sent to her.
 
 ## PUBLIC (GitHub Pages, all noindex)
