@@ -9,6 +9,7 @@
 <meta property="og:title" content="The Cicada Closet · Norman, OK">
 <meta property="og:image" content="../assets/hero-logo.jpg">
 <link rel="icon" type="image/png" href="../assets/cicada-mark.png">
+<link rel="preload" as="image" href="../assets/logo-card.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rye&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <script type="application/ld+json">
@@ -111,6 +112,9 @@ section h2{margin-bottom:18px}
 .profile .folio{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}
 @media (max-width:520px){.profile .folio{grid-template-columns:repeat(2,1fr)}}
 .profile .folio img{width:100%;aspect-ratio:1;object-fit:cover;display:block;border:1px solid rgba(239,227,204,.25)}
+.profile .ignote{font-size:16px;opacity:.78}
+.profile .ignote a{text-decoration-thickness:1px;text-underline-offset:3px}
+.roster-note{margin-top:22px;font-size:15px;color:var(--ink-2);max-width:46ch}
 .profile .plinks{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
 .profile .plinks .btn{border-color:var(--cream);color:var(--cream)}
 .profile .plinks .btn:hover,.profile .plinks .btn:focus-visible{background:var(--cream);color:var(--ink)}
@@ -222,17 +226,18 @@ main [id]{scroll-margin-top:68px}
 
 
 
-/* ---- film engine ---- */
+/* ---- film engine: stationary desk, the card is the only thing that moves ---- */
 :root{--seam:#0a0705}
 body::before{display:none}
-.film{position:relative;height:300vh}
+.film{position:relative;height:340vh}
 .chapter{display:none!important}
-.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#1b1713}
-.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#241811}
+.stage .wood{position:absolute;inset:0;background:#241811 url(../assets/hero-wood.jpg) center/cover no-repeat}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
 .grain{position:absolute;inset:0;pointer-events:none;opacity:.14;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(27,23,19,.45) 100%)}
-.fade{position:absolute;inset:0;pointer-events:none;background:var(--seam);opacity:0}
+.fade{position:absolute;inset:0;pointer-events:none;background:#000;opacity:0}
 .oveil{display:none}
 .beat::before{content:"";position:absolute;inset:-18vh -30vw -14vh -20vw;z-index:-1;background:radial-gradient(ellipse at 30% 75%,rgba(27,23,19,.62),rgba(27,23,19,0) 65%);pointer-events:none}
 .beat.hero::before{display:none}
@@ -309,10 +314,9 @@ body::before{display:none}
 <main id="top">
   <div class="film" id="film" data-nav-over>
     <div class="stage">
-      <canvas id="cv"></canvas>
-      <div class="feather" id="feather"></div>
-      <div class="oveil" id="oveil"></div><div class="grain" id="grain"></div><div class="vig" id="vig"></div>
-      <div class="chapter" id="chap"><span id="chapName">Paper</span><div class="bar"><i id="chapBar"></i></div></div>
+      <div class="wood"></div>
+      <canvas id="cv" data-src="../assets/logo-card.webp" aria-label="The Cicada Closet logo: an art-nouveau cicada with a golden keyhole at its centre, framed in green vines" role="img"></canvas>
+      <div class="grain" id="grain"></div><div class="vig" id="vig"></div>
       <div class="beat hero" id="heroBeat" data-in="-0.1" data-peak="0" data-out="0.16">
         <p class="eyebrow">Norman, Oklahoma · 755 S Jenkins Ave</p>
         <h2>Female-owned tattoo studio.</h2>
@@ -350,7 +354,6 @@ body::before{display:none}
       <button class="plate tall reveal" data-full="../assets/salamander.jpg" data-cap="Salamander · watercolour and Micron pen on paper, July 2026"><figure><div class="img"><img src="../assets/salamander.jpg" alt="Watercolour and ink drawing of a black salamander with yellow spots curled on a dry oak leaf" loading="lazy"></div><figcaption><b>Salamander</b><span>on paper</span></figcaption></figure></button>
       <button class="plate tall reveal" data-full="../assets/murals.jpg" data-cap="Murals painted for Mira’s room · July 2026"><figure><div class="img"><img src="../assets/murals.jpg" alt="Two painted murals on a rust ground: cicadas, morning glories, strawberries and hearts" loading="lazy"></div><figcaption><b>Murals for Mira</b><span>paint</span></figcaption></figure></button>
     </div>
-    <p style="margin-top:34px;font-size:15px;color:var(--ink-2)">More on Instagram, including healed pieces and the current want-to-do list: <a href="https://www.instagram.com/thecicadacloset/" target="_blank" rel="noopener">@thecicadacloset</a>.</p>
   </section>
 
   <div class="rule"></div>
@@ -385,6 +388,7 @@ body::before{display:none}
         <p>Jenna Feezel is a tattoo artist, painter, and the founder of The Cicada Closet. She earned her Bachelor of Fine Arts in Studio Art before beginning her career in tattooing.</p>
         <p>Nature is the foundation of Jenna&rsquo;s work. Inspired by its movement, resilience, and quiet lessons of growth and release, her paintings explore color and organic form, while her tattoo work lives primarily in black and grey&mdash;illustrative, intentional, and deeply personal.</p>
         <p>Motherhood has deepened Jenna&rsquo;s relationship with creativity and connection. For her, tattooing is more than the finished piece&mdash;it is a process built on vulnerability, laughter, healing, and trust, with many clients becoming friends along the way.</p>
+        <p class="ignote">More of Jenna&rsquo;s work, including healed pieces and her current want-to-do list, lives on Instagram: <a href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">@jens.art</a>.</p>
         <div class="creds"><span>Black &amp; grey</span><span>Illustrative</span><span>Botanical &amp; nature</span><span>BFA, Studio Art</span></div>
         <div class="folio" aria-label="Selected pieces by Jenna Feezel">
           <img src="../assets/stag-beetle-seraphim.jpg" alt="Black and grey stag beetle seraphim tattoo" loading="lazy">
@@ -402,15 +406,16 @@ body::before{display:none}
 
   <section class="book" id="book">
     <div>
-      <p class="eyebrow">Booking</p>
+      <p class="eyebrow">Booking &middot; Jenna Feezel</p>
       <h2>Book with a message.</h2>
-      <p>Booking at The Cicada Closet is by message. Send the studio a DM on Instagram with the three things below&mdash;it saves a round of questions and gets you on the schedule faster. Current details live in the Booking highlight on Instagram.</p>
+      <p>Jenna books her own work by message. Send her a note on Instagram at <a href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">@jens.art</a> with the three things below&mdash;it saves a round of questions and gets you on her schedule faster. Her current details live in the Booking highlight there.</p>
       <ol>
         <li><span>Describe the tattoo you want and include reference images, if possible.</span></li>
         <li><span>Where you would like the tattoo placed and approximately how large you want it.</span></li>
         <li><span>Days and times that work for you.</span></li>
       </ol>
       <a class="btn solid" href="https://www.instagram.com/jens.art/" target="_blank" rel="noopener">Message @jens.art</a>
+      <p class="roster-note">Every artist at The Cicada Closet books their own work in their own way. See <a href="#artists">Artists</a> for the full roster and how to reach each of them.</p>
     </div>
     <aside class="info" aria-label="Studio details">
       <header class="info-head"><i aria-hidden="true"></i><div><b>The Cicada Closet</b><span>Tattoo studio · Norman, Oklahoma</span></div></header>
@@ -459,141 +464,84 @@ body::before{display:none}
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script>
 (function(){
-  const FRAME_COUNT = 121;
-  const CHAPTERS = ['The keyhole'];
-  const JUMP = new URLSearchParams(location.search).get('jump');
+  // The desk never moves. Only her card does: it scales about the keyhole until the
+  // keyhole swallows the screen, and the site rises out of that darkness.
+  const KX = 0.4993, KY = 0.3950, KW = 0.0371;   // keyhole centre and width inside logo-card.webp
+  const ART = 0.7857;                            // the card asset is 21% shadow padding; fit the artwork, not the file
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const JUMP = new URLSearchParams(location.search).get('jump');
   if (JUMP !== null) history.scrollRestoration = 'manual';
 
-  // hero background variant: default 'wood' (sheet on the desk), '?bg=tan' (logo flush on kraft)
-  const BG = new URLSearchParams(location.search).get('bg') === 'tan' ? 'tan' : 'wood';
-  const TAN = BG === 'tan';
-  const stage = document.querySelector('.stage'); stage.classList.add('bg-' + BG);
-  const SHEET_FRAC = 0.795;                       // the sheet spans 79.5% of the film frame's width
-  const BGC = TAN ? '#b08a64' : '#241811';        // sampled from the photo's own paper / darkest wood
-  const BGC0 = TAN ? 'rgba(176,138,100,0)' : 'rgba(36,24,17,0)';
-  document.getElementById('feather').remove();
-  if (TAN){ document.getElementById('heroBeat').classList.add('dark'); document.getElementById('vig').style.display = 'none'; }
-  const cv = document.getElementById('cv'), ctx = cv.getContext('2d', { alpha: true });
   const film = document.getElementById('film');
-  const fade = document.getElementById('fade'), oveil = document.getElementById('oveil'), grain = document.getElementById('grain'), vig = document.getElementById('vig'), hint = document.getElementById('hint');
-  const chapName = document.getElementById('chapName'), chapBar = document.getElementById('chapBar');
-  const beats = [...document.querySelectorAll('.beat')].map(el => ({ el, in: +el.dataset.in, peak: +el.dataset.peak, out: +el.dataset.out }));
-  const DPR = Math.min(devicePixelRatio || 1, 1.5);
-  let W = 0, H = 0;
-  function resize(){ W = innerWidth; H = innerHeight; cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); ctx.setTransform(DPR, 0, 0, DPR, 0, 0); drawFrame(displayed, true); }
-
-  // ---- frames: one JPEG per frame in two sizes, fetched coarse-to-fine, decoded off-thread near the playhead
-  const SET = (Math.min(innerWidth, 2400) * DPR > 1100) ? 'hd' : 'sd';
-  const blobs = new Array(FRAME_COUNT);
-  const src = i => `frames/${SET}/f_${String(i + 1).padStart(4, '0')}.jpg`;
-  let allLoaded;
-  const everything = new Promise(r => { allLoaded = r; });
-  everything.then(() => { window.__framesLoaded = true; });
-  function pump(){
-    const bar = document.getElementById('bar');
-    const q = [], seen = new Uint8Array(FRAME_COUNT);
-    const add = i => { if (i >= 0 && i < FRAME_COUNT && !seen[i]){ seen[i] = 1; q.push(i); } };
-    for (let i = 0; i < 12; i++) add(i);
-    let gate = 0;
-    for (let step = 8; step >= 1; step >>= 1){ for (let i = 0; i < FRAME_COUNT; i += step) add(i); if (step === 8) gate = q.length; }
-    return new Promise(res => {
-      let next = 0, inflight = 0, done = 0, opened = false; const CAP = 6;
-      const kick = () => {
-        while (inflight < CAP && next < q.length){
-          const i = q[next++]; inflight++;
-          fetch(src(i)).then(r => r.ok ? r.blob() : null).catch(() => null).then(b => {
-            inflight--; done++; if (b) blobs[i] = b; bmpCenter = -999;
-            if (!opened){ bar.style.width = Math.min(100, done / gate * 100) + '%'; if (done >= gate){ opened = true; res(); } }
-            if (done === q.length) allLoaded();
-            kick();
-          });
-        }
-      };
-      kick();
-    });
-  }
-
-  // ---- ImageBitmap window: nearest frames first, evict outside the keep range
-  const bitmaps = new Map(), decoding = new Set();
-  const B_AHEAD = SET === 'hd' ? 14 : 20, B_KEEP = SET === 'hd' ? 20 : 28; let bmpCenter = -999;
-  function ensureBitmaps(center){
-    if (Math.abs(center - bmpCenter) < 2) return; bmpCenter = center;
-    for (let d = 0; d <= B_AHEAD; d++){
-      for (const i of (d ? [center + d, center - d] : [center])){
-        if (i < 0 || i >= FRAME_COUNT || bitmaps.has(i) || decoding.has(i) || !blobs[i]) continue;
-        decoding.add(i);
-        createImageBitmap(blobs[i]).then(b => {
-          decoding.delete(i);
-          if (Math.abs(i - bmpCenter) > B_KEEP){ b.close(); return; }
-          bitmaps.set(i, b);
-          if (Math.abs(i - Math.round(current)) <= 2) drawFrame(Math.round(current), true);
-        }).catch(() => decoding.delete(i));
-      }
-    }
-    for (const k of Array.from(bitmaps.keys())) if (k < center - B_KEEP || k > center + B_KEEP){ bitmaps.get(k).close(); bitmaps.delete(k); }
-  }
-  function nearestBitmap(i){ for (let d = 1; d <= B_KEEP; d++){ const a = bitmaps.get(i - d); if (a) return a; const b = bitmaps.get(i + d); if (b) return b; } return null; }
-
-  // ---- draw: starts contain-fit so the whole logo and lettering are on screen,
-  // eases to cover-fit as the visitor zooms toward the keyhole
-  let displayed = -1, current = 0, target = 0, progress = 0, lastMix = -1;
-  function drawFrame(i, force){
-    const m0 = reduced ? 1 : Math.max(0, Math.min(1, progress / 0.20));
-    const mix = m0 * m0 * (3 - 2 * m0);
-    if (i === displayed && !force && Math.abs(mix - lastMix) < 0.002) return;
-    const exact = bitmaps.get(i), b = exact || nearestBitmap(i); if (!b) return;
-    // Rest: the sheet's full width is on screen (her lettering is never cropped).
-    // Wide screens get there at cover, so the frame is full-bleed and nothing sits behind it.
-    // Narrow screens can't, so the frame's own edges fade into its darkest tone -- one colour,
-    // no second texture to mismatch. Zooming lifts it to cover and the fade goes away.
-    const sCover = Math.max(W / b.width, H / b.height);
-    const sFit = 0.92 * W / (SHEET_FRAC * b.width);
-    const sRest = Math.min(sCover, sFit);
-    const s = sRest + (sCover - sRest) * mix;
-    const dw = b.width * s, dh = b.height * s, dx = (W - dw) / 2, dy = (H - dh) / 2;
-    ctx.fillStyle = BGC; ctx.fillRect(0, 0, W, H);
-    ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(b, dx, dy, dw, dh);
-    if (dh < H - 1){
-      const f = Math.min(dh * 0.42, (H - dh) * 0.9 + dh * 0.16);
-      let g = ctx.createLinearGradient(0, dy, 0, dy + f);
-      g.addColorStop(0, BGC); g.addColorStop(1, BGC0); ctx.fillStyle = g; ctx.fillRect(0, dy, W, f);
-      g = ctx.createLinearGradient(0, dy + dh, 0, dy + dh - f);
-      g.addColorStop(0, BGC); g.addColorStop(1, BGC0); ctx.fillStyle = g; ctx.fillRect(0, dy + dh - f, W, f);
-    }
-    displayed = exact ? i : -1; lastMix = mix;
-  }
-
-  // ---- beats
-  function beatAlpha(b, p){ if (p < b.in || p > b.out) return 0; if (p < b.peak) return (p - b.in) / Math.max(1e-4, b.peak - b.in); if (b.out > 1.5) return 1; return 1 - (p - b.peak) / Math.max(1e-4, b.out - b.peak); }
+  const fade = document.getElementById('fade'), grain = document.getElementById('grain');
+  const vig = document.getElementById('vig'), hint = document.getElementById('hint');
   const landingEl = document.querySelector('.landing');
-  function layout(p){
-    for (const b of beats){ const a = beatAlpha(b, p); b.el.style.opacity = a.toFixed(3); b.el.style.transform = `translateY(${((1 - a) * 18).toFixed(1)}px)`; }
-    const seg = Math.min(CHAPTERS.length - 1, Math.floor(p * CHAPTERS.length)); chapName.textContent = CHAPTERS[seg]; chapBar.style.width = (p * 100) + '%';
-    const f = Math.max(0, Math.min(1, (p - 0.80) / 0.20)); fade.style.opacity = f.toFixed(3); oveil.style.opacity = Math.max(0, 1 - p * 4).toFixed(3); grain.style.opacity = (0.14 * (1 - f)).toFixed(3); vig.style.opacity = (1 - f).toFixed(3);
-    hint.style.opacity = Math.max(0, 0.8 - p * 12).toFixed(2);
-    const lt = landingEl.getBoundingClientRect().top, onKraft = lt + innerHeight * (innerWidth <= 760 ? 0.28 : 0.46) <= 70;
-    const wantOver = !TAN && !onKraft; // tan hero is light, so the nav stays solid there
-    if (wantOver !== film.hasAttribute('data-nav-over')){ if (wantOver) film.setAttribute('data-nav-over', ''); else film.removeAttribute('data-nav-over'); if (window.__nav) window.__nav.update(); }
+  const beats = [...document.querySelectorAll('.beat')].map(el => ({ el, in: +el.dataset.in, peak: +el.dataset.peak, out: +el.dataset.out }));
+
+  // The card is drawn to a viewport-sized canvas, not scaled as a DOM layer: at the end of
+  // the push the card is ~100x the screen, and a transformed <img> makes the compositor
+  // rasterise a layer that big. Drawing only the visible slice keeps the cost flat.
+  const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+  const card = new Image();
+  const DPR = Math.min(devicePixelRatio || 1, 2);
+  let W = 0, H = 0, IW = 2800, IH = 2800;
+  function measure(){
+    W = innerWidth; H = innerHeight;
+    if (card.naturalWidth){ IW = card.naturalWidth; IH = card.naturalHeight; }
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    ctx.imageSmoothingQuality = 'high';
   }
 
-  // ---- progress
-  function computeProgress(){ const r = film.getBoundingClientRect(); return Math.max(0, Math.min(1, -r.top / (r.height - innerHeight))); }
+  function beatAlpha(b, p){
+    if (p < b.in || p > b.out) return 0;
+    if (p < b.peak) return (p - b.in) / Math.max(1e-4, b.peak - b.in);
+    return 1 - (p - b.peak) / Math.max(1e-4, b.out - b.peak);
+  }
 
-  // ---- lenis + tick
+  function draw(p){
+    const wide = W >= 700;
+    const s0 = Math.min(W * (wide ? 0.76 : 0.88) / (ART * IW), H * 0.74 / (ART * IH));  // whole card, at rest
+    const s1 = 1.35 * Math.max(W, H) / (KW * IW);                        // keyhole past the edges
+    const e = reduced ? 0 : Math.pow(p, 0.85);                           // the push builds early
+    const s = s0 * Math.pow(s1 / s0, e);
+    const restCy = H * (wide ? 0.58 : 0.56);
+    const cy = restCy + (H / 2 - restCy) * Math.min(1, p * 2);           // keyhole drifts to centre
+    const dx = W / 2 - KX * IW * s, dy = cy - KY * IH * s;
+    ctx.clearRect(0, 0, W, H);
+    const sx0 = Math.max(0, -dx / s), sy0 = Math.max(0, -dy / s);
+    const sx1 = Math.min(IW, (W - dx) / s), sy1 = Math.min(IH, (H - dy) / s);
+    if (card.naturalWidth && sx1 > sx0 && sy1 > sy0)
+      ctx.drawImage(card, sx0, sy0, sx1 - sx0, sy1 - sy0,
+                    dx + sx0 * s, dy + sy0 * s, (sx1 - sx0) * s, (sy1 - sy0) * s);
+
+    const f = Math.max(0, Math.min(1, (p - 0.62) / 0.30));               // into the dark
+    fade.style.opacity = f.toFixed(3);
+    grain.style.opacity = (0.14 * (1 - f)).toFixed(3);
+    vig.style.opacity = (1 - f).toFixed(3);
+    hint.style.opacity = Math.max(0, 0.8 - p * 12).toFixed(2);
+    for (const b of beats){
+      const a = beatAlpha(b, p);
+      b.el.style.opacity = a.toFixed(3);
+      b.el.style.transform = 'translateY(' + ((1 - a) * 18).toFixed(1) + 'px)';
+    }
+    const lt = landingEl.getBoundingClientRect().top;
+    const over = lt + innerHeight * (W <= 760 ? 0.28 : 0.46) > 70;
+    if (over !== film.hasAttribute('data-nav-over')){
+      if (over) film.setAttribute('data-nav-over', ''); else film.removeAttribute('data-nav-over');
+      if (window.__nav) window.__nav.update();
+    }
+  }
+
+  function progress(){
+    const r = film.getBoundingClientRect();
+    return Math.max(0, Math.min(1, -r.top / (r.height - innerHeight)));
+  }
+
   let lenis = null;
   if (!reduced && JUMP === null && typeof Lenis !== 'undefined'){ lenis = new Lenis({ lerp: 0.09, smoothWheel: true }); window.__lenis = lenis; }
-  const deltas = []; let lastT = performance.now(), lastLog = lastT, lastHeal = 0;
-  function tick(now){
-    if (lenis) lenis.raf(now);
-    progress = computeProgress(); target = progress * (FRAME_COUNT - 1);
-    if (displayed === -1 && now - lastHeal > 800){ lastHeal = now; bmpCenter = -999; } // self-heal: re-kick decoding if nothing is on screen
-    current += (target - current) * (reduced ? 1 : 0.14); if (Math.abs(target - current) < 0.01) current = target;
-    const idx = Math.round(current); ensureBitmaps(idx); drawFrame(idx); layout(progress);
-    deltas.push(now - lastT); lastT = now; if (now - lastLog > 2000){ const mx = Math.max(...deltas); if (mx > 50) console.log('jank max', mx.toFixed(1) + 'ms'); deltas.length = 0; lastLog = now; }
-    requestAnimationFrame(tick);
-  }
+  function tick(now){ if (lenis) lenis.raf(now); draw(progress()); requestAnimationFrame(tick); }
+  addEventListener('resize', () => { measure(); draw(progress()); });
 
   // ---- Recent Works: curated from works.json — add/remove/reorder pieces there, no code changes
   fetch('works.json').then(r => r.ok ? r.json() : null).then(j => {
@@ -611,19 +559,20 @@ body::before{display:none}
   document.querySelectorAll('.reveal').forEach(el => el.classList.remove('reveal'));
 
   // ---- boot
-  addEventListener('resize', resize); resize();
-  pump().then(async () => {
-    const wait = ms => new Promise(r => setTimeout(r, ms));
-    ensureBitmaps(0); await wait(300);
-    if (JUMP !== null){
-      await everything; scrollTo(0, +JUMP || 0); progress = computeProgress(); current = target = progress * (FRAME_COUNT - 1);
-      bmpCenter = -999; ensureBitmaps(Math.round(current)); await wait(700);
-    }
-    drawFrame(Math.round(current), true); layout(progress);
+  function boot(){
+    measure();
+    if (JUMP !== null) scrollTo(0, +JUMP || 0);
+    draw(progress());
+    const bar = document.getElementById('bar'); if (bar) bar.style.width = '100%';
     document.getElementById('loader').classList.add('done');
     requestAnimationFrame(tick);
-    setTimeout(() => { window.__ready = true; }, 500);
-  });
+    setTimeout(() => { window.__ready = true; window.__framesLoaded = true; }, 400);
+  }
+  card.addEventListener('load', boot, { once: true });
+  card.addEventListener('error', boot, { once: true });
+  card.src = cv.dataset.src;   // set in the markup so the deploy's path rewrite reaches it
+  if (card.complete && card.naturalWidth) boot();
+  setTimeout(() => { if (!window.__ready) boot(); }, 4000);   // never strand the loader
 })();
 </script>
 <script>

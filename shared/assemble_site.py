@@ -40,7 +40,8 @@ shutil.copytree(root / 'tier1' / 'assets', site / 'assets', ignore=shutil.ignore
 shutil.copy(root / 'tier1' / 'assets' / 'cicada-mark.png', site / 'assets' / 'cicada-mark.png')
 shutil.copy(root / 'tier1' / 'works.json', site / 'works.json')
 page(root / 'tier2' / 'index.html', site / 'film' / 'index.html', True)
-shutil.copytree(root / 'tier2' / 'frames', site / 'film' / 'frames')
+# the film is code-driven now (stationary desk + her logo card); the old video frame sets
+# stay in the workspace but are no longer deployed
 (site / 'film' / 'works.json').write_text(
     (root / 'tier2' / 'works.json').read_text(encoding='utf-8').replace('"assets/', '"../assets/'),
     encoding='utf-8')
