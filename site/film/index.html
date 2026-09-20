@@ -251,8 +251,8 @@ body::before{display:none}
 .beat.hero.dark{color:var(--ink)}
 .beat.hero.dark h2,.beat.hero.dark p{text-shadow:none}
 .beat.hero.dark .eyebrow{color:var(--rust)}
-.stage.bg-wood{background:radial-gradient(120% 95% at 50% 42%,#43301f 0,#332314 55%,#241811 100%)}
-.stage.bg-tan{background:radial-gradient(120% 95% at 50% 45%,#a8876a 0,#9d7d5f 52%,#8a6c50 100%)}
+.stage.bg-wood{background:#241811 url(../assets/hero-wood.jpg) center/cover no-repeat}
+.stage.bg-tan{background:#bc936f url(../assets/hero-kraft.jpg) center/cover no-repeat}
 .feather{position:absolute;inset:-2px;pointer-events:none}
 .beat.dark{color:var(--ink)}
 .beat.dark h2,.beat.dark p{text-shadow:none}
@@ -470,7 +470,7 @@ body::before{display:none}
   const TAN = BG === 'tan';
   const stage = document.querySelector('.stage'); stage.classList.add('bg-' + BG);
   const feather = document.getElementById('feather');
-  feather.style.boxShadow = 'inset 0 0 16vmin 7vmin ' + (TAN ? '#9d7d5f' : '#241811');
+  feather.style.boxShadow = 'inset 0 0 16vmin 7vmin ' + (TAN ? '#bc936f' : '#3a2a1e');
   if (TAN){ document.getElementById('heroBeat').classList.add('dark'); document.getElementById('vig').style.display = 'none'; }
   const cv = document.getElementById('cv'), ctx = cv.getContext('2d', { alpha: true });
   const film = document.getElementById('film');
