@@ -79,7 +79,7 @@
   loader.load(host.dataset.kraft, (t) => {
     t.colorSpace = THREE.SRGBColorSpace;
     t.wrapS = t.wrapT = THREE.RepeatWrapping;
-    t.repeat.set(3, 3);
+    t.repeat.set(16, 16);              // a 1024 seamless tile, not a 4K plate: 12x lighter, same grain
     field.material.map = t;
     field.material.color.set(0xffffff);
     field.material.needsUpdate = true;
@@ -92,10 +92,18 @@
 
   function frame(p) {
     const e = prefersReduced ? 0 : Math.pow(p, 0.88);
-    // the camera starts back far enough to hold the whole sheet, then flies through the keyhole
-    const z = 4.35 - e * 5.05;
-    camera.position.set(0, aimY * (1 - e * 0.15), z);
-    camera.lookAt(0, aimY, -1);
+    // the camera starts back far enough to hold the whole sheet, then flies through the keyhole;
+    // wide screens start closer, or the sheet sits small in a sea of paper
+    const z = restZ - e * (restZ + 0.70);
+    // at rest the view is lifted so the sheet sits below the headline instead of under it;
+    // the lift eases out, and by the keyhole the camera is aimed dead on it
+    // rest offsets are gone by two-thirds of the way in, so the camera passes through the
+    // keyhole dead centre instead of still drifting across as it arrives
+    const k = Math.pow(Math.max(0, 1 - e / 0.68), 1.5);
+    const lift = restLift * k;
+    const side = restShift * k;            // wide screens: the sheet rests beside the text, then centres
+    camera.position.set(-side, aimY * (1 - e * 0.15) + lift, z);
+    camera.lookAt(-side, aimY + lift, -1);
     // the sheet leans back a touch at rest and squares up as you arrive
     paper.rotation.x = (1 - e) * 0.085;
     field.rotation.x = paper.rotation.x;
@@ -103,8 +111,20 @@
     renderer.render(scene, camera);
   }
 
+  let restZ = 4.35, restLift = 0, restShift = 0;
   function resize() {
     camera.aspect = innerWidth / innerHeight;
+    // The camera aims at the keyhole, which sits ABOVE the sheet's centre, so with no lift the
+    // sheet hangs low. Wide screens are height-bound by a square logo under a headline: pull
+    // back enough for the whole sheet, and aim a little below the keyhole so it rises to sit
+    // centred beneath the text. A positive lift here pushed the lettering off the bottom.
+    // Wide: the headline moves to a left column (see .beat.hero in the page CSS), so the sheet
+    // can take the full height on the right. Stacking text over a square logo on a wide screen
+    // means either the ornament goes under the headline or the lettering goes off the bottom.
+    const wide = camera.aspect >= 1.25, mid = camera.aspect >= 0.85;
+    restZ     = wide ? 3.80  : mid ? 4.05  : 4.35;
+    restLift  = wide ? -0.30 : mid ? -0.12 : 0.08;
+    restShift = wide ? 0.95  : 0;
     // hold the whole sheet on tall screens, where a fixed fov would crop it
     camera.fov = innerWidth / innerHeight < 0.85 ? 58 : 42;
     camera.updateProjectionMatrix();
