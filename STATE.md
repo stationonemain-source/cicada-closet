@@ -26,6 +26,29 @@
 - Mobile pass done at 375x812: letterboxed logo start looks right, sections stack, overflowX 0.
 - tier1 got a `.statement` ink band under its hero (text off the logo) — moot while /classic/ is internal.
 
+## 09-20 HERO ROOT CAUSE — read before touching the hero again
+**No source we own shows the whole sheet.** The paper runs off the TOP and the BOTTOM of both
+`tier1/assets/hero-logo.jpg` and film frame 1 (measured: bottom row is only 8-9% wood, top row 36%,
+sheet bbox touches y=0 and y=h-1). So "the logo sitting on the wood" cannot be cropped out of anything
+we have -- it has to be invented. Four attempts, all discarded:
+1. CSS background + letterboxed film frame → reads as a photo pasted on wallpaper (two different woods,
+   hard rectangle edges, feather halo). This is what Circle caught on the phone.
+2. Higgsfield `outpaint` (2 cr) → **REDREW HER LOGO** as generic sans-serif lettering with a different
+   cicada. Never shipped. NEVER outpaint her artwork; the model regenerates, it does not preserve.
+3. `film/build_plate.py` single-row extrusion → vertical streaking, blown-out row normalisation.
+4. Same, 2-D mirrored bands → repeats the sheet like a filmstrip; kraft mode ghosted her logo across
+   the field. Script kept as the record of what fails; do not ship its output.
+
+**Shipped instead (honest, zero fabrication):** no background image at all. The film frame's own wood
+bleeds edge to edge; where a narrow screen leaves space, the frame's edges fade into `#241811`, sampled
+from the photo's own darkest wood (`#b08a64` for `?bg=tan`). One colour, nothing to mismatch.
+`sRest = min(sCover, sFit)` keeps her full lettering on screen at every width; zoom lifts it to cover
+and the fade disappears. `SHEET_FRAC = 0.795` is the sheet's width as a fraction of the frame.
+
+**THE REAL FIX — ask Jenna for one photo:** the logo print lying on the studio's wood, shot from further
+back so the whole sheet and the desk around it are in frame, portrait orientation for phones. Free, real,
+permanent, and it retires every workaround above.
+
 ## 09-20 hero A/B (Circle's ask: text above the logo at rest, no late pop-in)
 - The statement now shows from the start, CENTERED ABOVE the logo, and fades out over the first ~16% of
   scroll. The late "plunge" beat is gone.
