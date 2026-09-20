@@ -22,7 +22,7 @@
 </script>
 <style>
 :root{
-  --kraft:#c9a472; --kraft-deep:#b48c5a; --cream:#efe3cc; --ink:#1b1713; --ink-2:#4a3d31;
+  --kraft:#ab7e56; --kraft-deep:#96693f; --cream:#efe3cc; --ink:#1b1713; --ink-2:#4a3d31;
   --walnut:#3b2a1e; --rust:#a4461c; --sage:#6e7c55; --berry:#d98a9a;
   --display:'Rye',Georgia,serif; --body:'Libre Caslon Text',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
   --gutter:clamp(20px,5vw,72px);
@@ -191,7 +191,7 @@ dialog button{position:absolute;top:-6px;right:-6px;background:var(--cream);bord
 /* ---- nav (shared across every Cicada Closet page) ---- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:40;height:68px;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;column-gap:clamp(14px,2.4vw,32px);padding-inline:var(--gutter);color:var(--cream);transition:color .35s,background-color .35s,box-shadow .35s}
 .nav::before{content:"";position:absolute;inset:0 0 -36px;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(27,23,19,.62),rgba(27,23,19,0));transition:opacity .35s}
-.nav[data-mode="solid"]{color:var(--ink);background:var(--nav-bg,rgba(206,172,122,.92));-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(27,23,19,.22)}
+.nav[data-mode="solid"]{color:var(--ink);background:var(--nav-bg,rgba(171,126,87,.94));-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(27,23,19,.22)}
 .nav[data-mode="dark"]{color:var(--cream);background:rgba(27,23,19,.95);box-shadow:0 1px 0 rgba(239,227,204,.14)}
 .nav:not([data-mode="over"])::before,.nav.is-open::before{opacity:0}
 .nav.is-open{color:var(--ink);background:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}

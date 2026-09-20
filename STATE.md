@@ -26,6 +26,24 @@
 - Mobile pass done at 375x812: letterboxed logo start looks right, sections stack, overflowX 0.
 - tier1 got a `.statement` ink band under its hero (text off the logo) — moot while /classic/ is internal.
 
+## 09-20 ROUND 2c — FLUSH KRAFT (current local build, **NOT DEPLOYED**)
+Circle sent a kraft swatch: "i want this to be the whole thing, so the logo is flush on the website".
+The wood is gone. The hero is one sheet of kraft and her logo is printed straight onto it -- no card,
+no shadow, no perspective, no edges.
+
+- `film/build_flush.py` builds both halves. The background is GENERATED (not tiled -- a 61x72 swatch
+  repeated across a screen shows a grid) at the exact tone measured from the blank corners of
+  `logo_new.webp`: **#ab7e56**, corner-to-corner spread 0.04. Her logo gets a feathered alpha border
+  (7.5% = 82px, blank margin only, never the artwork) so its square dissolves instead of ending.
+- Assets: `assets/hero-kraft.jpg` (2400x1500) + `assets/logo-flush.webp` (her file, feathered).
+- Engine: `KX=0.4991 KY=0.3664 KW=0.0473 AW=1.0 AH=1.0`. Keep in step with `film/preview_hero.py`.
+- The hero is LIGHT now, so: `.beat.hero` carries `dark`, `.hint` is ink, `.grain` is off, and the film
+  no longer sets `data-nav-over` (the nav stays solid ink-on-kraft).
+- **The whole site moved onto her paper**: `--kraft:#ab7e56`, `--kraft-deep:#96693f`, and the nav's solid
+  bar `rgba(171,126,87,.94)`. Before this the nav read as a lighter strip across the hero -- that strip
+  was the old `#c9a472` kraft, i.e. the two-tone again, just in the chrome.
+- Wood build kept for reference: `film/build_wood.py`, `film/build_card3d.py` (round 2b).
+
 ## 09-20 ROUND 2b — 3D card on an EVEN desk (BUILT LOCALLY, **NOT DEPLOYED**)
 Circle: the flat card "isn't 3d like the other", the background showed "2 tone", and
 "i would the whole background to be the same tone or color, texture so the logo sits pretty".
