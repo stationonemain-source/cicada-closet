@@ -26,6 +26,28 @@
 - Mobile pass done at 375x812: letterboxed logo start looks right, sections stack, overflowX 0.
 - tier1 got a `.statement` ink band under its hero (text off the logo) — moot while /classic/ is internal.
 
+## 09-20 ROUND 4 — SCULPTED RELIEF (LIVE)
+Circle: "use higgsfield to make this even more smooth 3d". Credits 527 -> ~514.
+- The cicada, vines and orbs are now a REAL MESH lying on the sheet: `film/cicada_crop.png` (her 4K
+  art, x 8-92% y 12-74%) -> `image_background_remover` (1 cr) -> `hunyuan3d_v3_image_to_3d` PBR
+  (11 cr, job 92f65f17) -> 68 MB / 500k tris. Her linework is the mesh's skin; only depth was added.
+- Web-sized with gltf-transform (npx @gltf-transform/cli): simplify 0.035 -> 31.6k tris; textures
+  base 2048 / normal 1024 / metal-rough 64 (the page forces matte so that map is dead weight) via
+  `--pattern` (a GLOB, not a regex); webp q78; `meshopt --level medium`. 68 MB -> 1.07 MB.
+  Master kept at film/mesh/cicada.glb; `film/mesh/view.html` + `shoot.js` render it from 4 angles.
+- `film/hero3d.js` is now an ES module (importmap -> three@0.160.0 module.min + jsm addons on
+  jsdelivr) with GLTFLoader + MeshoptDecoder. `assets/paper-mesh-{4k,2k}.webp` is her paper with
+  the whole cutout RECT cleared to kraft (clearing only the cutout's alpha left the thin vines
+  printed under the mesh: doubled). BOX = 0.0997..0.8966 x 0.1200..0.7396 aligns mesh to sheet.
+- Materials forced roughness 1 / metalness 0: the black keyhole face threw a specular glint as the
+  camera arrived. Fade to black now (p-0.50)/0.20 -- the camera meets the relief's face at p~0.80.
+- Scroll follow: `pS` lerps 0.16/frame toward the real position in tick(), snaps under 0.0005.
+- First paint (cache off, uncompressed): phone ~2.6 MB, desktop ~2.5 MB. three.module.min.js is
+  166 KB brotli from jsdelivr (verified by header), not the 655 KB the local server shows.
+
+⚠️ `npx -p <pkg> node script.mjs` does NOT put the package on the ESM resolution path -- a script
+needs a local install. The CLI covered everything needed here.
+
 ## 09-20 PREVIEW LINK (private artifact, NOT the live site)
 Circle asked to "show me" twice; stills cannot show a scroll piece, and live is frozen at the
 rollback. So the round-3b build is staged as a private claude.ai artifact:

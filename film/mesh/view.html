@@ -1,0 +1,27 @@
+<!doctype html><meta charset="utf-8"><title>mesh view</title>
+<style>html,body{margin:0;background:#ab7e56;height:100%;overflow:hidden}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+const q = new URLSearchParams(location.search);
+const yaw = +(q.get('yaw') || 0) * Math.PI / 180, pitch = +(q.get('pitch') || 0) * Math.PI / 180;
+const r = new THREE.WebGLRenderer({ antialias: true });
+r.setSize(innerWidth, innerHeight); r.outputColorSpace = THREE.SRGBColorSpace; document.body.appendChild(r.domElement);
+const sc = new THREE.Scene(); sc.background = new THREE.Color(0xab7e56);
+const cam = new THREE.PerspectiveCamera(38, innerWidth / innerHeight, 0.01, 100);
+sc.add(new THREE.HemisphereLight(0xfff2dc, 0x5a3f28, 1.1));
+const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(-2, 3, 4); sc.add(key);
+const fill = new THREE.DirectionalLight(0xffe0b0, 0.5); fill.position.set(3, 1, 2); sc.add(fill);
+new GLTFLoader().load('cicada.glb', (g) => {
+  const root = g.scene; sc.add(root);
+  const box = new THREE.Box3().setFromObject(root), size = new THREE.Vector3(), c = new THREE.Vector3();
+  box.getSize(size); box.getCenter(c); root.position.sub(c);
+  const R = Math.max(size.x, size.y, size.z) * 1.35;
+  cam.position.set(R * Math.sin(yaw) * Math.cos(pitch), R * Math.sin(pitch), R * Math.cos(yaw) * Math.cos(pitch));
+  cam.lookAt(0, 0, 0); r.render(sc, cam);
+  window.__meshInfo = { tris: (() => { let t = 0; root.traverse(o => { if (o.isMesh) t += o.geometry.index ? o.geometry.index.count / 3 : o.geometry.attributes.position.count / 3; }); return Math.round(t); })(),
+    size: [size.x, size.y, size.z].map(v => +v.toFixed(3)), textured: (() => { let m = false; root.traverse(o => { if (o.isMesh && o.material && o.material.map) m = true; }); return m; })() };
+  window.__ready = true;
+}, undefined, (e) => { window.__err = String(e); window.__ready = true; });
+</script>
