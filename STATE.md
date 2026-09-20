@@ -26,7 +26,31 @@
 - Mobile pass done at 375x812: letterboxed logo start looks right, sections stack, overflowX 0.
 - tier1 got a `.statement` ink band under its hero (text off the logo) — moot while /classic/ is internal.
 
-## 09-20 HERO ROOT CAUSE — read before touching the hero again
+## 09-20 ROUND 2 — new logo, code-driven hero (CURRENT)
+The hero no longer plays video. `film/logo_new.webp` (her new art-nouveau logo, 1100x1100) is
+built by `film/build_hero.py` into:
+- `assets/hero-wood.jpg` — the desk, **stationary**, `background:cover` on `.stage .wood`
+- `assets/logo-card.webp` — 2800x2800, her artwork at 2200 with 300px shadow padding and a
+  baked two-part contact shadow (tight + ambient) on transparency
+
+The engine scales ONLY the card, about the keyhole, on a **viewport-sized canvas**. Constants that
+must move together (engine in tier2/index.html AND `film/preview_hero.py`):
+`KX=0.4993 KY=0.3950 KW=0.0371 ART=0.7857`, easing `e=p^0.85`, fade `(p-0.62)/0.30`, film `340vh`.
+
+⚠️ **Do not scale the card as a DOM `<img>` transform.** At the end of the push it is ~70,000px
+wide; the compositor rasterises a layer that big and the tab dies. The canvas draws only the
+visible source slice, so cost is flat.
+⚠️ **Single-quoted paths in JS are NOT rewritten by `assemble_site.py`** (it only rewrites `"assets/`
+and `url(assets/`). The card path lives in `data-src` on the canvas for that reason — a single-quoted
+`card.src = 'assets/...'` 404s on the deployed `/film/` page.
+⚠️ The old video frames are no longer deployed (site 25MB → 11MB). They remain in `tier2/frames*`.
+
+**Verify the hero with `python film/preview_hero.py`, not the browser pane.** It mirrors the engine's
+maths and writes `film/hero_preview_{phone,desktop}.jpg`. When the pane is hidden, rAF is throttled to
+~1 frame/1.5s, screenshots time out and return stale composites — that is the pane, not the page
+(confirmed: DOM geometry correct while the capture disagreed).
+
+## 09-20 HERO ROOT CAUSE — historical, superseded by round 2 above
 **No source we own shows the whole sheet.** The paper runs off the TOP and the BOTTOM of both
 `tier1/assets/hero-logo.jpg` and film frame 1 (measured: bottom row is only 8-9% wood, top row 36%,
 sheet bbox touches y=0 and y=h-1). So "the logo sitting on the wood" cannot be cropped out of anything
