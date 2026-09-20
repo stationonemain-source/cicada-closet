@@ -235,7 +235,9 @@ body::before{display:none}
 .fade{position:absolute;inset:0;pointer-events:none;background:var(--seam);opacity:0}
 .oveil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(27,23,19,.74) 0,rgba(27,23,19,.3) 42%,rgba(27,23,19,0) 65%),linear-gradient(180deg,rgba(27,23,19,0) 45%,rgba(27,23,19,.55) 100%)}
 .beat::before{content:"";position:absolute;inset:-18vh -30vw -14vh -20vw;z-index:-1;background:radial-gradient(ellipse at 30% 75%,rgba(27,23,19,.62),rgba(27,23,19,0) 65%);pointer-events:none}
-.beat.hero::before{display:none}
+.beat.hero::before{background:radial-gradient(ellipse at 30% 75%,rgba(14,10,7,.9),rgba(14,10,7,0) 74%)}
+.beat.hero h2{text-shadow:0 2px 10px rgba(14,10,7,.9),0 4px 34px rgba(14,10,7,.8)}
+.beat.hero p{text-shadow:0 1px 8px rgba(14,10,7,.95),0 2px 20px rgba(14,10,7,.85)}
 .beat{position:absolute;left:var(--gutter);right:var(--gutter);bottom:12vh;max-width:640px;opacity:0;color:var(--cream);will-change:opacity,transform;pointer-events:none}
 .beat.finale{pointer-events:auto}
 .beat h2{color:inherit;font-size:clamp(30px,5vw,64px);line-height:1;text-shadow:0 2px 24px rgba(27,23,19,.55)}
@@ -244,6 +246,7 @@ body::before{display:none}
 .beat .cta{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
 .beat .btn{border-color:var(--cream);color:var(--cream)}
 .beat .btn.solid{background:var(--cream);color:var(--ink)}
+.beat.hero{display:block;min-height:0}
 .beat.hero h2{font-size:clamp(36px,6vw,72px)}
 .beat.dark{color:var(--ink)}
 .beat.dark h2,.beat.dark p{text-shadow:none}
@@ -303,7 +306,7 @@ body::before{display:none}
       <canvas id="cv"></canvas>
       <div class="oveil" id="oveil"></div><div class="grain" id="grain"></div><div class="vig" id="vig"></div>
       <div class="chapter" id="chap"><span id="chapName">Paper</span><div class="bar"><i id="chapBar"></i></div></div>
-      <div class="beat hero" data-in="-0.1" data-peak="0" data-out="0.22">
+      <div class="beat hero" data-in="0.58" data-peak="0.76" data-out="0.98">
         <p class="eyebrow">Norman, Oklahoma · 755 S Jenkins Ave</p>
         <h2>Female-owned<br>tattoo studio.</h2>
         <p>Custom tattoos, original artwork, and creative connection.</p>
