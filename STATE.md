@@ -26,7 +26,24 @@
 - Mobile pass done at 375x812: letterboxed logo start looks right, sections stack, overflowX 0.
 - tier1 got a `.statement` ink band under its hero (text off the logo) — moot while /classic/ is internal.
 
-## 09-20 ROUND 2 — new logo, code-driven hero (CURRENT)
+## 09-20 ROUND 2b — 3D card on an EVEN desk (BUILT LOCALLY, **NOT DEPLOYED**)
+Circle: the flat card "isn't 3d like the other", the background showed "2 tone", and
+"i would the whole background to be the same tone or color, texture so the logo sits pretty".
+Live is ROLLED BACK to 28a17c2; this work is committed locally and must not be pushed to the
+`pages` branch until Circle says so.
+
+- `film/build_wood.py` — measures the plate's low-frequency illumination and divides it out, so
+  the whole background is ONE tone and ONE texture (quadrant spread 19 -> 4.0), then grades it to
+  a single walnut `TONE=(63,50,42)`. This is what kills the two-tone.
+- `film/build_card3d.py` — warps her logo onto the table plane (perspective, 2.4 deg tilt),
+  lights it from the upper left like the plate, casts a two-part shadow from the card's own
+  silhouette, adds a lit near edge for paper thickness, and defocuses only the far edge.
+  **Her artwork is warped, never repainted.** It PRINTS the constants the engine needs.
+- Engine constants now `KX=0.5151 KY=0.3840 KW=0.0318 AW=0.7524 AH=0.6682`; `.vig` is hidden
+  (its radial gradient was itself a tonal ring). Keep these in step with `film/preview_hero.py`.
+- Mobile type tightened so the address fits one line under 480px.
+
+## 09-20 ROUND 2 — new logo, code-driven hero
 The hero no longer plays video. `film/logo_new.webp` (her new art-nouveau logo, 1100x1100) is
 built by `film/build_hero.py` into:
 - `assets/hero-wood.jpg` — the desk, **stationary**, `background:cover` on `.stage .wood`

@@ -13,7 +13,7 @@ from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 
-KX, KY, KW, ART = 0.4993, 0.3950, 0.0371, 0.7857          # keep in step with the engine
+KX, KY, KW, AW, AH = 0.5151, 0.3840, 0.0318, 0.7524, 0.6682          # keep in step with the engine
 STEPS = (0.0, 0.18, 0.36, 0.55, 0.72, 0.88)
 
 
@@ -29,14 +29,14 @@ def render(W, H, label):
         ((bw - W) // 2, (bh - H) // 2, (bw - W) // 2 + W, (bh - H) // 2 + H))
 
     wide = W >= 700
-    s0 = min(W * (0.76 if wide else 0.88) / (ART * IW), H * 0.74 / (ART * IH))
+    s0 = min(W * (0.66 if wide else 0.90) / (AW * IW), H * 0.62 / (AH * IH))
     s1 = 1.35 * max(W, H) / (KW * IW)
 
     shots = []
     for p in STEPS:
         e = p ** 0.85
         s = s0 * (s1 / s0) ** e
-        rest_cy = H * (0.58 if wide else 0.56)
+        rest_cy = H * (0.56 if wide else 0.52)
         cy = rest_cy + (H / 2 - rest_cy) * min(1, p * 2)
         dw, dh = max(1, int(IW * s)), max(1, int(IH * s))
         dx, dy = W / 2 - KX * IW * s, cy - KY * IH * s
