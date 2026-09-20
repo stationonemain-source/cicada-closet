@@ -26,6 +26,20 @@
 - Mobile pass done at 375x812: letterboxed logo start looks right, sections stack, overflowX 0.
 - tier1 got a `.statement` ink band under its hero (text off the logo) — moot while /classic/ is internal.
 
+## 09-20 PREVIEW LINK (private artifact, NOT the live site)
+Circle asked to "show me" twice; stills cannot show a scroll piece, and live is frozen at the
+rollback. So the round-3b build is staged as a private claude.ai artifact:
+**https://claude.ai/artifact/CA1PQxryCrVEPj48U3D2Jh** (title "The Cicada Closet", icon keyhole).
+Republish from THIS conversation by re-publishing the same scratchpad path, or pass that URL as
+`url` from another conversation -- publishing without `url` elsewhere makes a duplicate.
+How it was built: `site/film/index.html` with the document skeleton tags stripped (the host wraps
+the page itself), `../assets/` -> `assets/`, title trimmed to the name; `site/assets` + hero3d.js +
+works.json as supporting files (27 files, 6.4 MB). Two knowns: the aftercare "Download PDF" link is
+inert inside the artifact viewer (sandbox blocks page-started downloads -- fine on the real site),
+and the Three.js/Lenis/Google Fonts hosts are all on the viewer's CDN allowlist.
+This link is a STAGING COPY. It goes stale the moment the build moves on -- the earlier artifacts
+in this file's history went stale exactly this way. Never send it to Jenna as "the site".
+
 ## 09-20 ROUND 3b — DESKTOP + MOBILE OPTIMISED (current local build, **NOT DEPLOYED**)
 Measured with `node film/measure.js <url>` (puppeteer, cache OFF, software GL). First paint:
 **phone 4518 -> 1641 KB, desktop 5506 -> 1590 KB**, before compression. Real transfer is lower still:
