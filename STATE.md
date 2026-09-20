@@ -1,5 +1,22 @@
 # The Cicada Closet — site build STATE (read first)
 
+## 09-20 CLIENT ROUND 1 (Jenna's 9 edits) — LIVE on both Plan A pages
+- Film = chapter 1 ONLY (film/assemble_keyhole.sh, 121 frames): full logo (contain-fit letterboxed on
+  #2a1c11, eases to cover by p=0.20 in drawFrame) -> zoom into the keyhole -> black -> site rises out of
+  the dark (--seam now #0a0705, landing gradient dark->kraft). NO wings. Wings frames kept in
+  tier2/frames_wings_0917_bak. Self-heal in tick: displayed===-1 for >800ms resets bmpCenter (first-load
+  black-canvas race seen once in the browser pane).
+- Copy is STUDIO-VOICE everywhere outside the artist profile (her exact texts: intro, Artist Walls, bio,
+  booking steps 1-2). Nav: Recent Works / The Space / Artists / Booking / Aftercare.
+- "Recent Works" gallery is curated via works.json (tier1/ and tier2/, copied+path-rewritten into site/ by
+  assemble_site.py). Jenna adds/removes pieces by editing that list + dropping a jpg in assets/ — no code.
+- Artists section is a roster: repeat <article class="profile"> to add an artist (photo, role, bio,
+  specialty chips, 4-tile folio, IG + booking buttons).
+- Aftercare = sheet viewer at assets/aftercare/ (cicada-closet-aftercare.pdf + aftercare-sheet.jpg).
+  CURRENTLY A BRANDED PLACEHOLDER (shared/make_aftercare_placeholder.py) — swap in Jenna's real sheet
+  (pdf + page-1 jpg, same filenames), rebuild, push.
+- User note 09-20 said "The Cicada Lounge" once — treated as a slip, everything stays Cicada Closet.
+
 Built 2026-09-16 from Plan A "The Keyhole". Client: Jenna Feezel, @jens.art / @thecicadacloset, 755 S Jenkins Ave, Norman OK. NOT yet sent to her.
 
 ## PUBLIC (GitHub Pages, all noindex)
