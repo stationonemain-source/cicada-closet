@@ -9,7 +9,7 @@
 <meta property="og:title" content="The Cicada Closet · Norman, OK">
 <meta property="og:image" content="../assets/hero-logo.jpg">
 <link rel="icon" type="image/png" href="../assets/cicada-mark.png">
-<link rel="preload" as="image" href="../assets/logo-card.webp" fetchpriority="high">
+<link rel="preload" as="image" href="../assets/logo-flush.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rye&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <script type="application/ld+json">
@@ -22,7 +22,7 @@
 <style>
 
 :root{
-  --kraft:#c9a472; --kraft-deep:#b48c5a; --cream:#efe3cc; --ink:#1b1713; --ink-2:#4a3d31;
+  --kraft:#ab7e56; --kraft-deep:#96693f; --cream:#efe3cc; --ink:#1b1713; --ink-2:#4a3d31;
   --walnut:#3b2a1e; --rust:#a4461c; --sage:#6e7c55; --berry:#d98a9a;
   --display:'Rye',Georgia,serif; --body:'Libre Caslon Text',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
   --gutter:clamp(20px,5vw,72px);
@@ -189,7 +189,7 @@ dialog button{position:absolute;top:-6px;right:-6px;background:var(--cream);bord
 /* ---- nav (shared across every Cicada Closet page) ---- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:40;height:68px;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;column-gap:clamp(14px,2.4vw,32px);padding-inline:var(--gutter);color:var(--cream);transition:color .35s,background-color .35s,box-shadow .35s}
 .nav::before{content:"";position:absolute;inset:0 0 -36px;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(27,23,19,.62),rgba(27,23,19,0));transition:opacity .35s}
-.nav[data-mode="solid"]{color:var(--ink);background:var(--nav-bg,rgba(206,172,122,.92));-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(27,23,19,.22)}
+.nav[data-mode="solid"]{color:var(--ink);background:var(--nav-bg,rgba(171,126,87,.94));-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(27,23,19,.22)}
 .nav[data-mode="dark"]{color:var(--cream);background:rgba(27,23,19,.95);box-shadow:0 1px 0 rgba(239,227,204,.14)}
 .nav:not([data-mode="over"])::before,.nav.is-open::before{opacity:0}
 .nav.is-open{color:var(--ink);background:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
@@ -231,8 +231,8 @@ main [id]{scroll-margin-top:68px}
 body::before{display:none}
 .film{position:relative;height:340vh}
 .chapter{display:none!important}
-.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#241811}
-.stage .wood{position:absolute;inset:0;background:#241811 url(../assets/hero-wood.jpg) center/cover no-repeat}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#ab7e56}
+.stage .wood{position:absolute;inset:0;background:#ab7e56 url(../assets/hero-kraft.jpg) center/cover no-repeat}
 .stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
 .grain{position:absolute;inset:0;pointer-events:none;opacity:.14;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
@@ -262,7 +262,7 @@ body::before{display:none}
 .feather{display:none}
 .beat.dark{color:var(--ink)}
 .beat.dark h2,.beat.dark p{text-shadow:none}
-.hint{position:absolute;right:var(--gutter);bottom:5vh;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);opacity:.8;display:flex;align-items:center;gap:10px}
+.hint{position:absolute;right:var(--gutter);bottom:5vh;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);opacity:.62;display:flex;align-items:center;gap:10px}
 .hint i{display:block;width:1px;height:40px;background:currentColor;animation:drop 1.8s ease-in-out infinite;transform-origin:top}
 @keyframes drop{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
 .chapter{position:absolute;left:var(--gutter);top:calc(50% - 20px);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream);opacity:.9;display:grid;gap:8px;mix-blend-mode:difference}
@@ -313,12 +313,12 @@ body::before{display:none}
 </div>
 
 <main id="top">
-  <div class="film" id="film" data-nav-over>
+  <div class="film" id="film">
     <div class="stage">
       <div class="wood"></div>
-      <canvas id="cv" data-src="../assets/logo-card.webp" aria-label="The Cicada Closet logo: an art-nouveau cicada with a golden keyhole at its centre, framed in green vines" role="img"></canvas>
-      <div class="grain" id="grain"></div><div class="vig" id="vig" hidden></div>
-      <div class="beat hero" id="heroBeat" data-in="-0.1" data-peak="0" data-out="0.16">
+      <canvas id="cv" data-src="../assets/logo-flush.webp" aria-label="The Cicada Closet logo: an art-nouveau cicada with a golden keyhole at its centre, framed in green vines" role="img"></canvas>
+      <div class="grain" id="grain" hidden></div><div class="vig" id="vig" hidden></div>
+      <div class="beat hero dark" id="heroBeat" data-in="-0.1" data-peak="0" data-out="0.16">
         <p class="eyebrow">Norman, Oklahoma · 755 S Jenkins Ave</p>
         <h2>Female-owned tattoo studio.</h2>
         <p>Custom tattoos, original artwork, and creative connection.</p>
@@ -469,8 +469,8 @@ body::before{display:none}
   // keyhole swallows the screen, and the site rises out of that darkness.
   // keyhole centre/width and the card's extent inside logo-card.webp — all four come from
   // film/build_card3d.py, which prints them; they move together or the push drifts off the keyhole
-  const KX = 0.5151, KY = 0.3840, KW = 0.0318;
-  const AW = 0.7524, AH = 0.6682;
+  const KX = 0.4991, KY = 0.3664, KW = 0.0473;
+  const AW = 1.0, AH = 1.0;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const JUMP = new URLSearchParams(location.search).get('jump');
   if (JUMP !== null) history.scrollRestoration = 'manual';
@@ -504,11 +504,11 @@ body::before{display:none}
 
   function draw(p){
     const wide = W >= 700;
-    const s0 = Math.min(W * (wide ? 0.66 : 0.90) / (AW * IW), H * 0.62 / (AH * IH));    // whole card, at rest
+    const s0 = Math.min(W * (wide ? 0.54 : 0.92) / (AW * IW), H * 0.70 / (AH * IH));    // whole logo, at rest
     const s1 = 1.35 * Math.max(W, H) / (KW * IW);                        // keyhole past the edges
     const e = reduced ? 0 : Math.pow(p, 0.85);                           // the push builds early
     const s = s0 * Math.pow(s1 / s0, e);
-    const restCy = H * (wide ? 0.56 : 0.52);
+    const restCy = H * (wide ? 0.54 : 0.52);
     const cy = restCy + (H / 2 - restCy) * Math.min(1, p * 2);           // keyhole drifts to centre
     const dx = W / 2 - KX * IW * s, dy = cy - KY * IH * s;
     ctx.clearRect(0, 0, W, H);
@@ -528,12 +528,7 @@ body::before{display:none}
       b.el.style.opacity = a.toFixed(3);
       b.el.style.transform = 'translateY(' + ((1 - a) * 18).toFixed(1) + 'px)';
     }
-    const lt = landingEl.getBoundingClientRect().top;
-    const over = lt + innerHeight * (W <= 760 ? 0.28 : 0.46) > 70;
-    if (over !== film.hasAttribute('data-nav-over')){
-      if (over) film.setAttribute('data-nav-over', ''); else film.removeAttribute('data-nav-over');
-      if (window.__nav) window.__nav.update();
-    }
+    // the hero is light paper, so the nav stays in its solid ink-on-kraft mode throughout
   }
 
   function progress(){
