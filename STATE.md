@@ -1,3 +1,16 @@
+## 09-21 ROUND 7 — storefront, flush bar, window headline (LIVE)
+- **The Space**: the grand-opening poster is out; `assets/storefront.jpg` leads the grouping (her
+  photo, top 20% of sky trimmed, 1200px). Grid is `1.2fr .8fr`, the storefront `grid-row: span 2`
+  with `height:100%`, the two interiors `aspect-ratio:1` -- so the interiors set the row heights and
+  the storefront stretches across both. Under 640px it spans the full width at 4/5 with the
+  interiors side by side. Reason: visitors should recognise the building when they arrive.
+- **Nav sits flush**: the 1px rule under the bar is gone (`box-shadow` removed from both solid and
+  dark), the blur is gone, and solid is exactly `var(--kraft)`. Measured across the boundary:
+  nav 171,126,86 vs hero 170,125,85 -- delta 1/255, no line.
+- **Hero headline** is now `Tattoo Studio & Local Arts`, matching the lettering painted on her
+  window. The phrase "female-owned" still appears in the meta description, the intro paragraph and
+  the footer -- left deliberately; Circle asked only about the top.
+
 ## 09-21 ROUND 6 — FLAT 2D LOGO (LIVE, and where this landed)
 Circle: "Scratch the 3d logo just make it a clean 2d so the edges are good."
 The sculpted relief is GONE. `assets/cicada.glb` is deleted from the deploy, GLTFLoader and
@@ -31,7 +44,7 @@ hero3d.js rewrites the `uv` attribute from world x/y across the mesh bbox, mappe
 First paint ~2.6 MB. Nothing regenerated -- every visible pixel is her file.
 
 ## 09-21 WHAT IS LIVE, AND TWO TRAPS THAT COST THE EVENING — READ FIRST
-**LIVE = round 6** (flat 2D logo, camera-only 3D -- see above). Round 4's baked-texture
+**LIVE = round 7** (flat 2D logo, storefront-led Space, flush bar -- see above). Round 4's baked-texture
 build was `a0367df`. Round 4b (full relief) is REJECTED; do not redeploy it.
 
 TRAP 1 — `.gitignore` ignored `tier2/index.html` (a generated file in the original tier2/build.py

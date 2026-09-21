@@ -84,10 +84,15 @@ section h2{margin-bottom:18px}
 /* studio */
 .studio{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,60px);align-items:center}
 @media (max-width:820px){.studio{grid-template-columns:1fr}}
-.studio .photos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.studio .photos img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;border:1px solid rgba(27,23,19,.2)}
-.studio .photos img:first-child{grid-column:span 2;aspect-ratio:16/9}
-.studio .photos img.poster{object-fit:contain;background:#98a0a6}
+/* the storefront leads so visitors recognise the building; the interiors support it */
+.studio .photos{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
+.studio .photos img{width:100%;object-fit:cover;display:block;border:1px solid rgba(27,23,19,.2)}
+.studio .photos .front{grid-row:span 2;height:100%;min-height:0}
+.studio .photos .in{aspect-ratio:1}
+@media (max-width:640px){
+  .studio .photos{grid-template-columns:1fr 1fr}
+  .studio .photos .front{grid-column:span 2;grid-row:auto;height:auto;aspect-ratio:4/5}
+}
 .quote{border-left:3px solid var(--rust);padding-left:18px;font-style:italic;color:var(--ink-2);margin:22px 0}
 .quote b{font-style:normal;color:var(--ink)}
 
@@ -187,8 +192,8 @@ dialog button{position:absolute;top:-6px;right:-6px;background:var(--cream);bord
 /* ---- nav (shared across every Cicada Closet page) ---- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:40;height:68px;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;column-gap:clamp(14px,2.4vw,32px);padding-inline:var(--gutter);color:var(--cream);transition:color .35s,background-color .35s,box-shadow .35s}
 .nav::before{content:"";position:absolute;inset:0 0 -36px;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(27,23,19,.62),rgba(27,23,19,0));transition:opacity .35s}
-.nav[data-mode="solid"]{color:var(--ink);background:var(--nav-bg,rgba(171,126,87,.94));-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(27,23,19,.22)}
-.nav[data-mode="dark"]{color:var(--cream);background:rgba(27,23,19,.95);box-shadow:0 1px 0 rgba(239,227,204,.14)}
+.nav[data-mode="solid"]{color:var(--ink);background:var(--nav-bg,var(--kraft))}
+.nav[data-mode="dark"]{color:var(--cream);background:var(--ink)}
 .nav:not([data-mode="over"])::before,.nav.is-open::before{opacity:0}
 .nav.is-open{color:var(--ink);background:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
 .nav-mark{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:inherit;min-width:0}
@@ -328,7 +333,7 @@ body::before{display:none}
       <div class="grain" id="grain" hidden></div><div class="vig" id="vig" hidden></div>
       <div class="beat hero dark" id="heroBeat" data-in="-0.1" data-peak="0" data-out="0.16">
         <p class="eyebrow">Norman, Oklahoma · 755 S Jenkins Ave</p>
-        <h2>Female-owned tattoo studio.</h2>
+        <h2>Tattoo Studio &amp; Local Arts</h2>
         <p>Custom tattoos, original artwork, and creative connection.</p>
       </div>
       <div class="hint" id="hint">Scroll to step inside <i></i></div>
@@ -369,9 +374,9 @@ body::before{display:none}
 
   <section class="studio" id="studio">
     <div class="photos">
-      <img src="assets/studio-room.jpg" alt="Inside The Cicada Closet: deep green walls hung with framed work by local artists, and the front counter" loading="lazy">
-      <img src="assets/studio-wall.jpg" alt="Close view of the gallery wall: framed paintings and drawings by local artists" loading="lazy">
-      <img class="poster" src="assets/studio-opening.jpg" alt="Poster for Grillin&rsquo; and Chillin&rsquo;, the grand opening and art show at The Cicada Closet on Saturday, July 11" loading="lazy">
+      <img class="front" src="assets/storefront.jpg" alt="The Cicada Closet from the street: a grey storefront on South Jenkins Avenue with the gold hand-lettered logo on the window and &ldquo;Tattoo Studio &amp; Local Arts&rdquo; lettered beside the door" loading="lazy">
+      <img class="in" src="assets/studio-room.jpg" alt="Inside The Cicada Closet: deep green walls hung with framed work by local artists, and the front counter" loading="lazy">
+      <img class="in" src="assets/studio-wall.jpg" alt="Close view of the gallery wall: framed paintings and drawings by local artists" loading="lazy">
     </div>
     <div>
       <p class="eyebrow">The Space</p>
@@ -471,7 +476,7 @@ body::before{display:none}
 <dialog id="lb"><button id="lbx" aria-label="Close">×</button><img id="lbi" alt=""><p id="lbc"></p></dialog>
 
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script type="module" src="hero3d.js?v=2609202012"></script>
+<script type="module" src="hero3d.js?v=2609202209"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script>
 (function(){
