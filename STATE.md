@@ -26,7 +26,29 @@
 - Mobile pass done at 375x812: letterboxed logo start looks right, sections stack, overflowX 0.
 - tier1 got a `.statement` ink band under its hero (text off the logo) — moot while /classic/ is internal.
 
-## 09-20 ROUND 4 — SCULPTED RELIEF (LIVE)
+## 09-21 ROUND 4b — FULL RELIEF, LETTERS PRINTED (LIVE)
+The seam Circle caught (sculpted vines ending in a ledge where printed vines carried on) is gone:
+the relief is now the WHOLE artwork except the lettering, so vines run unbroken top to bottom.
+- Cutout is DETERMINISTIC (`film/logo_cut_det.png`): key the kraft by colour distance (>34 from the
+  corner tone), opening x2, fill only holes <0.3% of the image (wing cells), keep components >400px.
+  Higgsfield `image_background_remover` on the full sheet ATE the vines and the lettering (11 cr
+  wasted on a mesh built from it: job 2798d7df). Use it on tight crops only, or not at all.
+- Lettering block (x .245-.755, y .725-.878) is zeroed in the cutout BEFORE sculpting: image-to-3D
+  mangled the letterforms ("CICADA CIOSEI"). Her letters are printed flat on the sheet
+  (`assets/paper-letters-2k.webp`: kraft grain + ink-only letters + keyhole punched through).
+- Hunyuan fills empty pockets of a cutout with a BLACK plate (under the cicada, the lettering
+  box). Fix in the shader: `onBeforeCompile` discards texels with max(rgb) < 0.014 linear -- her
+  art has nothing that dark except the keyhole, which therefore becomes a true hole onto the shaft.
+  A 4-plane box clip (clipIntersection, planes facing IN: Three clips where n.p+c<0) also removes
+  the lettering box; relief sway is 0 because the box lives in the sheet's frame.
+- Mesh: job 68cf423a? no -- final sculpt from the no-letters cutout, web-sized 1.23 MB (31k tris,
+  meshopt). First paint ~2.7 MB. Credits ~469.
+⚠️ The bash heredoc trap bit again: `'
+'` inside a Python heredoc reached JS as a raw newline in a
+string -> "Invalid or unexpected token", blank hero, and `node --check` did NOT catch it. Patch JS
+strings with chr(92) or a file-based script, and always look at the capture.
+
+## 09-20 ROUND 4 — SCULPTED RELIEF (superseded by 4b)
 Circle: "use higgsfield to make this even more smooth 3d". Credits 527 -> ~514.
 - The cicada, vines and orbs are now a REAL MESH lying on the sheet: `film/cicada_crop.png` (her 4K
   art, x 8-92% y 12-74%) -> `image_background_remover` (1 cr) -> `hunyuan3d_v3_image_to_3d` PBR
