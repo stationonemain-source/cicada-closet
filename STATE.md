@@ -1,3 +1,18 @@
+## 09-21 WHAT IS LIVE, AND TWO TRAPS THAT COST THE EVENING — READ FIRST
+**LIVE = round 4** (sculpted cicada + top vines, lettering printed): pages branch built from tree
+`a0367df`, cache-stamped. Round 4b (full relief) is REJECTED; do not redeploy it.
+
+TRAP 1 — `.gitignore` ignored `tier2/index.html` (a generated file in the original tier2/build.py
+flow). Every hero edit since round 1 was uncommitted; `git checkout <commit> -- tier2` restored
+NOTHING and printed nothing, so the "rollback" silently re-deployed the rejected build. Fixed: the
+line is removed and the page is tracked. Rule: after any rollback, `git ls-files <path>` the file you
+think you restored, and diff the deployed page's data-attributes against what you expect.
+
+TRAP 2 — GitHub Pages caches 10 min. A rollback served the NEW page with the OLD cached
+`hero3d.js`, whose data-attribute names differ -> texture undefined -> WHITE sheet on Circle's phone.
+Every deploy must stamp: `hero3d.js?v=<stamp>` and `data-mesh="...cicada.glb?v=<stamp>"` (tier2 page
+carries them; bump the stamp per deploy).
+
 # The Cicada Closet — site build STATE (read first)
 
 ## 09-20 CLIENT ROUND 1 (Jenna's 9 edits) — LIVE on both Plan A pages
