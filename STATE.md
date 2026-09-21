@@ -1,6 +1,23 @@
+## 09-21 ROUND 5 — THE BLURRY BOX, FIXED (LIVE)
+Circle: "It still has that weird blurry box... make the whole image clear and crisp."
+**Cause:** the relief wore Hunyuan's BAKED texture (2048, webp q78, re-projected onto generated UVs)
+while the sheet carried her crisp print -- a soft rectangle against sharp art. Downsizing the bake
+made it worse; the bake was never going to be as sharp as her 4096 file.
+**Fix (no credits, deterministic):** discard the model's UVs and its texture, and project HER OWN
+`logo-3d-4k.webp` down the view axis onto the mesh. The mesh is a relief (a displaced front
+surface), so a planar projection lands her pixels exactly where they belong -- `skinRelief()` in
+hero3d.js rewrites the `uv` attribute from world x/y across the mesh bbox, mapped into `BOX`.
+- The SAME texture is the sheet and the relief, so overlap is invisible and there is no rectangle.
+  The cleared-rect sheets (`paper-mesh-*`) are gone from the page; `data-art4k/art2k` replace them.
+- `alphaTest: 0.5` on the skin: her keyhole is transparent in that file, so it stays a real hole.
+- Mesh textures stripped (resize 8x8 + webp): `cicada.glb` 1074 -> 887 KB, geometry only.
+- Must run AFTER load but BEFORE `root.position.sub(c)`; `skinRelief()` is called from both the
+  texture and the mesh callback and guards on `skinned`, so whichever lands last does the work.
+First paint ~2.6 MB. Nothing regenerated -- every visible pixel is her file.
+
 ## 09-21 WHAT IS LIVE, AND TWO TRAPS THAT COST THE EVENING — READ FIRST
-**LIVE = round 4** (sculpted cicada + top vines, lettering printed): pages branch built from tree
-`a0367df`, cache-stamped. Round 4b (full relief) is REJECTED; do not redeploy it.
+**LIVE = round 5** (round-4 relief, re-skinned with her own 4K art -- see above). Round 4's baked-texture
+build was `a0367df`. Round 4b (full relief) is REJECTED; do not redeploy it.
 
 TRAP 1 — `.gitignore` ignored `tier2/index.html` (a generated file in the original tier2/build.py
 flow). Every hero edit since round 1 was uncommitted; `git checkout <commit> -- tier2` restored
