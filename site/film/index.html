@@ -193,7 +193,10 @@ dialog button{position:absolute;top:-6px;right:-6px;background:var(--cream);bord
 /* ---- nav (shared across every Cicada Closet page) ---- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:40;height:68px;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;column-gap:clamp(14px,2.4vw,32px);padding-inline:var(--gutter);color:var(--cream);transition:color .35s,background-color .35s,box-shadow .35s}
 .nav::before{content:"";position:absolute;inset:0 0 -36px;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(27,23,19,.62),rgba(27,23,19,0));transition:opacity .35s}
-.nav[data-mode="solid"]{color:var(--ink);background:var(--nav-bg,var(--kraft))}
+/* the bar carries the same paper grain as the page: a flat bar against grain reads as a
+   band even when the tone matches exactly (measured: nav std 0.00 vs paper std 2.1) */
+.nav[data-mode="solid"]{color:var(--ink);background:var(--kraft) url(../assets/kraft-tile.jpg) repeat;background-size:400px 400px}
+@media (max-width:760px){.nav[data-mode="solid"]{background-size:240px 240px}}
 .nav[data-mode="dark"]{color:var(--cream);background:var(--ink)}
 .nav:not([data-mode="over"])::before,.nav.is-open::before{opacity:0}
 .nav.is-open{color:var(--ink);background:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
@@ -236,7 +239,7 @@ body::before{display:none}
 .film{position:relative;height:340vh}
 .chapter{display:none!important}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#ab7e56}
-.stage .wood{position:absolute;inset:0;background:#ab7e56 url(../assets/kraft-tile.jpg) repeat;background-size:512px 512px}
+.stage .wood{position:absolute;inset:0;background:#ab7e56 url(../assets/kraft-tile.jpg) repeat;background-size:400px 400px}
 .stage #stage3d{position:absolute;inset:0;pointer-events:none}
 .stage #stage3d canvas{display:block;width:100%!important;height:100%!important}
 .grain{position:absolute;inset:0;pointer-events:none;opacity:.14;mix-blend-mode:overlay;
@@ -477,7 +480,7 @@ body::before{display:none}
 <dialog id="lb"><button id="lbx" aria-label="Close">×</button><img id="lbi" alt=""><p id="lbc"></p></dialog>
 
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script type="module" src="hero3d.js?v=2609202215"></script>
+<script type="module" src="hero3d.js?v=2609202236"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script>
 (function(){

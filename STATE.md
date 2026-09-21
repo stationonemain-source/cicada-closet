@@ -1,3 +1,14 @@
+## 09-21 NAV FLUSH — it was TEXTURE, not tone
+Circle kept seeing a band under the bar after the rule was removed. Measuring per row in a clean
+column (no artwork) found the cause: tone matched to under half a level (nav 171,126,86 vs paper
+170.7,125.7,86.6) but the nav's spatial std was **0.00** -- dead flat -- against the paper's 2.1.
+A flat field meeting a grainy one reads as an edge even at identical tone.
+Fix: the solid bar wears `assets/kraft-tile.jpg` at `background-size:400px` (240px under 760px),
+tuned so its grain matches: desktop nav std 2.31 vs paper 2.16, phone 2.36 vs 1.77.
+⚠️ When checking this, measure SPATIAL std (`a.std(axis=(0,1))`), not `std(2)` -- std across the
+channel axis returns the brown's R/G/B spread (~34) for both sides and looks like a match when
+nothing has been fixed. And sample a column with no artwork in it, or the vines dominate.
+
 ## 09-21 ROUND 7 — storefront, flush bar, window headline (LIVE)
 - **The Space**: the grand-opening poster is out; `assets/storefront.jpg` leads the grouping (her
   photo, top 20% of sky trimmed, 1200px). Grid is `1.2fr .8fr`, the storefront `grid-row: span 2`
