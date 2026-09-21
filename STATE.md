@@ -26,7 +26,10 @@
 - Mobile pass done at 375x812: letterboxed logo start looks right, sections stack, overflowX 0.
 - tier1 got a `.statement` ink band under its hero (text off the logo) — moot while /classic/ is internal.
 
-## 09-21 ROUND 4b — FULL RELIEF, LETTERS PRINTED (LIVE)
+## 09-21 ROUND 4b — FULL RELIEF, LETTERS PRINTED (**REJECTED by Circle: "so bad now"; live ROLLED BACK to round 4, pages = site/ at f8ecd23**)
+Circle preferred the round-4 look (cicada+top vines sculpted, rest printed) even with its ledge. Do not
+re-deploy 4b. The 4b work stays on main for reference; `tier2/` and `site/` on main are still 4b, so a
+plain re-deploy would ship it again -- check out `f8ecd23 -- tier2 tier1 shared` first, or rebuild from it.
 The seam Circle caught (sculpted vines ending in a ledge where printed vines carried on) is gone:
 the relief is now the WHOLE artwork except the lettering, so vines run unbroken top to bottom.
 - Cutout is DETERMINISTIC (`film/logo_cut_det.png`): key the kraft by colour distance (>34 from the
