@@ -1,3 +1,19 @@
+## 09-21 JENNA ROUND 2 (her Instagram DMs) -- LIVE, commit fa34e69, pages f48f633
+- Bio opens "Jenna Feezel earned her Bachelor of Fine Arts..." (the first line is already the sub-header).
+- Black & grey line in her words: "Her tattoo work commonly lives in black and grey, but she is working towards
+  implementing the same colorful aesthetic into her tattooing process." The creds chip still says "Black & grey".
+- Booking: "approximately what size". Aftercare: "open it, download it, or come back to it".
+- **Aftercare sheet is now HER REAL SHEET** (1103x1426 from her DM; jpg + pdf at 130 dpi) in tier1/, tier2/ and
+  site/assets/aftercare. The placeholder generator is retired -- do NOT re-run make_aftercare_placeholder.py.
+  Ask her for the original file: 1103px is readable on screen but soft in print.
+- Visible address = "755 Jenkins Ave" (her wording + her sheet). Schema streetAddress and Maps queries keep "S".
+- **Keyhole:** black fades p .77-.82 (was .50-.70). Measured by reading the WebGL canvas back per p: the canvas
+  itself is 100% dark by .81 (phone .82) and the kraft behind the sheet only shows from .84 (desktop/tablet) /
+  .86 (phone), so black is complete first on every aspect. Landing margin-top -70vh -> -60vh on desktop so its
+  dark edge rises after the black. Script: shared/jenna_edits_0921.py (idempotent).
+- TRAP: `python -m http.server` run FROM INSIDE site/ locks the folder and assemble_site.py dies with WinError 32.
+  Serve the repo root (`--directory .`) and open /site/film/.
+
 ## 09-21 NAV FLUSH — it was TEXTURE, not tone
 Circle kept seeing a band under the bar after the rule was removed. Measuring per row in a clean
 column (no artwork) found the cause: tone matched to under half a level (nav 171,126,86 vs paper
