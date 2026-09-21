@@ -1,3 +1,18 @@
+## 09-21 ROUND 6 — FLAT 2D LOGO (LIVE, and where this landed)
+Circle: "Scratch the 3d logo just make it a clean 2d so the edges are good."
+The sculpted relief is GONE. `assets/cicada.glb` is deleted from the deploy, GLTFLoader and
+MeshoptDecoder are out of hero3d.js, and the sheet is simply her `logo-3d-4k.webp` (2k on phones)
+on a plane. **The only 3D left is the camera** — the perspective push into the keyhole, which is
+what everyone liked. Edges are her own drawn, anti-aliased linework; nothing re-traces them.
+Texture sampling is the whole quality story now: anisotropy 16, mipmaps, LinearMipmapLinear.
+First paint back to **phone 1642 KB / desktop 1590 KB** (was ~2.7 MB with the mesh).
+
+The arc, so nobody re-walks it: flat (3b) -> sculpted relief (4) -> full relief (4b, REJECTED) ->
+relief re-skinned with her art (5) -> flat again (6). The relief always cost the edges; her file is
+4096px of clean line and any generated geometry or bake degrades it. If 3D is ever wanted again,
+it is the CAMERA that should carry it, not the artwork.
+`film/mesh/` keeps the masters and `film/build_*.py` the pipelines, unused by the live site.
+
 ## 09-21 ROUND 5 — THE BLURRY BOX, FIXED (LIVE)
 Circle: "It still has that weird blurry box... make the whole image clear and crisp."
 **Cause:** the relief wore Hunyuan's BAKED texture (2048, webp q78, re-projected onto generated UVs)
@@ -16,7 +31,7 @@ hero3d.js rewrites the `uv` attribute from world x/y across the mesh bbox, mappe
 First paint ~2.6 MB. Nothing regenerated -- every visible pixel is her file.
 
 ## 09-21 WHAT IS LIVE, AND TWO TRAPS THAT COST THE EVENING — READ FIRST
-**LIVE = round 5** (round-4 relief, re-skinned with her own 4K art -- see above). Round 4's baked-texture
+**LIVE = round 6** (flat 2D logo, camera-only 3D -- see above). Round 4's baked-texture
 build was `a0367df`. Round 4b (full relief) is REJECTED; do not redeploy it.
 
 TRAP 1 — `.gitignore` ignored `tier2/index.html` (a generated file in the original tier2/build.py
