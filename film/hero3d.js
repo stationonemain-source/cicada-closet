@@ -63,11 +63,17 @@ if (host) {
   let paperReady = false, meshReady = false;
   const announce = () => { if (paperReady && meshReady) host.dispatchEvent(new CustomEvent('hero3d:ready')); };
 
+  // ONE texture for both the sheet and the relief: her own file, at full resolution. The model's
+  // baked texture went on the sheet as a soft rectangle against crisp print -- the blurry box.
+  let art = null;
   const tl = new THREE.TextureLoader();
-  tl.load(host.dataset[small ? 'paper2k' : 'paper4k'], (t) => {
+  tl.load(host.dataset[small ? 'art2k' : 'art4k'], (t) => {
     t.colorSpace = THREE.SRGBColorSpace;
-    t.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+    t.anisotropy = Math.min(16, renderer.capabilities.getMaxAnisotropy());
+    t.generateMipmaps = true; t.minFilter = THREE.LinearMipmapLinearFilter; t.magFilter = THREE.LinearFilter;
+    art = t;
     paper.material.map = t; paper.material.needsUpdate = true;
+    skinRelief();
     paperReady = true; announce();
   });
   tl.load(host.dataset.kraft, (t) => {
@@ -76,29 +82,49 @@ if (host) {
     field.material.map = t; field.material.color.set(0xffffff); field.material.needsUpdate = true;
   });
 
+  // Skin the relief with HER artwork by projecting it straight down the view axis. The mesh is a
+  // relief -- a displaced front surface -- so a planar projection lands her pixels exactly where
+  // they belong, and every vein and edge is as sharp as her file. The model's own UVs and baked
+  // texture are discarded: that bake is what was soft.
+  let meshRoot = null, skinned = false;
+  function skinRelief() {
+    if (!art || !meshRoot || skinned) return;
+    skinned = true;
+    meshRoot.updateMatrixWorld(true);
+    const bb = new THREE.Box3().setFromObject(meshRoot);
+    const ex = bb.max.x - bb.min.x, ey = bb.max.y - bb.min.y;
+    const v = new THREE.Vector3();
+    const skin = new THREE.MeshStandardMaterial({
+      map: art, roughness: 1.0, metalness: 0.0, side: THREE.FrontSide,
+      alphaTest: 0.5                        // her keyhole is transparent, so it stays a real hole
+    });
+    meshRoot.traverse((o) => {
+      if (!o.isMesh) return;
+      const pos = o.geometry.attributes.position, n = pos.count, uv = new Float32Array(n * 2);
+      for (let i = 0; i < n; i++) {
+        v.fromBufferAttribute(pos, i).applyMatrix4(o.matrixWorld);
+        const fx = (v.x - bb.min.x) / ex, fy = (v.y - bb.min.y) / ey;
+        uv[i * 2] = BOX.x0 + fx * (BOX.x1 - BOX.x0);
+        uv[i * 2 + 1] = 1 - (BOX.y0 + (1 - fy) * (BOX.y1 - BOX.y0));   // image v runs up
+      }
+      o.geometry.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+      o.material = skin;
+    });
+  }
+
   const gltf = new GLTFLoader(); gltf.setMeshoptDecoder(MeshoptDecoder);   // geometry ships meshopt-compressed
   gltf.load(host.dataset.mesh, (g) => {
     const root = g.scene;
     const box = new THREE.Box3().setFromObject(root), size = new THREE.Vector3(), c = new THREE.Vector3();
     box.getSize(size); box.getCenter(c);
+    meshRoot = root;
+    skinRelief();                                           // UVs come from the pose it arrived in
     root.position.sub(c);                                   // centre it on its own box
     const s = (BOX.x1 - BOX.x0) * PAPER / size.x;           // fit its width to the cutout's footprint
     relief.scale.setScalar(s);
     relief.position.set(((BOX.x0 + BOX.x1) / 2 - 0.5) * PAPER,
                         (0.5 - (BOX.y0 + BOX.y1) / 2) * PAPER,
                         size.z * s / 2 + 0.006);           // its back face rests on the sheet
-    root.traverse((o) => {
-      if (o.isMesh && o.material) {
-        o.material.side = THREE.FrontSide;
-        // matte: the generated material carried gloss, and the black keyhole face threw a
-        // specular glint right as the camera arrived at it
-        o.material.roughness = 1.0; o.material.metalness = 0.0;
-        if (o.material.metalnessMap) o.material.metalnessMap = null;
-        if (o.material.roughnessMap) o.material.roughnessMap = null;
-        if (o.material.map) { o.material.map.colorSpace = THREE.SRGBColorSpace; o.material.map.anisotropy = 8; }
-        o.material.needsUpdate = true;
-      }
-    });
     relief.add(root);
     meshReady = true; announce();
   }, undefined, () => { meshReady = true; announce(); });   // no mesh: the flat sheet still works
