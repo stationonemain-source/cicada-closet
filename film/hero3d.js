@@ -14,7 +14,7 @@ if (host) {
   const KY = 0.3665;                       // keyhole centre, as a fraction of the logo
   const PAPER = 3.0;                       // paper size in world units
   // where the relief sits on the paper: the cutout's box in logo fractions (from the build script)
-  const BOX = { x0: 0.1006, x1: 0.8967, y0: 0.0337, y1: 0.9629 };   // the whole artwork is the relief
+  const BOX = { x0: 0.0997, x1: 0.8966, y0: 0.1200, y1: 0.7396 };
   const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const small = Math.min(innerWidth, innerHeight) < 700 || (devicePixelRatio || 1) < 1.5;
 
@@ -22,7 +22,6 @@ if (host) {
   renderer.setPixelRatio(Math.min(devicePixelRatio || 1, small ? 1.5 : 2));   // lit mesh: cap phones
   renderer.setSize(innerWidth, innerHeight);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.localClippingEnabled = true;
   host.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
@@ -41,8 +40,7 @@ if (host) {
   well.position.z = -4.55;
   scene.add(well);
 
-  // her paper: bare kraft with her LETTERING printed on it. Image-to-3D mangles letterforms, so the
-  // lettering block was removed from the cutout before sculpting and stays flat print, exactly hers.
+  // her paper: kraft with the lettering printed; the relief's footprint is bare paper underneath
   const paper = new THREE.Mesh(
     new THREE.PlaneGeometry(PAPER, PAPER),
     new THREE.MeshBasicMaterial({ transparent: true, side: THREE.DoubleSide })
@@ -62,27 +60,11 @@ if (host) {
   const relief = new THREE.Group();
   scene.add(relief);
 
-  // The lettering block was removed from the cutout before sculpting (image-to-3D mangles
-  // letterforms), and the model filled that empty rectangle with a plain black plate. This box
-  // clips the plate out, so her printed letters on the sheet show through. Three clips where
-  // n.p + c < 0, so each plane faces INTO the box; clipIntersection = inside all four = the box.
-  const LET = { x0: 0.245, x1: 0.755, y0: 0.725, y1: 0.878 };
-  const X0 = (LET.x0 - 0.5) * PAPER, X1 = (LET.x1 - 0.5) * PAPER;
-  const YT = (0.5 - LET.y0) * PAPER, YB = (0.5 - LET.y1) * PAPER;
-  const letLocal = [[1, 0, 0, -X1], [-1, 0, 0, X0], [0, 1, 0, -YT], [0, -1, 0, YB]];
-  const letBox = letLocal.map(() => new THREE.Plane());
-  const sheetFrame = new THREE.Object3D();      // the sheet's pose, applied to the planes each frame
-  scene.add(sheetFrame);
-  function updateLetterClip() {
-    sheetFrame.updateMatrixWorld(true);
-    letLocal.forEach(([nx, ny, nz, k], i) => letBox[i].set(new THREE.Vector3(nx, ny, nz), k).applyMatrix4(sheetFrame.matrixWorld));
-  }
-
   let paperReady = false, meshReady = false;
   const announce = () => { if (paperReady && meshReady) host.dispatchEvent(new CustomEvent('hero3d:ready')); };
 
   const tl = new THREE.TextureLoader();
-  tl.load(host.dataset.paper, (t) => {
+  tl.load(host.dataset[small ? 'paper2k' : 'paper4k'], (t) => {
     t.colorSpace = THREE.SRGBColorSpace;
     t.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
     paper.material.map = t; paper.material.needsUpdate = true;
@@ -111,14 +93,6 @@ if (host) {
         // matte: the generated material carried gloss, and the black keyhole face threw a
         // specular glint right as the camera arrived at it
         o.material.roughness = 1.0; o.material.metalness = 0.0;
-        o.material.clippingPlanes = letBox; o.material.clipIntersection = true;
-        // The model blacked in the empty pockets of the cutout (under the cicada, the lettering
-        // block). Nothing in her artwork is that black except the keyhole -- so near-black texels
-        // are discarded: the fill disappears, and the keyhole becomes a real hole onto the shaft.
-        o.material.onBeforeCompile = (sh) => {
-          sh.fragmentShader = sh.fragmentShader.replace('#include <map_fragment>',
-            '#include <map_fragment>\n  if (max(diffuseColor.r, max(diffuseColor.g, diffuseColor.b)) < 0.014) discard;');
-        };
         if (o.material.metalnessMap) o.material.metalnessMap = null;
         if (o.material.roughnessMap) o.material.roughnessMap = null;
         if (o.material.map) { o.material.map.colorSpace = THREE.SRGBColorSpace; o.material.map.anisotropy = 8; }
@@ -141,8 +115,7 @@ if (host) {
     field.rotation.x = paper.rotation.x;
     // the relief rides the sheet, and turns a few degrees across the push so its depth reads
     relief.rotation.x = paper.rotation.x;
-    relief.rotation.y = 0;                       // no sway: the clip box lives in the sheet's frame
-    sheetFrame.rotation.set(paper.rotation.x, 0, 0); updateLetterClip();
+    relief.rotation.y = prefersReduced ? 0 : (0.5 - e) * 0.10;
     renderer.render(scene, camera);
   }
 
