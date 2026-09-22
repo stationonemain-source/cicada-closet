@@ -14,6 +14,23 @@
 - TRAP: `python -m http.server` run FROM INSIDE site/ locks the folder and assemble_site.py dies with WinError 32.
   Serve the repo root (`--directory .`) and open /site/film/.
 
+## 09-22 THE SPACE = HER WALKTHROUGH VIDEO (LIVE)
+Jenna: "the interior pictures aren't the greatest... a walkthrough video start playing of the space".
+Both interior stills are gone. The section is now her storefront photo + her 62s walkthrough.
+- Source `film/tour/source.mov` (360x640, h264+aac, 2.69 MB). Re-encoding made it BIGGER (x264 crf27
+  2.53 MB, vp9 crf36 3.14 MB) -- her export is already efficient. Shipped is a stream COPY with the
+  audio dropped and faststart: `assets/space-tour.mp4`, 2.32 MB. Poster = frame at 14s.
+- `preload="none"` + IntersectionObserver (threshold .35): nothing downloads until the visitor
+  nears the section, it plays itself there, and PAUSES when they scroll away. muted+loop+playsinline.
+  prefers-reduced-motion or no IO support -> `controls` instead of autoplay.
+- ⚠️ The video needs a `.tourbox` wrapper. Left as a bare grid item its 9:16 intrinsic height grows
+  the row and the two panels end at different heights (tried: matching aspect-ratio on both only
+  works if the columns are equal width, which they are not -- the storefront column is wider).
+  The wrapper has no intrinsic size, stretches to the row the storefront's 4/5 sets, and the video
+  is absolutely positioned inside it. Verified: both panels span y 152-708 exactly.
+- Verify with `node film/shoot_tour.js <base>` -- it asserts currentTime ADVANCES and that it pauses
+  when scrolled away. A poster that never plays looks identical in a screenshot.
+
 ## 09-21 NAV FLUSH — it was TEXTURE, not tone
 Circle kept seeing a band under the bar after the rule was removed. Measuring per row in a clean
 column (no artwork) found the cause: tone matched to under half a level (nav 171,126,86 vs paper

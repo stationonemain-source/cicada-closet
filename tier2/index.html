@@ -85,13 +85,14 @@ section h2{margin-bottom:18px}
 .studio{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,60px);align-items:center}
 @media (max-width:820px){.studio{grid-template-columns:1fr}}
 /* the storefront leads so visitors recognise the building; the interiors support it */
-.studio .photos{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
-.studio .photos img{width:100%;object-fit:cover;display:block;border:1px solid rgba(27,23,19,.2)}
-.studio .photos .front{grid-row:span 2;height:100%;min-height:0}
-.studio .photos .in{aspect-ratio:1}
+.studio .photos{display:grid;grid-template-columns:1.06fr .94fr;gap:14px}
+.studio .photos img,.studio .photos video{width:100%;object-fit:cover;display:block;border:1px solid rgba(27,23,19,.2);background:var(--kraft-deep)}
+.studio .photos .front{aspect-ratio:4/5}                 /* the storefront sets the row height */
+.studio .photos .tourbox{position:relative;overflow:hidden;border:1px solid rgba(27,23,19,.2);background:var(--kraft-deep)}
+.studio .photos .tour{position:absolute;inset:0;height:100%;border:0}   /* fills the row exactly */
 @media (max-width:640px){
-  .studio .photos{grid-template-columns:1fr 1fr}
-  .studio .photos .front{grid-column:span 2;grid-row:auto;height:auto;aspect-ratio:4/5}
+  .studio .photos{grid-template-columns:1fr}
+  .studio .photos .tourbox{aspect-ratio:4/5}            /* stacked: it needs a height of its own */
 }
 .quote{border-left:3px solid var(--rust);padding-left:18px;font-style:italic;color:var(--ink-2);margin:22px 0}
 .quote b{font-style:normal;color:var(--ink)}
@@ -378,8 +379,10 @@ body::before{display:none}
   <section class="studio" id="studio">
     <div class="photos">
       <img class="front" src="assets/storefront.jpg" alt="The Cicada Closet from the street: a grey storefront on South Jenkins Avenue with the gold hand-lettered logo on the window and &ldquo;Tattoo Studio &amp; Local Arts&rdquo; lettered beside the door" loading="lazy">
-      <img class="in" src="assets/studio-room.jpg" alt="Inside The Cicada Closet: deep green walls hung with framed work by local artists, and the front counter" loading="lazy">
-      <img class="in" src="assets/studio-wall.jpg" alt="Close view of the gallery wall: framed paintings and drawings by local artists" loading="lazy">
+      <div class="tourbox"><video class="tour" src="assets/space-tour.mp4" poster="assets/space-tour.jpg" muted loop playsinline preload="none"
+             aria-label="A walk through The Cicada Closet: deep green walls hung with framed work by local artists, the tattoo chair, and the front room">
+        Inside The Cicada Closet: deep green walls hung with framed work by local artists, the tattoo chair, and the front room.
+      </video></div>
     </div>
     <div>
       <p class="eyebrow">The Space</p>
@@ -479,7 +482,7 @@ body::before{display:none}
 <dialog id="lb"><button id="lbx" aria-label="Close">×</button><img id="lbi" alt=""><p id="lbc"></p></dialog>
 
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script type="module" src="hero3d.js?v=2609202236"></script>
+<script type="module" src="hero3d.js?v=2609221658"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script>
 (function(){
@@ -563,6 +566,23 @@ body::before{display:none}
   document.querySelector('.plates').addEventListener('click', e => { const p = e.target.closest('.plate'); if (!p) return; lbi.src = p.dataset.full; lbi.alt = p.querySelector('img').alt; lbc.textContent = p.dataset.cap; lb.showModal(); });
   document.getElementById('lbx').addEventListener('click', () => lb.close()); lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
   document.querySelectorAll('.reveal').forEach(el => el.classList.remove('reveal'));
+
+  // The Space: her walkthrough starts when the visitor scrolls to it and pauses when they leave,
+  // so it never plays off-screen. preload="none" keeps it off the first paint entirely.
+  const tour = document.querySelector('.studio .tour');
+  if (tour){
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)){
+      tour.controls = true;                       // let them start it themselves
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries){
+          if (e.isIntersecting) tour.play().catch(() => { tour.controls = true; });
+          else tour.pause();
+        }
+      }, { threshold: 0.35 });
+      io.observe(tour);
+    }
+  }
 
   // ---- boot
   function boot(){
