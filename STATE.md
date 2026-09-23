@@ -520,3 +520,12 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   then $20/mo. New product prod_VJZ8aGTsv7QX0V "Station Care Plan" (generic; $20 price price_1UIw004Y7C8no2ikpsR34Ezt is the
   Cicada rate, list $50) -- the old $49 "Storefront Care Plan" stays ARCHIVED. Allowlisted in _catalogue_allowlist.json,
   registered in stripe_payment_links.json. Verified: read-key readback + rendered logged-out checkout + link-preflight.
+- 09-23 AFFILIATE: Cicada Closet is JAIME's (code jaimel, Circle). Both pay links carry metadata affiliate=jaimel (link +
+  payment_intent_data on the $750 link, + subscription_data on the $750+Care link) -- read back with the read key.
+  NOT YET IN GHL: HQ (WGNhmJ...) has no contact for Jenna/Cicada (search control-checked). The engine credits Jaime only
+  via an HQ contact tagged aff-jaimel AND client, matched to Stripe BY EMAIL. TODO once her email is known (ask Circle,
+  or read it off the Stripe customer when she pays): search HQ by email -> refuse if tagged aff-<other> -> create contact
+  (POST /contacts/, NO tags in the body) -> POST /contacts/{id}/tags ["aff-jaimel","client"]. Search index lags tags ~5 min.
+  PAYOUT (v5, unsigned): 40% of cleared RECURRING only -> $8/mo on the Care Plan, $0 on the $750 build (s7.2(a) excludes
+  website builds; engine counts recurring lines only). Paid every 2 weeks, $50 min, by his payout method (blank). W-9 NOT
+  on file = nothing pays. Payout is manual (no payout automation in the engine).
