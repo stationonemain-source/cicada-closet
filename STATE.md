@@ -511,3 +511,7 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   (repo -> her GitHub) + domain (Squarespace ownership -> her) over free. On the plan the site stays on OUR hosting
   (stationonemain-source Pages + her domain) -- so do NOT retire our Pages copy if she takes it. station.solutions no
   longer publishes a Care price ("hosting and care are quoted with your site"), so $20 undercuts nothing public.
+- 09-23 GUIDE LINK TO SEND: https://stationonemain-source.github.io/cicada-closet/handover/ (noindex, link-preflight PASS,
+  rendered logged-out on phone OK). Source shared/handover-guide.html -> assemble_site.py wraps it with a full <head>.
+  The claude.ai artifact 8uGeUhNdoCd5dwXCTVKGj9 is a synced COPY (private) -- edit the source, rebuild, redeploy, republish.
+  ⚠️ When the site moves to HER repo, leave /handover/ (and classic/field-guide/living-plates/healed) OUT.
