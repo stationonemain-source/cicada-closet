@@ -451,3 +451,22 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   telling her she "owns" the film.
 - Quote sent: $750 build, $49.99/mo managed offered then made optional. station.solutions lists storefront sites
   as Premium $500 + $49/mo Care or Custom $1,250 + $49/mo Care; the quote matches neither.
+
+## 09-23 walkthrough upscaled + handover plan
+- Circle: "the quality of the video is bad". Her DM'd file is 360x640 @ 364 kbps (Instagram's DM compression).
+  Upscaled with Higgsfield `bytedance_video_upscale` pro/ugc/1080p (1 credit; job b70cf112; `video_upscale` FAILED,
+  no charge). Checked before shipping: downscaled back to 360x640 it matches the original (SSIM 0.92, 32 dB,
+  frame-aligned at offset 0); wall art zoomed 2x in film/tour/zoom_art.jpg shows the same pieces, nothing invented.
+  Local lanczos+sharpen (film/tour/local720*) barely helped -- you cannot sharpen what is not there.
+- Shipped as three 720x1280 <source>s, browser takes the first it decodes: space-tour.av1.mp4 5.3 MB (SVT-AV1 crf43),
+  space-tour.hevc.mp4 6.6 MB (x265 hvc1, for every iPhone), space-tour.mp4 7.8 MB (H.264 fallback). SSIM vs the master:
+  AV1 17.9 dB = H.264 @ 9.8 MB. Poster = upscaled 14s frame. Master bd1080.mp4 (74 MB) is gitignored, local only.
+- Verified LIVE (film/shoot_tour.js now prints currentSrc): desktop + phone play 720x1280 AV1, pause when away.
+  HEVC path NOT playable in headless Chrome -- checked by full ffmpeg decode (clean), hvc1 tag, moov-before-mdat.
+  Still unverified on a real iPhone.
+- file:// tests are useless for this page: CORS blocks works.json/the mark, something scrolls to 0 at ~3s and the
+  observer (correctly) pauses. Test over http/the live URL.
+- HANDOVER (Jenna declined monthly): her own free GitHub account + Pages + her domain. Need from her: GitHub
+  username, and is cicadacloset.com hers. Prep: drop noindex, film = homepage (drop /film/ redirect + the 4
+  alternates), canonical/og to her domain, vendor three.js + lenis, one-page update guide (works.json), zip backup.
+  Transfer only after the $750 clears; then take our Pages copy down. Message for her drafted in-session 09-23.
