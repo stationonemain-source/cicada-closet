@@ -69,15 +69,17 @@
   .who{display:block;margin-top:6px;font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
   .step-body{display:grid;gap:10px}
   .step-body ul{margin:0;padding-left:20px;display:grid;gap:6px}
+  .step-body ol.sub{margin:0;padding-left:22px;display:grid;gap:12px}
+  .step-body .cap{display:block}
   .note a{color:var(--green)}
   .note{font-size:15px;color:var(--muted);border-left:2px solid var(--kraft);padding-left:12px}
 
-  .records{overflow-x:auto;border:1px solid var(--rule);border-radius:10px;background:var(--sheet)}
-  table{border-collapse:collapse;width:100%;font-size:15px}
-  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
-  th{font:500 11px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-  tr:last-child td{border-bottom:0}
-  td.v{font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+  .records{border:1px solid var(--rule);border-radius:10px;background:var(--sheet)}
+  .rec{display:grid;grid-template-columns:62px 44px 1fr;gap:2px 8px;padding:10px 12px;align-items:baseline}
+  .rec + .rec{border-top:1px solid var(--rule)}
+  .rec .t{grid-row:span 2;font:500 13px/1.5 var(--mono)}
+  .rec .k{font:500 11px/1.9 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .rec .d{font:13px/1.5 var(--mono);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
   .cap{font-size:14px;color:var(--muted)}
 
   .changes{background:var(--panel);color:var(--panel-ink);border-radius:10px;padding:26px 24px 28px;display:grid;gap:14px}
@@ -129,7 +131,6 @@
       <li>The final invoice settled.</li>
       <li>Your web address, <b>thecicadacloset.com</b>, bought at Squarespace (step 1). On the Update Plan, we buy it for you.</li>
       <li>Your GitHub username (step 2).</li>
-      <li>About 15 minutes on a call to connect everything (step 4).</li>
     </ul>
   </div>
 
@@ -165,24 +166,28 @@
         </div>
       </li>
       <li>
-        <h3>Connect your address <span class="who">Together · 15 min</span></h3>
+        <h3>Connect your address <span class="who">You · 15 min</span></h3>
         <div class="step-body">
-          <p>On a quick call you click and we read out the values. On the Update Plan we handle the Squarespace part ourselves, so you only do the GitHub part. For reference, here is everything that gets set.</p>
-          <p><b>In GitHub</b>, your site's <b>Settings → Pages</b>: verify <code>thecicadacloset.com</code> as yours, then enter it as the custom domain.</p>
-          <p><b>In Squarespace</b>, <b>Domains → thecicadacloset.com → DNS</b>: delete the <b>Squarespace Defaults</b> records (they point the address at Squarespace), then add these under <b>Custom records</b>:</p>
-          <div class="records">
-            <table>
-              <thead><tr><th scope="col">Type</th><th scope="col">Host</th><th scope="col">Data</th></tr></thead>
-              <tbody>
-                <tr><td>A</td><td class="v">@</td><td class="v">185.199.108.153</td></tr>
-                <tr><td>A</td><td class="v">@</td><td class="v">185.199.109.153</td></tr>
-                <tr><td>A</td><td class="v">@</td><td class="v">185.199.110.153</td></tr>
-                <tr><td>A</td><td class="v">@</td><td class="v">185.199.111.153</td></tr>
-                <tr><td>CNAME</td><td class="v">www</td><td class="v">your-username.github.io</td></tr>
-                <tr><td>TXT</td><td class="v">GitHub gives you this</td><td class="v">GitHub gives you this</td></tr>
-              </tbody>
-            </table>
+          <p>Four short parts, in this order. Stuck anywhere? Send us a screenshot and we'll tell you exactly what to click.</p>
+          <ol class="sub">
+            <li><b>Claim the address in GitHub.</b> Click your profile picture (top right) → <b>Settings</b> → <b>Pages</b> (left side, under &ldquo;Code, planning, and automation&rdquo;) → <b>Add a domain</b>. Type <code>thecicadacloset.com</code> and click <b>Add domain</b>. GitHub shows you a TXT record; leave that page open.</li>
+            <li><b>Point your website at it.</b> Open your website on GitHub (it's listed on your profile) → <b>Settings</b> → <b>Pages</b>. Under <b>Custom domain</b>, type <code>thecicadacloset.com</code> and click <b>Save</b>. A DNS warning at this point is normal.</li>
+            <li><b>Add the records in Squarespace.</b> Go to <b>Domains → thecicadacloset.com → DNS</b>. Delete the <b>Squarespace Defaults</b> records (they point the address at Squarespace), then add the custom records listed below.
+            </li>
+          </ol>
+        <div class="records" role="list" aria-label="Custom records to add in Squarespace">
+            <div class="rec" role="listitem"><span class="t">A</span><span class="k">Host</span><span class="d">@</span><span class="k">Data</span><span class="d">185.199.108.153</span></div>
+            <div class="rec" role="listitem"><span class="t">A</span><span class="k">Host</span><span class="d">@</span><span class="k">Data</span><span class="d">185.199.109.153</span></div>
+            <div class="rec" role="listitem"><span class="t">A</span><span class="k">Host</span><span class="d">@</span><span class="k">Data</span><span class="d">185.199.110.153</span></div>
+            <div class="rec" role="listitem"><span class="t">A</span><span class="k">Host</span><span class="d">@</span><span class="k">Data</span><span class="d">185.199.111.153</span></div>
+            <div class="rec" role="listitem"><span class="t">CNAME</span><span class="k">Host</span><span class="d">www</span><span class="k">Data</span><span class="d">your-username.github.io</span></div>
+            <div class="rec" role="listitem"><span class="t">TXT</span><span class="k">Host</span><span class="d">_github-pages-challenge-your-username</span><span class="k">Data</span><span class="d">the code GitHub showed you</span></div>
           </div>
+        <span class="cap">For the TXT record, Squarespace wants only the part of the name before <code>.thecicadacloset.com</code>.</span>
+          <ol class="sub" start="4">
+            <li><b>Finish the claim.</b> Back in GitHub's <b>Settings → Pages</b>, open the <b>&middot;&middot;&middot;</b> menu beside your domain → <b>Continue verifying</b> → <b>Verify</b>. If it isn't found yet, try again in an hour.</li>
+          </ol>
+          <p class="note">On the Update Plan we do part 3 for you. Just send us a screenshot of the TXT record from part 1.</p>
           <p class="cap">The four A records are GitHub's own addresses. The TXT record proves the address is yours, so no one else can ever point it anywhere.</p>
         </div>
       </li>

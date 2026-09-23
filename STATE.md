@@ -501,3 +501,7 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   pays renewal; add Jenna as a Squarespace DOMAIN MANAGER on day one -- Squarespace only lets you hand ownership to someone
   who is already a domain manager; she accepts by email + adds her card; DNS/forwarding unchanged (Squarespace help
   "Changing domain ownership"). Guide promises free handover on cancel. On the plan we do the Squarespace DNS ourselves.
+- 09-23 NO CALL (Circle): step 4 is self-serve in 4 parts (GitHub account Settings->Pages->Add a domain; repo Settings->
+  Pages->Custom domain; Squarespace DNS; back to "..."->Continue verifying->Verify). Stuck = she sends a screenshot. On the
+  Update Plan she sends us the TXT screenshot and we do Squarespace. Records shown as stacked rows, not a table (a 3-col
+  table broke IPs mid-number at phone width).
