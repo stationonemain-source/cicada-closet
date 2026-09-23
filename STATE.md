@@ -529,3 +529,8 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   PAYOUT (v5, unsigned): 40% of cleared RECURRING only -> $8/mo on the Care Plan, $0 on the $750 build (s7.2(a) excludes
   website builds; engine counts recurring lines only). Paid every 2 weeks, $50 min, by his payout method (blank). W-9 NOT
   on file = nothing pays. Payout is manual (no payout automation in the engine).
+- 09-23 JAIME PAY DECISION (Circle): 40% of the $750 first charge ($300) + 40% monthly ($8/mo on the Care Plan). The engine
+  only counts recurring, so the $300 is a SPECIAL TERM: vault Station/Partners/Jaime-Ledezma/partner.json special_terms ->
+  agreement rebuilt (HTML + PDF, print audit clean). Both Stripe links carry metadata affiliate_terms. Live Launchpad (VPS):
+  cicada-credit-to-jaime (now), pay-jaime-cicada-commission (week); jaime-w9-bring-up bumped to now. The GHL e-sign edition
+  has recipient-filled fields -- the special-terms field must carry the Cicada text when his v5 is sent.
