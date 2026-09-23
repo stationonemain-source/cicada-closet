@@ -534,3 +534,10 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   agreement rebuilt (HTML + PDF, print audit clean). Both Stripe links carry metadata affiliate_terms. Live Launchpad (VPS):
   cicada-credit-to-jaime (now), pay-jaime-cicada-commission (week); jaime-w9-bring-up bumped to now. The GHL e-sign edition
   has recipient-filled fields -- the special-terms field must carry the Cicada text when his v5 is sent.
+- 09-23 CIRCLE + CONNECT: Stripe IS linked to Circle (Payments tab, all scopes true). Both Cicada products tagged
+  metadata app=station (stripe_for_biz already defaults unclaimed products to Station). Station -> Payments -> Client Links
+  now opens with group "CLIENT DEALS -- one client each" (both links + Jaime's cut in the group note; the renderer only shows
+  per-link notes when a URL is missing). Edited LIVE /docker/circle/data/.station/send-links.json (snapshot in
+  data-snapshots/) + PC ~/.station/send-links.json (.bak-20260923-cicada). Stripe Connect: 0 connected accounts; Circle must
+  register the platform in the dashboard, then + Create -> Express -> transfers -> send Jaime the link. Jaime provides name,
+  DOB, SSN last 4, a website, bank/debit card, ToS (Stripe requirements endpoint, US individual, transfers).
