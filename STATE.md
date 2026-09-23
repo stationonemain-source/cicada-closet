@@ -493,3 +493,7 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   video master and sources, but can only PUBLISH through our collaborator access on her repo. Add her repo as remote
   `jenna`; before every paid change: fetch jenna, diff her live files against site/, fold in anything she edited, THEN
   rebuild and push -- never blind-push over her copy. Retire our Pages preview + make this repo private after go-live.
+- 09-23 PRICING in the guide (Circle): small change $75 · bigger $150 · new work quoted; paid upfront, one message = one
+  request, ~3 business days. Optional "Update Plan" $20/mo = ONE small change/month included (no rollover), bigger
+  changes at list price + priority, cancel any time. Named "Update Plan" on purpose: it is NOT the published $49/mo Care.
+  Needs a $20/mo Stripe subscription before she can say yes -- not created yet.

@@ -13,7 +13,7 @@
     --rust:#a4461c;
     --kraft:#96693f;
     --code-bg:#e6d7ba;
-    --panel:#3f5a3c; --panel-ink:#efe3cc;
+    --panel:#3f5a3c; --panel-ink:#efe3cc; --panel-rule:rgba(239,227,204,.28);
     --display:"Rye", "Georgia", serif;
     --body:"Libre Caslon Text", "Georgia", "Times New Roman", serif;
     --mono:"IBM Plex Mono", ui-monospace, "Consolas", monospace;
@@ -83,6 +83,18 @@
   .changes h2{font-size:24px;color:var(--panel-ink)}
   .changes a{color:var(--panel-ink)}
   .changes ol{margin:0;padding-left:22px;display:grid;gap:6px}
+
+  .prices{display:grid;margin-top:4px;border-bottom:1px solid var(--panel-rule)}
+  .prices > div{display:grid;grid-template-columns:1fr auto;gap:2px 16px;padding:12px 0;border-top:1px solid var(--panel-rule)}
+  .prices .p{font:500 18px/1.3 var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+  .prices .d{grid-column:1 / -1;font-size:15px;line-height:1.5;opacity:.88}
+  .fine{font-size:15px;opacity:.88}
+
+  .plan{background:var(--sheet);border:1.5px solid var(--kraft);border-radius:10px;padding:26px 24px 28px;gap:12px}
+  .plan h2{font-size:24px}
+  .plan .price{font:400 40px/1 var(--display);color:var(--rust)}
+  .plan .price small{font:500 14px/1 var(--mono);color:var(--muted);letter-spacing:.04em}
+  .plan ul{margin:0;padding-left:20px;display:grid;gap:8px}
 
   details{border-top:1px solid var(--rule);padding:14px 0}
   details:last-of-type{border-bottom:1px solid var(--rule)}
@@ -197,9 +209,15 @@
     <p>New pieces for Recent Works, a new artist, updated text or a new aftercare sheet: just message us, the same way you do now.</p>
     <ol>
       <li>Tell us what you'd like changed. For new work, send the original photos from your camera roll, not screenshots.</li>
-      <li>We quote the change before we start.</li>
+      <li>We confirm the price before we start.</li>
       <li>You approve it, and we make it. The site updates itself within about a minute of us finishing.</li>
     </ol>
+    <div class="prices" role="list" aria-label="Prices for changes">
+      <div role="listitem"><b>Small change</b><b class="p">$75</b><span class="d">Text edits, hours or links, up to 3 new Recent Works pieces, a new aftercare sheet</span></div>
+      <div role="listitem"><b>Bigger change</b><b class="p">$150</b><span class="d">A new artist, a new block of text with photos, or several small changes at once</span></div>
+      <div role="listitem"><b>New work</b><b class="p">Quoted</b><span class="d">A new section or page, design changes, a new walkthrough video</span></div>
+    </div>
+    <p class="fine">Paid before we start. Everything sent in one message counts as one request if it fits. Most changes are done within 3 business days.</p>
     <p>You don't have to log in to anything. When you accept the website, GitHub keeps us on as a collaborator, which is how we update it for you. You can remove us any time in your site's Settings → Collaborators, and invite us back whenever you need us.</p>
   </section>
 
@@ -212,7 +230,7 @@
       </details>
       <details>
         <summary>Is there any monthly fee?</summary>
-        <p>No. Hosting on GitHub is free. The only cost is your web address, about $20 a year to Squarespace, which renews automatically.</p>
+        <p>No. Hosting on GitHub is free. The only cost is your web address, about $20 a year to Squarespace, which renews automatically. The Update Plan below is optional, only if you'd like changes covered.</p>
       </details>
       <details>
         <summary>Can I change things myself?</summary>
@@ -239,6 +257,20 @@
         <p>The site keeps running on its own. It's standard web files, so any web developer can work on it, and you'll have your own backup copy.</p>
       </details>
     </div>
+  </section>
+
+  <section class="plan" aria-labelledby="plan">
+    <div class="eyebrow">Optional</div>
+    <h2 id="plan">The Update Plan</h2>
+    <p class="price">$20<small> / month</small></p>
+    <p>If you'd rather not think about it, we keep your site current for a flat monthly fee.</p>
+    <ul>
+      <li><b>One small change every month, included.</b> A new piece in Recent Works, updated text or hours, a new aftercare sheet.</li>
+      <li>Bigger changes at the usual price, and done first.</li>
+      <li>Your site stays on your own free hosting. This covers our time, not a hosting fee.</li>
+      <li>Cancel any time. An unused change doesn't roll over to the next month.</li>
+    </ul>
+    <p>Want it? Just tell us, now or whenever you're ready.</p>
   </section>
 
   <footer>
