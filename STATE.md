@@ -470,3 +470,7 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   username, and is cicadacloset.com hers. Prep: drop noindex, film = homepage (drop /film/ redirect + the 4
   alternates), canonical/og to her domain, vendor three.js + lenis, one-page update guide (works.json), zip backup.
   Transfer only after the $750 clears; then take our Pages copy down. Message for her drafted in-session 09-23.
+- 09-23: Circle confirms cicadacloset.com is NOT hers. RDAP (verisign .com registry) 09-23: thecicadacloset.com has no
+  registration record = available (control: cicadacloset.com 200). Also free: cicadaclosettattoo.com, cicadacloset.art/.studio.
+  Recommended thecicadacloset.com (= her IG handle), registered by HER, in her name. Then GitHub Pages DNS: 4 A records
+  185.199.108-111.153 on the apex + CNAME www -> <her-username>.github.io.
