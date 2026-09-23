@@ -481,3 +481,11 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
 - 09-23: Jenna DECLINED the $49.99/mo hosting+edits plan (Circle). Handover = $750 one-time, she self-edits, changes
   billed per request. Free GitHub Pages needs a PUBLIC repo (private Pages = paid plan) -- fine, the site is public anyway;
   only site/ goes in her repo, never our workspace. Vendor three.js + lenis so nothing needs upkeep.
+- 09-23 DECISIONS (Circle): domain via SQUARESPACE (~$20/yr, domain only, no site plan). NO self-edit panel -- the editor
+  is not given free; changes = she messages us -> we quote -> she approves -> we push. GitHub keeps the previous owner
+  as a collaborator after a personal->personal transfer (GitHub docs), so we keep push access; Pages settings are
+  owner-only, so she ticks Custom domain / Enforce HTTPS herself. Transfer invite EXPIRES after 1 day -- send on cue.
+  Squarespace DNS: Domains -> domain -> DNS -> delete "Squarespace Defaults" -> Custom records: A @ x4 (185.199.108-111.153),
+  CNAME www -> <user>.github.io, TXT from GitHub domain verification. Guide for Jenna (private until shared):
+  https://claude.ai/artifact/8uGeUhNdoCd5dwXCTVKGj9 · source shared/handover-guide.html. github.com/signup FAILS
+  link-preflight (403 to bots) -- guide links github.com instead; both links PASS.

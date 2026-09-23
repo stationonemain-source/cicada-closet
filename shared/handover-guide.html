@@ -1,0 +1,249 @@
+<title>Cicada Closet Handover</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rye&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ground:#efe3cc;      /* her site's cream */
+    --sheet:#f8f0df;
+    --ink:#1b1713;
+    --muted:#5e5142;
+    --rule:rgba(27,23,19,.16);
+    --green:#3f5a3c;       /* the studio walls */
+    --rust:#a4461c;
+    --kraft:#96693f;
+    --code-bg:#e6d7ba;
+    --panel:#3f5a3c; --panel-ink:#efe3cc;
+    --display:"Rye", "Georgia", serif;
+    --body:"Libre Caslon Text", "Georgia", "Times New Roman", serif;
+    --mono:"IBM Plex Mono", ui-monospace, "Consolas", monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme:dark;
+      --ground:#17130f; --sheet:#211b15; --ink:#efe3cc; --muted:#b9a88f;
+      --rule:rgba(239,227,204,.16); --green:#9dbb93; --rust:#e08a5f; --kraft:#d0a577; --code-bg:#2c241c;
+      --panel:#26331f; --panel-ink:#efe3cc;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme:dark;
+    --ground:#17130f; --sheet:#211b15; --ink:#efe3cc; --muted:#b9a88f;
+    --rule:rgba(239,227,204,.16); --green:#9dbb93; --rust:#e08a5f; --kraft:#d0a577; --code-bg:#2c241c;
+    --panel:#26331f; --panel-ink:#efe3cc;
+  }
+
+  body{background:var(--ground);color:var(--ink);font:17px/1.65 var(--body);padding-inline:16px;padding-block:40px 64px}
+  .wrap{max-width:680px;margin:0 auto;display:grid;gap:44px}
+  h1,h2,h3{text-wrap:balance;margin:0;font-weight:700}
+  p{margin:0}
+  a{color:var(--green);text-underline-offset:3px}
+  a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid var(--rust);outline-offset:3px;border-radius:4px}
+  code,.mono{font-family:var(--mono);font-size:.84em}
+  code{background:var(--code-bg);padding:.08em .38em;border-radius:4px;word-break:break-word}
+
+  header{display:grid;gap:14px}
+  .eyebrow{font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--kraft)}
+  .mark{font-family:var(--display);font-weight:400;font-size:clamp(34px,7vw,48px);line-height:1.05;color:var(--ink)}
+  .lede{font-size:19px;color:var(--ink);max-width:60ch}
+
+  .costs{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--rule)}
+  .costs div{padding:16px 14px 18px;display:grid;gap:4px}
+  .costs div + div{border-left:1px solid var(--rule)}
+  .costs b{font:500 22px/1.2 var(--mono);font-variant-numeric:tabular-nums}
+  .costs span{font-size:14px;color:var(--muted);line-height:1.4}
+  @media (max-width:520px){ .costs{grid-template-columns:1fr} .costs div + div{border-left:0;border-top:1px solid var(--rule)} }
+
+  section{display:grid;gap:16px}
+  section > h2{font-size:24px;line-height:1.25}
+  .need{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;padding:22px 22px 24px;display:grid;gap:14px}
+  .need h2{font-size:20px}
+  .need ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+  .need li{position:relative;padding-left:30px}
+  .need li::before{content:"";position:absolute;left:0;top:5px;width:16px;height:16px;border:1.5px solid var(--green);border-radius:4px}
+
+  ol.steps{margin:0;padding:0;list-style:none;counter-reset:step;display:grid;gap:30px}
+  ol.steps > li{counter-increment:step;display:grid;grid-template-columns:44px 1fr;gap:4px 14px}
+  ol.steps > li::before{content:counter(step);grid-row:span 3;font:400 26px/1.1 var(--display);color:var(--rust);padding-top:2px}
+  ol.steps h3{font-size:19px;line-height:1.35}
+  .who{display:block;margin-top:6px;font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .step-body{display:grid;gap:10px}
+  .step-body ul{margin:0;padding-left:20px;display:grid;gap:6px}
+  .note{font-size:15px;color:var(--muted);border-left:2px solid var(--kraft);padding-left:12px}
+
+  .records{overflow-x:auto;border:1px solid var(--rule);border-radius:10px;background:var(--sheet)}
+  table{border-collapse:collapse;width:100%;font-size:15px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+  th{font:500 11px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  tr:last-child td{border-bottom:0}
+  td.v{font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+  .cap{font-size:14px;color:var(--muted)}
+
+  .changes{background:var(--panel);color:var(--panel-ink);border-radius:10px;padding:26px 24px 28px;display:grid;gap:14px}
+  .changes h2{font-size:24px;color:var(--panel-ink)}
+  .changes a{color:var(--panel-ink)}
+  .changes ol{margin:0;padding-left:22px;display:grid;gap:6px}
+
+  details{border-top:1px solid var(--rule);padding:14px 0}
+  details:last-of-type{border-bottom:1px solid var(--rule)}
+  summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font:400 22px/1 var(--mono);color:var(--kraft)}
+  details[open] summary::after{content:"–"}
+  details p{margin-top:10px;color:var(--ink)}
+
+  footer{font-size:14px;color:var(--muted);border-top:1px solid var(--rule);padding-top:18px;display:grid;gap:4px}
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Website handover</div>
+    <h1 class="mark">The Cicada Closet</h1>
+    <p class="lede">Your website is yours to keep. There's no monthly fee and nothing to maintain. Here's how it moves into your name, how your web address gets connected, and how changes work from here.</p>
+  </header>
+
+  <div class="costs" role="list" aria-label="What it costs">
+    <div role="listitem"><b>$0</b><span>a month to host your site</span></div>
+    <div role="listitem"><b>~$20</b><span>a year for your web address, paid to Squarespace</span></div>
+    <div role="listitem"><b>0</b><span>software to update or servers to look after</span></div>
+  </div>
+
+  <div class="need">
+    <h2>What we need from you</h2>
+    <ul>
+      <li>A final yes on the site as it is now. Once it's on your address, Google can find it.</li>
+      <li>The final invoice settled.</li>
+      <li>Your web address, <b>thecicadacloset.com</b>, bought at Squarespace (step 1).</li>
+      <li>Your GitHub username (step 2).</li>
+      <li>About 15 minutes on a call to connect everything (step 4).</li>
+    </ul>
+  </div>
+
+  <section aria-labelledby="steps">
+    <h2 id="steps">Six steps to your own address</h2>
+    <ol class="steps">
+      <li>
+        <h3>Buy your web address <span class="who">You · 5 min</span></h3>
+        <div class="step-body">
+          <p>Go to <a href="https://domains.squarespace.com" target="_blank" rel="noopener">domains.squarespace.com</a>, search <code>thecicadacloset.com</code> and buy it. It matches your Instagram handle, so people type what they already know.</p>
+          <ul>
+            <li>You only need the <b>domain</b>. Skip any website plan or builder Squarespace offers; your site is already built.</li>
+            <li>Use an email you check, and leave <b>auto-renew on</b>. If the address ever lapses, the site goes dark until it's renewed.</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <h3>Make a free GitHub account <span class="who">You · 5 min</span></h3>
+        <div class="step-body">
+          <p>GitHub is where your website's files will live, and it hosts the site for free. Go to <a href="https://github.com" target="_blank" rel="noopener">github.com</a>, click <b>Sign up</b> and choose the free plan.</p>
+          <ul>
+            <li>Turn on two-factor sign-in when it offers. It keeps anyone else out of your site.</li>
+            <li>Send us your <b>username</b>, the name shown on your profile, not your email.</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <h3>Accept your website <span class="who">You · 1 min</span></h3>
+        <div class="step-body">
+          <p>We send the site to your account. GitHub emails you an invitation to take it over; click <b>Accept</b>.</p>
+          <p class="note">That invitation expires after one day, so tell us when you're ready and we'll send it then.</p>
+        </div>
+      </li>
+      <li>
+        <h3>Connect your address <span class="who">Together · 15 min</span></h3>
+        <div class="step-body">
+          <p>On a quick call you click and we read out the values. For reference, here is everything that gets set.</p>
+          <p><b>In GitHub</b>, your site's <b>Settings → Pages</b>: verify <code>thecicadacloset.com</code> as yours, then enter it as the custom domain.</p>
+          <p><b>In Squarespace</b>, <b>Domains → thecicadacloset.com → DNS</b>: delete the <b>Squarespace Defaults</b> records (they point the address at Squarespace), then add these under <b>Custom records</b>:</p>
+          <div class="records">
+            <table>
+              <thead><tr><th scope="col">Type</th><th scope="col">Host</th><th scope="col">Data</th></tr></thead>
+              <tbody>
+                <tr><td>A</td><td class="v">@</td><td class="v">185.199.108.153</td></tr>
+                <tr><td>A</td><td class="v">@</td><td class="v">185.199.109.153</td></tr>
+                <tr><td>A</td><td class="v">@</td><td class="v">185.199.110.153</td></tr>
+                <tr><td>A</td><td class="v">@</td><td class="v">185.199.111.153</td></tr>
+                <tr><td>CNAME</td><td class="v">www</td><td class="v">your-username.github.io</td></tr>
+                <tr><td>TXT</td><td class="v">GitHub gives you this</td><td class="v">GitHub gives you this</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="cap">The four A records are GitHub's own addresses. The TXT record proves the address is yours, so no one else can ever point it anywhere.</p>
+        </div>
+      </li>
+      <li>
+        <h3>Go live <span class="who">Us · within 48 hours</span></h3>
+        <div class="step-body">
+          <p>Addresses usually connect within minutes, but can take up to 48 hours. Once it's through:</p>
+          <ul>
+            <li>We message you to tick <b>Enforce HTTPS</b> in Settings → Pages. That's the padlock in the browser bar, and it's free.</li>
+            <li>We turn on Google visibility, check the site on phones and computers, and retire the preview link.</li>
+            <li>We send you a complete backup copy of the site.</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <h3>Tell people where to find you <span class="who">You · 5 min</span></h3>
+        <div class="step-body">
+          <p>Put <code>thecicadacloset.com</code> in your Instagram bio and in the website field of your Google Business Profile. Both help people, and Google, find the new site.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="changes" aria-labelledby="changes">
+    <h2 id="changes">When you want something changed</h2>
+    <p>New pieces for Recent Works, a new artist, updated text or a new aftercare sheet: just message us, the same way you do now.</p>
+    <ol>
+      <li>Tell us what you'd like changed. For new work, send the original photos from your camera roll, not screenshots.</li>
+      <li>We quote the change before we start.</li>
+      <li>You approve it, and we make it. The site updates itself within about a minute of us finishing.</li>
+    </ol>
+    <p>You don't have to log in to anything. When you accept the website, GitHub keeps us on as a collaborator, which is how we update it for you. You can remove us any time in your site's Settings → Collaborators, and invite us back whenever you need us.</p>
+  </section>
+
+  <section aria-labelledby="faq">
+    <h2 id="faq">Questions you might have</h2>
+    <div>
+      <details>
+        <summary>Do I really own it?</summary>
+        <p>Yes. The web address is registered in your name at Squarespace, and the website's files sit in your own GitHub account. Nothing depends on us to keep running.</p>
+      </details>
+      <details>
+        <summary>Is there any monthly fee?</summary>
+        <p>No. Hosting on GitHub is free. The only cost is your web address, about $20 a year to Squarespace, which renews automatically.</p>
+      </details>
+      <details>
+        <summary>Can I change things myself?</summary>
+        <p>The files are yours, so technically yes. But the site is hand-built code, and one misplaced character can break a section, so we recommend sending changes to us. If anything ever does break, GitHub keeps every past version, so it can always be put back.</p>
+      </details>
+      <details>
+        <summary>Why is my site's code visible on GitHub?</summary>
+        <p>Free hosting on GitHub needs the files to be public. They're the same files anyone already sees by visiting your website. There are no passwords, customer details or anything private in them.</p>
+      </details>
+      <details>
+        <summary>What happens if I don't renew the address?</summary>
+        <p>The site stops showing at thecicadacloset.com until it's renewed, and someone else could buy the address. Your website files stay safe in GitHub either way. Keep auto-renew on.</p>
+      </details>
+      <details>
+        <summary>Can I get an email address at thecicadacloset.com?</summary>
+        <p>Yes, though it isn't needed for the website. Squarespace sells professional email through Google Workspace for a monthly fee; you can add it from your Squarespace domain settings whenever you like.</p>
+      </details>
+      <details>
+        <summary>How soon will I show up on Google?</summary>
+        <p>We switch Google visibility on the day you go live. New sites usually take days to a few weeks to appear in results. Linking it from your Google Business Profile helps.</p>
+      </details>
+      <details>
+        <summary>What if you're not around one day?</summary>
+        <p>The site keeps running on its own. It's standard web files, so any web developer can work on it, and you'll have your own backup copy.</p>
+      </details>
+    </div>
+  </section>
+
+  <footer>
+    <span>Prepared by Station for The Cicada Closet · 755 S Jenkins Ave, Norman, OK</span>
+    <span>Questions? Message us any time.</span>
+  </footer>
+
+</div>
