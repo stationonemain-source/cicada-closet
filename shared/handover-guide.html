@@ -71,7 +71,7 @@
   .step-body ul{margin:0;padding-left:20px;display:grid;gap:6px}
   .step-body ol.sub{margin:0;padding-left:22px;display:grid;gap:12px}
   .step-body .cap{display:block}
-  .note a{color:var(--green)}
+  .note a,.lede a{color:var(--green)}
   .note{font-size:15px;color:var(--muted);border-left:2px solid var(--kraft);padding-left:12px}
 
   .records{border:1px solid var(--rule);border-radius:10px;background:var(--sheet)}
@@ -96,6 +96,7 @@
   .plan{background:var(--sheet);border:1.5px solid var(--kraft);border-radius:10px;padding:26px 24px 28px;gap:12px}
   .plan h2{font-size:24px}
   .plan .price{font:400 40px/1 var(--display);color:var(--rust)}
+  .plan .price s{font-size:24px;color:var(--muted);text-decoration-thickness:2px;margin-right:6px}
   .plan .price small{font:500 14px/1 var(--mono);color:var(--muted);letter-spacing:.04em}
   .plan ul{margin:0;padding-left:20px;display:grid;gap:8px}
 
@@ -115,12 +116,12 @@
   <header>
     <div class="eyebrow">Website handover</div>
     <h1 class="mark">The Cicada Closet</h1>
-    <p class="lede">Your website is yours to keep. There's no monthly fee and nothing to maintain. Here's how it moves into your name, how your web address gets connected, and how changes work from here.</p>
+    <p class="lede">Your website is yours to keep. There's no monthly fee and nothing to maintain. Here's how it moves into your name, how your web address gets connected, and how changes work from here. Rather not deal with any of it? See the <a href="#plan">Care Plan</a> at the end.</p>
   </header>
 
   <div class="costs" role="list" aria-label="What it costs">
     <div role="listitem"><b>$0</b><span>a month to host your site</span></div>
-    <div role="listitem"><b>~$20</b><span>a year for your web address, or included on the Update Plan</span></div>
+    <div role="listitem"><b>~$20</b><span>a year for your web address, or included on the Care Plan</span></div>
     <div role="listitem"><b>0</b><span>software to update or servers to look after</span></div>
   </div>
 
@@ -129,13 +130,15 @@
     <ul>
       <li>A final yes on the site as it is now. Once it's on your address, Google can find it.</li>
       <li>The final invoice settled.</li>
-      <li>Your web address, <b>thecicadacloset.com</b>, bought at Squarespace (step 1). On the Update Plan, we buy it for you.</li>
+      <li>Your web address, <b>thecicadacloset.com</b>, bought at Squarespace (step 1).</li>
       <li>Your GitHub username (step 2).</li>
     </ul>
+    <p class="cap">On the Care Plan we only need the first two. We handle the rest.</p>
   </div>
 
   <section aria-labelledby="steps">
     <h2 id="steps">Six steps to your own address</h2>
+    <p class="note">On the <a href="#plan">Care Plan</a>? Skip all six. We do every one of them for you.</p>
     <ol class="steps">
       <li>
         <h3>Buy your web address <span class="who">You · 5 min</span></h3>
@@ -145,7 +148,6 @@
             <li>You only need the <b>domain</b>. Skip any website plan or builder Squarespace offers; your site is already built.</li>
             <li>Use an email you check, and leave <b>auto-renew on</b>. If the address ever lapses, the site goes dark until it's renewed.</li>
           </ul>
-          <p class="note">Taking the <a href="#plan">Update Plan</a>? Skip this step. We buy the address for you and pay the renewals.</p>
         </div>
       </li>
       <li>
@@ -187,7 +189,6 @@
           <ol class="sub" start="4">
             <li><b>Finish the claim.</b> Back in GitHub's <b>Settings → Pages</b>, open the <b>&middot;&middot;&middot;</b> menu beside your domain → <b>Continue verifying</b> → <b>Verify</b>. If it isn't found yet, try again in an hour.</li>
           </ol>
-          <p class="note">On the Update Plan we do part 3 for you. Just send us a screenshot of the TXT record from part 1.</p>
           <p class="cap">The four A records are GitHub's own addresses. The TXT record proves the address is yours, so no one else can ever point it anywhere.</p>
         </div>
       </li>
@@ -233,11 +234,11 @@
     <div>
       <details>
         <summary>Do I really own it?</summary>
-        <p>Yes. The website's files sit in your own GitHub account. If you buy the web address, it's registered in your name; on the Update Plan we hold it for you and hand it over whenever you ask. Nothing depends on us to keep running.</p>
+        <p>Yes. If you take it over yourself, the files sit in your own GitHub account and the web address is registered in your name. On the Care Plan we hold both for you and hand them over whenever you ask.</p>
       </details>
       <details>
         <summary>Is there any monthly fee?</summary>
-        <p>No. Hosting on GitHub is free. The only cost is your web address, about $20 a year to Squarespace, which renews automatically. The Update Plan below is optional, and it includes your web address.</p>
+        <p>No. Hosting on GitHub is free. The only cost is your web address, about $20 a year to Squarespace, which renews automatically. The Care Plan below is optional.</p>
       </details>
       <details>
         <summary>Can I change things myself?</summary>
@@ -249,7 +250,7 @@
       </details>
       <details>
         <summary>What happens if I don't renew the address?</summary>
-        <p>The site stops showing at thecicadacloset.com until it's renewed, and someone else could buy the address. Your website files stay safe in GitHub either way. Keep auto-renew on. On the Update Plan, we renew it for you.</p>
+        <p>The site stops showing at thecicadacloset.com until it's renewed, and someone else could buy the address. Your website files stay safe in GitHub either way. Keep auto-renew on. On the Care Plan, we renew it for you.</p>
       </details>
       <details>
         <summary>Can I get an email address at thecicadacloset.com?</summary>
@@ -267,19 +268,18 @@
   </section>
 
   <section class="plan" aria-labelledby="plan">
-    <div class="eyebrow">Optional</div>
-    <h2 id="plan">The Update Plan</h2>
-    <p class="price">$20<small> / month</small></p>
-    <p>If you'd rather not think about it, we keep your site current for a flat monthly fee.</p>
+    <div class="eyebrow">Optional · our offer to you</div>
+    <h2 id="plan">The Care Plan</h2>
+    <p class="price"><s>$50</s> $20<small> / month</small></p>
+    <p>Our hosting and care plan is normally $50 a month. For The Cicada Closet it's $20. You skip every step in this guide, and we look after the site for you.</p>
     <ul>
-      <li><b>One small change every month, included.</b> A new piece in Recent Works, updated text or hours, a new aftercare sheet.</li>
-      <li>Bigger changes at the usual price, and done first.</li>
-      <li><b>Your web address, included.</b> We buy thecicadacloset.com and pay the yearly renewal, so you skip step 1 entirely.</li>
-      <li>It's still yours. We add you as a manager on the address from day one, and if you ever cancel, we hand it over to your own Squarespace account for free. From then on you'd pay the renewal, about $20 a year.</li>
-      <li>Your site stays on your own free hosting. The plan covers our time and your address, not a hosting fee.</li>
+      <li><b>We host your site and look after it.</b> Nothing to set up, no accounts to make.</li>
+      <li><b>Your web address, included.</b> We buy thecicadacloset.com, connect it and pay the yearly renewal.</li>
+      <li><b>One small change every month, included.</b> A new piece in Recent Works, updated text or hours, a new aftercare sheet. Bigger changes at the usual price, and done first.</li>
+      <li><b>It's all still yours.</b> You're a manager on your address from day one. If you ever cancel, we hand the site and the address over to your own accounts, free. From then on, it's the $0-a-month setup above plus the ~$20 a year for the address.</li>
       <li>Cancel any time. An unused change doesn't roll over to the next month.</li>
     </ul>
-    <p>Want it? Tell us before step 1 and we'll buy your address for you. You can also start it any time later.</p>
+    <p>Want it? Just tell us, and you're done.</p>
   </section>
 
   <footer>

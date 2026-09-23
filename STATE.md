@@ -505,3 +505,9 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   Pages->Custom domain; Squarespace DNS; back to "..."->Continue verifying->Verify). Stuck = she sends a screenshot. On the
   Update Plan she sends us the TXT screenshot and we do Squarespace. Records shown as stacked rows, not a table (a 3-col
   table broke IPs mid-number at phone width).
+- 09-23 CORRECTION (Circle): there is no separate "Update Plan" -- it is the SAME $50/mo hosting+care plan she declined,
+  offered at $20. Guide now: "The Care Plan", ~~$50~~ $20/mo: WE host + look after the site, buy/connect/renew the domain,
+  1 small change/month (no rollover), bigger changes at list + first; she skips all six steps; on cancel we hand site
+  (repo -> her GitHub) + domain (Squarespace ownership -> her) over free. On the plan the site stays on OUR hosting
+  (stationonemain-source Pages + her domain) -- so do NOT retire our Pages copy if she takes it. station.solutions no
+  longer publishes a Care price ("hosting and care are quoted with your site"), so $20 undercuts nothing public.
