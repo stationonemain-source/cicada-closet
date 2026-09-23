@@ -497,3 +497,7 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   request, ~3 business days. Optional "Update Plan" $20/mo = ONE small change/month included (no rollover), bigger
   changes at list price + priority, cancel any time. Named "Update Plan" on purpose: it is NOT the published $49/mo Care.
   Needs a $20/mo Stripe subscription before she can say yes -- not created yet.
+- 09-23 Update Plan now INCLUDES THE DOMAIN (Circle): Station buys thecicadacloset.com in STATION's Squarespace account and
+  pays renewal; add Jenna as a Squarespace DOMAIN MANAGER on day one -- Squarespace only lets you hand ownership to someone
+  who is already a domain manager; she accepts by email + adds her card; DNS/forwarding unchanged (Squarespace help
+  "Changing domain ownership"). Guide promises free handover on cancel. On the plan we do the Squarespace DNS ourselves.
