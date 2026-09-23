@@ -489,3 +489,7 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   CNAME www -> <user>.github.io, TXT from GitHub domain verification. Guide for Jenna (private until shared):
   https://claude.ai/artifact/8uGeUhNdoCd5dwXCTVKGj9 · source shared/handover-guide.html. github.com/signup FAILS
   link-preflight (403 to bots) -- guide links github.com instead; both links PASS.
+- AFTER HANDOVER her repo is the source of truth for the live site. Our workspace (this repo) keeps the build scripts,
+  video master and sources, but can only PUBLISH through our collaborator access on her repo. Add her repo as remote
+  `jenna`; before every paid change: fetch jenna, diff her live files against site/, fold in anything she edited, THEN
+  rebuild and push -- never blind-push over her copy. Retire our Pages preview + make this repo private after go-live.
