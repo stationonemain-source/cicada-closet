@@ -478,3 +478,6 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   file+json+list fields + image field) as her edit panel over works.json / artists / aftercare -- NOT yet tested on this
   site; works.json is an object {_how_to_edit, works:[...]}, check the CMS keeps _how_to_edit or drop it. (2) github.com
   pencil-edit + Upload files, history = undo. (3) paid per request: design, hero, video (3 encodes), new sections.
+- 09-23: Jenna DECLINED the $49.99/mo hosting+edits plan (Circle). Handover = $750 one-time, she self-edits, changes
+  billed per request. Free GitHub Pages needs a PUBLIC repo (private Pages = paid plan) -- fine, the site is public anyway;
+  only site/ goes in her repo, never our workspace. Vendor three.js + lenis so nothing needs upkeep.
