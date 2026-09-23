@@ -49,6 +49,14 @@ shutil.copy(root / 'tier2' / 'hero3d.js', site / 'film' / 'hero3d.js')
 for name, folder in (('field-guide', 'planB'), ('living-plates', 'planB2'), ('healed', 'planC')):
     page(root / folder / 'index.html', site / name / 'index.html', False)
     shutil.copytree(root / folder / 'assets', site / name / 'assets', ignore=shutil.ignore_patterns('logo.jpg', 'hero-logo.jpg', 'shop-chair.jpg'))
+# Jenna's handover guide (09-23). Source is an artifact body (no <head>), so give it a full document here.
+guide = (root / 'shared' / 'handover-guide.html').read_text(encoding='utf-8')
+(site / 'handover').mkdir(parents=True, exist_ok=True)
+(site / 'handover' / 'index.html').write_text(
+    '<!doctype html>\n<html lang="en"><head>\n<meta charset="utf-8">\n'
+    '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n'
+    + NOINDEX + '\n' + guide.replace('</style>', '</style>\n</head>\n<body>', 1) + '\n</body></html>\n',
+    encoding='utf-8')
 (site / '.nojekyll').touch()
 missing = []
 import re
