@@ -9,3 +9,9 @@ ref/posts/*.jpg
 planB2/work/
 tier2/frames_wings_full/
 film/frames_fullfilm_bak/
+# walkthrough intermediates: the 74 MB upscale master and encode trials stay local (master also on Higgsfield job b70cf112)
+film/tour/bd1080.mp4
+film/tour/local720*.mp4
+film/tour/web_*.mp4
+film/tour/compare_t*.jpg
+film/tour/t588.jpg

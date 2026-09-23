@@ -37,7 +37,9 @@ const wait = ms => new Promise(r => setTimeout(r, ms));
     const after = await p.evaluate(() => {
       const v = document.querySelector('.studio .tour');
       return { paused: v.paused, t: v.currentTime, w: v.videoWidth, h: v.videoHeight,
-               box: Math.round(v.getBoundingClientRect().width) + 'x' + Math.round(v.getBoundingClientRect().height) };
+               box: Math.round(v.getBoundingClientRect().width) + 'x' + Math.round(v.getBoundingClientRect().height),
+               src: (v.currentSrc || '').split('/').pop(),
+               can: [...v.querySelectorAll('source')].map(s => (s.src.split('/').pop()) + '=' + (v.canPlayType(s.type) || 'no')).join(' ') };
     });
     await p.screenshot({ path: path.join(out, `tour_${d.n}.png`) });
 
@@ -47,7 +49,8 @@ const wait = ms => new Promise(r => setTimeout(r, ms));
     const away = await p.evaluate(() => document.querySelector('.studio .tour').paused);
 
     console.log(`${d.n}: before scroll paused=${before && before.paused} | after scroll paused=${after.paused} ` +
-                `t=${after.t.toFixed(2)}s video=${after.w}x${after.h} box=${after.box} | paused when away=${away}`);
+                `t=${after.t.toFixed(2)}s video=${after.w}x${after.h} box=${after.box} | paused when away=${away}\n` +
+                `   playing: ${after.src}   (${after.can})`);
   }
   console.log(errs.length ? 'ERRORS: ' + errs.slice(0, 3).join(' | ') : 'no page errors');
   await b.close();

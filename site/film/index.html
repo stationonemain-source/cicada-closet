@@ -380,8 +380,13 @@ body::before{display:none}
   <section class="studio" id="studio">
     <div class="photos">
       <img class="front" src="../assets/storefront.jpg" alt="The Cicada Closet from the street: a grey storefront on South Jenkins Avenue with the gold hand-lettered logo on the window and &ldquo;Tattoo Studio &amp; Local Arts&rdquo; lettered beside the door" loading="lazy">
-      <div class="tourbox"><video class="tour" src="../assets/space-tour.mp4" poster="../assets/space-tour.jpg" muted loop playsinline preload="none"
+      <div class="tourbox"><video class="tour" poster="../assets/space-tour.jpg?v=2609231345" muted loop playsinline preload="none"
              aria-label="A walk through The Cicada Closet: deep green walls hung with framed work by local artists, the tattoo chair, and the front room">
+        <!-- same 720p walkthrough three ways; the browser takes the first it can decode.
+             AV1 (Chrome, Android, Firefox, newest Apple) · HEVC (every other iPhone/Safari) · H.264 (anything left) -->
+        <source src="../assets/space-tour.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"'>
+        <source src="../assets/space-tour.hevc.mp4" type='video/mp4; codecs="hvc1.1.6.L93.B0"'>
+        <source src="../assets/space-tour.mp4" type='video/mp4; codecs="avc1.640028"'>
         Inside The Cicada Closet: deep green walls hung with framed work by local artists, the tattoo chair, and the front room.
       </video></div>
     </div>
@@ -483,7 +488,7 @@ body::before{display:none}
 <dialog id="lb"><button id="lbx" aria-label="Close">×</button><img id="lbi" alt=""><p id="lbc"></p></dialog>
 
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script type="module" src="hero3d.js?v=2609221658"></script>
+<script type="module" src="hero3d.js?v=2609231345"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script>
 (function(){
