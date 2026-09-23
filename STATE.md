@@ -515,3 +515,8 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   rendered logged-out on phone OK). Source shared/handover-guide.html -> assemble_site.py wraps it with a full <head>.
   The claude.ai artifact 8uGeUhNdoCd5dwXCTVKGj9 is a synced COPY (private) -- edit the source, rebuild, redeploy, republish.
   ⚠️ When the site moves to HER repo, leave /handover/ (and classic/field-guide/living-plates/healed) OUT.
+- 09-23 PAYMENT LINKS (live Stripe): build only $750 = https://buy.stripe.com/bJeaEQdpagR38kpds42Fa1C (plink_1UH6P84Y..., from 09-18,
+  untouched). Build + Care Plan = https://buy.stripe.com/00wbIUacYbwJ3055ZC2Fa1J (plink_1UIw004Y7C8no2ikBBVlEzRM): $770 today
+  then $20/mo. New product prod_VJZ8aGTsv7QX0V "Station Care Plan" (generic; $20 price price_1UIw004Y7C8no2ikpsR34Ezt is the
+  Cicada rate, list $50) -- the old $49 "Storefront Care Plan" stays ARCHIVED. Allowlisted in _catalogue_allowlist.json,
+  registered in stripe_payment_links.json. Verified: read-key readback + rendered logged-out checkout + link-preflight.
