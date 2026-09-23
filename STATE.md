@@ -474,3 +474,7 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   registration record = available (control: cicadacloset.com 200). Also free: cicadaclosettattoo.com, cicadacloset.art/.studio.
   Recommended thecicadacloset.com (= her IG handle), registered by HER, in her name. Then GitHub Pages DNS: 4 A records
   185.199.108-111.153 on the apex + CNAME www -> <her-username>.github.io.
+- 09-23 EDITING after handover (plan told to Circle): (1) Pages CMS (pagescms.org, free/MIT, email invites, docs confirm
+  file+json+list fields + image field) as her edit panel over works.json / artists / aftercare -- NOT yet tested on this
+  site; works.json is an object {_how_to_edit, works:[...]}, check the CMS keeps _how_to_edit or drop it. (2) github.com
+  pencil-edit + Upload files, history = undo. (3) paid per request: design, hero, video (3 encodes), new sections.
