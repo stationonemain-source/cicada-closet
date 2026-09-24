@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /handover/
+
+Sitemap: https://thecicadacloset.com/sitemap.xml

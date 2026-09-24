@@ -1,4 +1,9 @@
-"""Assemble site/ (what GitHub Pages serves) from tier1, tier2, planB, planC. noindex on every page."""
+"""Assemble site/ (what GitHub Pages serves).
+
+LIVE since 2026-09-24 on Jenna's own domain (Station Care Plan): the film IS the homepage at
+https://thecicadacloset.com/, indexable, with canonical/og pointing at the domain. /film/ forwards to /.
+The spec alternates (classic, field-guide, living-plates, healed) are no longer deployed -- their
+sources stay in this workspace. /handover/ (her plan guide) stays deployed, noindex."""
 import pathlib, shutil
 root = pathlib.Path(__file__).resolve().parent.parent
 site = root / 'site'
@@ -6,6 +11,8 @@ if site.exists():
     shutil.rmtree(site)
 site.mkdir()
 NOINDEX = '<meta name="robots" content="noindex,nofollow">'
+DOMAIN = 'thecicadacloset.com'
+ORIGIN = 'https://' + DOMAIN + '/'
 
 
 def page(src, dst, subdir):
@@ -19,36 +26,42 @@ def page(src, dst, subdir):
     dst.write_text(s, encoding='utf-8')
 
 
-# The client chose the film version as THE site (2026-09-20): the root URL forwards to /film/.
-# The tier1 one-pager is still built at /classic/ for internal reference only.
-(site / 'index.html').write_text(
-    '<!doctype html><html lang="en"><head><meta charset="utf-8">\n'
-    '<meta name="robots" content="noindex,nofollow">\n'
-    '<meta http-equiv="refresh" content="0; url=film/">\n'
-    '<script>location.replace("film/")</script>\n'
-    '<title>The Cicada Closet</title></head>\n'
-    '<body><p><a href="film/">Enter The Cicada Closet</a></p></body></html>\n',
-    encoding='utf-8')
-page(root / 'tier1' / 'index.html', site / 'classic' / 'index.html', False)
-(site / 'classic' / 'index.html').write_text(
-    (site / 'classic' / 'index.html').read_text(encoding='utf-8')
-    .replace('"assets/', '"../assets/').replace('url(assets/', 'url(../assets/'), encoding='utf-8')
-(site / 'classic' / 'works.json').write_text(
-    (root / 'tier1' / 'works.json').read_text(encoding='utf-8').replace('"assets/', '"../assets/'),
-    encoding='utf-8')
+# The film is THE site (client, 2026-09-20) and lives at the root of her domain (2026-09-24).
+# tier2 is authored for the root, so no path rewriting is needed here.
+film = (root / 'tier2' / 'index.html').read_text(encoding='utf-8')
+for a, b in (
+    ('<meta property="og:image" content="assets/hero-logo.jpg">',
+     '<link rel="canonical" href="' + ORIGIN + '">\n'
+     '<meta property="og:type" content="website">\n'
+     '<meta property="og:url" content="' + ORIGIN + '">\n'
+     '<meta property="og:image" content="' + ORIGIN + 'assets/hero-logo.jpg">'),
+    ('"image":"assets/hero-logo.jpg"}', '"image":"' + ORIGIN + 'assets/hero-logo.jpg","url":"' + ORIGIN + '"}'),
+):
+    assert a in film, a
+    film = film.replace(a, b, 1)
+assert NOINDEX not in film
+(site / 'index.html').write_text(film, encoding='utf-8')
+shutil.copy(root / 'tier2' / 'hero3d.js', site / 'hero3d.js')
+shutil.copy(root / 'tier2' / 'works.json', site / 'works.json')
 shutil.copytree(root / 'tier1' / 'assets', site / 'assets', ignore=shutil.ignore_patterns('*.png', '!cicada-mark.png'))
 shutil.copy(root / 'tier1' / 'assets' / 'cicada-mark.png', site / 'assets' / 'cicada-mark.png')
-shutil.copy(root / 'tier1' / 'works.json', site / 'works.json')
-page(root / 'tier2' / 'index.html', site / 'film' / 'index.html', True)
-shutil.copy(root / 'tier2' / 'hero3d.js', site / 'film' / 'hero3d.js')
-# the film is code-driven now (stationary desk + her logo card); the old video frame sets
-# stay in the workspace but are no longer deployed
-(site / 'film' / 'works.json').write_text(
-    (root / 'tier2' / 'works.json').read_text(encoding='utf-8').replace('"assets/', '"../assets/'),
+# old links (the preview we sent, /film/) keep working
+(site / 'film').mkdir()
+(site / 'film' / 'index.html').write_text(
+    '<!doctype html><html lang="en"><head><meta charset="utf-8">\n'
+    + NOINDEX + '\n<link rel="canonical" href="' + ORIGIN + '">\n'
+    '<meta http-equiv="refresh" content="0; url=../">\n'
+    '<script>location.replace("../" + location.hash)</script>\n'
+    '<title>The Cicada Closet</title></head>\n'
+    '<body><p><a href="../">Enter The Cicada Closet</a></p></body></html>\n',
     encoding='utf-8')
-for name, folder in (('field-guide', 'planB'), ('living-plates', 'planB2'), ('healed', 'planC')):
-    page(root / folder / 'index.html', site / name / 'index.html', False)
-    shutil.copytree(root / folder / 'assets', site / name / 'assets', ignore=shutil.ignore_patterns('logo.jpg', 'hero-logo.jpg', 'shop-chair.jpg'))
+(site / 'CNAME').write_text(DOMAIN + '\n', encoding='utf-8')
+(site / 'robots.txt').write_text(
+    'User-agent: *\nDisallow: /handover/\n\nSitemap: ' + ORIGIN + 'sitemap.xml\n', encoding='utf-8')
+(site / 'sitemap.xml').write_text(
+    '<?xml version="1.0" encoding="UTF-8"?>\n'
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    '  <url><loc>' + ORIGIN + '</loc></url>\n</urlset>\n', encoding='utf-8')
 # Jenna's handover guide (09-23). Source is an artifact body (no <head>), so give it a full document here.
 guide = (root / 'shared' / 'handover-guide.html').read_text(encoding='utf-8')
 (site / 'handover').mkdir(parents=True, exist_ok=True)
