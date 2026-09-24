@@ -541,3 +541,19 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   data-snapshots/) + PC ~/.station/send-links.json (.bak-20260923-cicada). Stripe Connect: 0 connected accounts; Circle must
   register the platform in the dashboard, then + Create -> Express -> transfers -> send Jaime the link. Jaime provides name,
   DOB, SSN last 4, a website, bank/debit card, ToS (Stripe requirements endpoint, US individual, transfers).
+
+## 09-24 LIVE ON HER DOMAIN -- https://thecicadacloset.com/ (Care Plan)
+- Jenna PAID $770 (jennafeezel@gmail.com) = build + Care Plan; sub_1UJJlT4Y7C8no2ikVBxRGrIQ active, customer cus_VJxgrjhfAJ4knL.
+  So the site stays on OUR Pages (this repo, `pages` branch) with her domain -- no repo transfer.
+- Domain bought on Station's CLOUDFLARE Registrar (not Squarespace -- Circle 09-24): $10.46, card ..9452, order e33264be,
+  registered 2026-09-24, expires 2027-09-24, auto-renew ON, registrant = Station Solutions default contact. Zone
+  8243ba39fa04916c92bedc943bc85662: A @ 185.199.108-111.153, AAAA 2606:50c0:8000-8003::153, CNAME www -> stationonemain-source.github.io
+  (all DNS-only). Pages cname set, cert approved (exp 2026-12-23, auto-renews), HTTPS enforced; www + github.io 301 to the domain.
+- Stripe sub metadata: site_repo=stationonemain-source/cicada-closet, site_domain=thecicadacloset.com, client=The Cicada Closet
+  (hosting_care.py needs these). ⚠ On cancel, hosting_care ARCHIVES site_repo -- that is this workspace repo too.
+- Build (shared/assemble_site.py): film = ROOT page (tier2 is authored for root, no path rewrite), NO noindex, canonical/og:url
+  /og:image absolute on the domain, CNAME + robots.txt (Disallow /handover/) + sitemap.xml. /film/ forwards to / (keeps hash).
+  classic/field-guide/living-plates/healed NO LONGER DEPLOYED (sources kept). /handover/ still deployed, noindex.
+- Verified: local http run (no console errors, all assets 200), live asset 200s, link-preflight PASS both hosts, rendered hero in Chrome.
+- NOT DONE: GHL HQ contact for Jaime's credit -- "Station - Client Welcome Sequence" is published in HQ and its trigger is
+  unknown (builder would not load); tagging `client` may enrol her. Check the trigger first. Search Console not added.
