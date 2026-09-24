@@ -566,3 +566,6 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   got the "Station - Client Welcome Sequence" emails (day ~3 "account being configured", day ~7 "One week in") had
   both tags, so the data can't show which one triggers it. His book counts aff-<code> + client, so Cicada is NOT in his
   book yet. Launchpad to-do cicada-credit-to-jaime updated to "check the trigger, then add client".
+- 09-24 later: Circle confirmed "Station - Client Welcome Sequence" triggers on `start-onboarding` -> `client` added to
+  0OIJ9KJkjwo9DF5o3FlH via POST /contacts/{id}/tags; read back = [aff-jaimel, client]. Never add `start-onboarding` to her
+  (it would send Station AI onboarding emails). Cicada now counts in Jaime's book.
