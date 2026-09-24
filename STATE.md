@@ -569,3 +569,6 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
 - 09-24 later: Circle confirmed "Station - Client Welcome Sequence" triggers on `start-onboarding` -> `client` added to
   0OIJ9KJkjwo9DF5o3FlH via POST /contacts/{id}/tags; read back = [aff-jaimel, client]. Never add `start-onboarding` to her
   (it would send Station AI onboarding emails). Cicada now counts in Jaime's book.
+- 09-24 footer credit: "Designed & hosted by Station.Solutions" -> https://station.solutions/ added to .foot-base in tier2/index.html
+  (commit e27a288, live-verified on thecicadacloset.com). Standing rule for every client site. tier2/_footer.html is STALE --
+  index.html is the source of truth for the footer; edit it directly.
