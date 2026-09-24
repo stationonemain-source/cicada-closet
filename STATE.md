@@ -556,4 +556,7 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   classic/field-guide/living-plates/healed NO LONGER DEPLOYED (sources kept). /handover/ still deployed, noindex.
 - Verified: local http run (no console errors, all assets 200), live asset 200s, link-preflight PASS both hosts, rendered hero in Chrome.
 - NOT DONE: GHL HQ contact for Jaime's credit -- "Station - Client Welcome Sequence" is published in HQ and its trigger is
-  unknown (builder would not load); tagging `client` may enrol her. Check the trigger first. Search Console not added.
+  unknown (builder would not load); tagging `client` may enrol her. Check the trigger first.
+- Google Search Console 09-24: DOMAIN property sc-domain:thecicadacloset.com on main@station.solutions, verified by DNS TXT
+  (google-site-verification=_Xcpb..., added via Cloudflare API -- do NOT delete it or verification lapses). Sitemap
+  https://thecicadacloset.com/sitemap.xml submitted, "Success", 1 page discovered. Manual "Request indexing" NOT done.
