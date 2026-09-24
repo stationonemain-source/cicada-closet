@@ -560,3 +560,9 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
 - Google Search Console 09-24: DOMAIN property sc-domain:thecicadacloset.com on main@station.solutions, verified by DNS TXT
   (google-site-verification=_Xcpb..., added via Cloudflare API -- do NOT delete it or verification lapses). Sitemap
   https://thecicadacloset.com/sitemap.xml submitted, "Success", 1 page discovered. URL inspection 09-24: "URL is on Google", indexing requested. (Property lives on main@station.solutions, which is signed in on the MAC Chrome only -- the Windows Chrome has stationonemain@gmail.com + a personal Gmail.)
+- 09-24 GHL HQ contact for Jaime: 0OIJ9KJkjwo9DF5o3FlH, Jenna Feezel / jennafeezel@gmail.com / The Cicada Closet /
+  https://thecicadacloset.com. Created with NO tags, then aff-jaimel added via POST /contacts/{id}/tags (read back).
+  `client` deliberately NOT added (Circle's pick): every HQ `client` contact also has `start-onboarding`, and those that
+  got the "Station - Client Welcome Sequence" emails (day ~3 "account being configured", day ~7 "One week in") had
+  both tags, so the data can't show which one triggers it. His book counts aff-<code> + client, so Cicada is NOT in his
+  book yet. Launchpad to-do cicada-credit-to-jaime updated to "check the trigger, then add client".
