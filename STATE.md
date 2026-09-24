@@ -559,4 +559,4 @@ Circle: too much dark between keyhole and wings. Frames 136-172 (the black stret
   unknown (builder would not load); tagging `client` may enrol her. Check the trigger first.
 - Google Search Console 09-24: DOMAIN property sc-domain:thecicadacloset.com on main@station.solutions, verified by DNS TXT
   (google-site-verification=_Xcpb..., added via Cloudflare API -- do NOT delete it or verification lapses). Sitemap
-  https://thecicadacloset.com/sitemap.xml submitted, "Success", 1 page discovered. Manual "Request indexing" NOT done.
+  https://thecicadacloset.com/sitemap.xml submitted, "Success", 1 page discovered. URL inspection 09-24: "URL is on Google", indexing requested. (Property lives on main@station.solutions, which is signed in on the MAC Chrome only -- the Windows Chrome has stationonemain@gmail.com + a personal Gmail.)
